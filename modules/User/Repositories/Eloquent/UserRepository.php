@@ -13,4 +13,7 @@ class UserRepository extends BaseEloquentRepository implements UserRepositoryInt
     {
         return User::class;
     }
+
+
+
 }

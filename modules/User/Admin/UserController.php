@@ -19,9 +19,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $list = $this->userRepository->get();
-        $first = $this->userRepository->first();
-        dd($first);
+
     }
 
 

@@ -39,70 +39,7 @@ abstract class BaseEloquentRepository implements RepositoryInterface
 
     abstract public function model();
 
-    public function get()
-    {
-        $result = $this->model->get();
-        $this->resetModel();
-        return $result;
-    }
-
-    public function first($columns = ['*'])
-    {
-        $model = $this->model->first($columns);
-        $this->resetModel();
-        return $model;
-    }
-
-    public function find($id, $columns = ['*'])
-    {
-        $model = $this->model->findOrFail($id, $columns);
-        $this->resetModel();
-        return $model;
-    }
-
-    public function all($columns = ['*'])
-    {
-        $result = $this->model->all($columns);
-        $this->resetModel();
-        return $result;
-    }
-
-    public function count(array $where = [], $columns = '*')
-    {
-        if ($where) {
-            $this->applyConditions($where);
-        }
-        $result = $this->model->count($columns);
-        $this->resetModel();
-        return $result;
-    }
-
-    public function paginate($limit = null, $columns = ['*'], $method = "paginate")
-    {
-        $limit = is_null($limit) ? config('repository.pagination.limit', 20) : $limit;
-        $result = $this->model->{$method}($limit, $columns)->appends(app('request')->query());
-        $this->resetModel();
-        return $result;
-    }
-
-    public function pluck($column, $key = null)
-    {
-        return $this->model->pluck($column, $key);
-    }
-
-    public function simplePaginate($limit = null, $columns = ['*'])
-    {
-        return $this->paginate($limit, $columns, "simplePaginate");
-    }
-
-    public function findByField($field, $value, $columns = ['*'])
-    {
-        $model = $this->model->where($field, '=', $value)->get($columns);
-        $this->resetModel();
-        return $model;
-    }
-
-    protected function applyConditions(array $where)
+    protected function handleWhere(array $where)
     {
         foreach ($where as $field => $value) {
             if (is_array($value)) {
@@ -189,9 +126,78 @@ abstract class BaseEloquentRepository implements RepositoryInterface
         }
     }
 
+    public function get()
+    {
+        $result = $this->model->get();
+        $this->resetModel();
+        return $result;
+    }
+
+    public function first($columns = ['*'])
+    {
+        $model = $this->model->first($columns);
+        $this->resetModel();
+        return $model;
+    }
+
+    public function find($id, $columns = ['*'])
+    {
+        $model = $this->model->findOrFail($id, $columns);
+        $this->resetModel();
+        return $model;
+    }
+
+    public function all($columns = ['*'])
+    {
+        $result = $this->model->all($columns);
+        $this->resetModel();
+        return $result;
+    }
+
+    public function count(array $where = [], $columns = '*')
+    {
+        if ($where) {
+            $this->handleWhere($where);
+        }
+        $result = $this->model->count($columns);
+        $this->resetModel();
+        return $result;
+    }
+
+    public function paginate($limit = null, $columns = ['*'], $method = "paginate")
+    {
+        $limit = is_null($limit) ? config('repository.pagination.limit', 20) : $limit;
+        $result = $this->model->{$method}($limit, $columns)->appends(app('request')->query());
+        $this->resetModel();
+        return $result;
+    }
+
+    public function pluck($column, $key = null)
+    {
+        return $this->model->pluck($column, $key);
+    }
+
+    public function simplePaginate($limit = null, $columns = ['*'])
+    {
+        return $this->paginate($limit, $columns, "simplePaginate");
+    }
+
+    public function findByField($field, $value, $columns = ['*'])
+    {
+        $model = $this->model->where($field, '=', $value)->get($columns);
+        $this->resetModel();
+        return $model;
+    }
+
+    public function where(...$where)
+    {
+        $this->model = $this->model->where(...$where);
+        return $this;
+    }
+
     public function findWhere(array $where, $columns = ['*'])
     {
-        $this->applyConditions($where);
+        $this->handleWhere($where);
         $model = $this->model->get($columns);
         $this->resetModel();
         return $model;
@@ -242,7 +248,7 @@ abstract class BaseEloquentRepository implements RepositoryInterface
 
     public function deleteWhere(array $where)
     {
-        $this->applyConditions($where);
+        $this->handleWhere($where);
         $result = $this->model->delete();
         $this->resetModel();
         return $result;

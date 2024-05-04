@@ -4,9 +4,13 @@ namespace Modules\Core\Repositories\Contracts;
 
 interface RepositoryInterface
 {
+    public function get();
+
     public function find($id, $columns = ['*']);
 
     public function all($columns = ['*']);
+
+    public function count(array $where = [], $columns = '*');
 
     public function paginate($limit = null, $columns = ['*']);
 
@@ -15,6 +19,8 @@ interface RepositoryInterface
     public function simplePaginate($limit = null, $columns = ['*']);
 
     public function findByField($field, $value, $columns = ['*']);
+
+    public function where(...$where);
 
     public function findWhere(array $where, $columns = ['*']);
 
@@ -30,9 +36,15 @@ interface RepositoryInterface
 
     public function delete($id);
 
+    public function deleteWhere(array $where);
+
     public function orderBy($column, $direction = 'asc');
 
     public function with($relations);
+
+    public function take($limit);
+
+    public function limit($limit, $columns = ['*']);
 
     public function whereHas($relation, $closure);
 
