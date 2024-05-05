@@ -58,7 +58,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         }
 
         if (File::exists($modulePath . '/Helpers')) {
-            $helpers = File::allFiles($modulePath . '/helpers');
+            $helpers = File::allFiles($modulePath . '/Helpers');
             if (!empty($helpers)) {
                 foreach ($helpers as $helper) {
                     $file = $helper->getPathname();
@@ -70,7 +70,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
 
     private function registerConfig($module)
     {
-        $configPath = __DIR__ . '/' . $module . '/configs';
+        $configPath = __DIR__ . '/' . $module . '/Configs';
 
         if (File::exists($configPath)) {
             $configFiles = array_map("basename", File::allFiles($configPath));

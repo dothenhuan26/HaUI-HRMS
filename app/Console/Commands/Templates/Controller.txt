@@ -1,0 +1,16 @@
+<?php
+
+namespace Modules\{module}\Admin;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Modules\User\Repositories\Contracts\UserRepositoryInterface;
+
+class {name} extends Controller
+{
+    public function __construct()
+    {
+
+    }
+
+}

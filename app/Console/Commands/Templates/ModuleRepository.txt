@@ -1,0 +1,19 @@
+<?php
+
+namespace Modules\{module}\Repositories\Eloquent;
+
+use App\Models\User;
+use Modules\Core\Repositories\BaseEloquentRepository;
+use Modules\{module}\Repositories\Contracts\{module}RepositoryInterface;
+
+class {module}Repository extends BaseEloquentRepository implements {module}RepositoryInterface
+{
+
+    public function model()
+    {
+        return {module}::class;
+    }
+
+
+
+}
