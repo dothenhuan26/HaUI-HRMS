@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands\Module;
+namespace Modules\Vendor\Commands\Module;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
@@ -12,7 +12,7 @@ class Controller extends Command
      *
      * @var string
      */
-    protected $signature = 'module:make-controller {name} {module}';
+    protected $signature = 'module:make-controller {name} {--module=}';
 
     /**
      * The console command description.
@@ -36,7 +36,7 @@ class Controller extends Command
 
         $controllersFolder = base_path("modules/{$module}/Controllers");
         if (File::exists($controllersFolder)) {
-            $controllerFile = app_path("Console/Commands/Templates/Controller.txt");
+            $controllerFile = app_path("Modules/Vendor/Commands/Templates/Controller.txt");
             $controllerContent = File::get($controllerFile);
             $controllerContent = str_replace("{module}", $module, $controllerContent);
             $controllerContent = str_replace("{name}", $name, $controllerContent);

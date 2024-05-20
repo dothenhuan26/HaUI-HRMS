@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands\Module;
+namespace Modules\Vendor\Commands\Module;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
@@ -12,7 +12,7 @@ class Model extends Command
      *
      * @var string
      */
-    protected $signature = 'module:make-model {name} {module}';
+    protected $signature = 'module:make-model {name} {--module=}';
 
     /**
      * The console command description.
@@ -40,7 +40,7 @@ class Model extends Command
             File::makeDirectory($modelFolder, 0755, true, true);
         }
         if (File::exists($modelFolder)) {
-            $modelFile = app_path("Console/Commands/Templates/Model.txt");
+            $modelFile = app_path("Modules/Vendor/Commands/Templates/Model.txt");
             $modelContent = File::get($modelFile);
             $modelContent = str_replace("{module}", $module, $modelContent);
             $modelContent = str_replace("{name}", $name, $modelContent);

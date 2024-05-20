@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands\Module;
+namespace Modules\Vendor\Commands\Module;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
@@ -37,13 +37,13 @@ class Module extends Command
             File::makeDirectory(base_path("modules/{$module}"), 0755, true, true);
 
             $moduleProviderFile = base_path("modules/{$module}/ModuleProvider.php");
-            $moduleProviderContent = str_replace("{module}", $module, File::get(app_path('Console/Commands/Templates/ModuleProvider.txt')));
+            $moduleProviderContent = str_replace("{module}", $module, File::get(app_path('Modules/Vendor/Commands/Templates/ModuleProvider.txt')));
             if (!File::exists($moduleProviderFile)) {
                 File::put($moduleProviderFile, $moduleProviderContent);
             }
 
             $routeProviderFile = base_path("modules/{$module}/RouteServiceProvider.php");
-            $routeProviderContent = str_replace("{module}", $module, File::get(app_path('Console/Commands/Templates/RouteServiceProvider.txt')));
+            $routeProviderContent = str_replace("{module}", $module, File::get(app_path('Modules/Vendor/Commands/Templates/RouteServiceProvider.txt')));
             if (!File::exists($routeProviderFile)) {
                 File::put($routeProviderFile, $routeProviderContent);
             }
@@ -114,7 +114,7 @@ class Module extends Command
 
                     $moduleRepositoryInterfaceFile = base_path("modules/{$module}/Repositories/Contracts/{$module}RepositoryInterface.php");
                     if (!File::exists($moduleRepositoryInterfaceFile)) {
-                        $moduleRepositoryInterfaceFileContent = file_get_contents(app_path('Console/Commands/Templates/ModuleRepositoryInterface.txt'));
+                        $moduleRepositoryInterfaceFileContent = file_get_contents(app_path('Modules/Vendor/Commands/Templates/ModuleRepositoryInterface.txt'));
                         $moduleRepositoryInterfaceFileContent = str_replace('{module}', $module, $moduleRepositoryInterfaceFileContent);
                         File::put($moduleRepositoryInterfaceFile, $moduleRepositoryInterfaceFileContent);
                     }
@@ -126,7 +126,7 @@ class Module extends Command
 
                     $moduleRepositoryFile = base_path("modules/{$module}/Repositories/Eloquent/{$module}Repository.php");
                     if (!File::exists($moduleRepositoryFile)) {
-                        $moduleRepositoryFileContent = file_get_contents(app_path('Console/Commands/Templates/ModuleRepository.txt'));
+                        $moduleRepositoryFileContent = file_get_contents(app_path('Modules/Vendor/Commands/Templates/ModuleRepository.txt'));
                         $moduleRepositoryFileContent = str_replace('{module}', $module, $moduleRepositoryFileContent);
                         File::put($moduleRepositoryFile, $moduleRepositoryFileContent);
                     }
@@ -144,7 +144,7 @@ class Module extends Command
                 $routeApiFile = base_path("modules/{$module}/Routes/api.php");
                 $routeAdminFile = base_path("modules/{$module}/Routes/admin.php");
 
-                $routeContent = str_replace("{module}", strtolower($module), File::get(app_path('Console/Commands/Templates/Route.txt')));
+                $routeContent = str_replace("{module}", strtolower($module), File::get(app_path('Modules/Vendor/Commands/Templates/Route.txt')));
 
                 if (!File::exists($routeWebFile)) {
                     File::put($routeWebFile, $routeContent);

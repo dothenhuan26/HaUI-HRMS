@@ -3,12 +3,15 @@
 namespace Modules;
 
 use Illuminate\Support\Facades\File;
+use Modules\Vendor\Commands\Module\Test;
 
 class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
     private $middlewares = [];
 
-    private $commands = [];
+    private $commands = [
+
+    ];
 
     public function boot()
     {

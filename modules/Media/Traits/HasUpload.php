@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Traits;
+namespace Modules\Media\Traits;
 
 use Aws\Exception\AwsException;
 use Aws\Exception\MultipartUploadException;
@@ -9,7 +9,7 @@ use Aws\S3\S3Client;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-trait FileUpload
+trait HasUpload
 {
 
     public function upLoadObjectToS3(string $folder, UploadedFile $object, string $dir): array
