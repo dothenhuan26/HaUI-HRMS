@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\Api\AmazonS3Service;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -12,12 +11,6 @@ class HomeController extends Controller
      *
      * @return void
      */
-    protected $s3service;
-    public function __construct(AmazonS3Service $s3Service)
-    {
-        $this->middleware('auth');
-        $this->s3service = $s3Service;
-    }
 
     /**
      * Show the application dashboard.
