@@ -37,13 +37,14 @@ class Module extends Command
             File::makeDirectory(base_path("modules/{$module}"), 0755, true, true);
 
             $moduleProviderFile = base_path("modules/{$module}/ModuleProvider.php");
-            $moduleProviderContent = str_replace("{module}", $module, File::get(app_path('Modules/Vendor/Commands/Templates/ModuleProvider.txt')));
+            $moduleProviderContent = str_replace("{module}", $module, File::get(base_path('modules/Vendor/Commands/Templates/ModuleProvider.txt')));
             if (!File::exists($moduleProviderFile)) {
                 File::put($moduleProviderFile, $moduleProviderContent);
             }
 
             $routeProviderFile = base_path("modules/{$module}/RouteServiceProvider.php");
-            $routeProviderContent = str_replace("{module}", $module, File::get(app_path('Modules/Vendor/Commands/Templates/RouteServiceProvider.txt')));
+            $routeProviderContent = str_replace("{module}", $module, File::get(base_path('modules/Vendor/Commands/Templates/RouteServiceProvider.txt')));
+            $routeProviderContent = str_replace('{module_lc}', strtolower($module), $routeProviderContent);
             if (!File::exists($routeProviderFile)) {
                 File::put($routeProviderFile, $routeProviderContent);
             }
@@ -72,7 +73,7 @@ class Module extends Command
             if (!File::exists($databaseFolder)) {
                 File::makeDirectory($databaseFolder, 0755, true, true);
 
-                $migrationsFolder = base_path("modules/{$module}/Database/Mirations");
+                $migrationsFolder = base_path("modules/{$module}/Database/Migrations");
                 if (!File::exists($migrationsFolder)) {
                     File::makeDirectory($migrationsFolder, 0755, true, true);
                 }
@@ -114,7 +115,7 @@ class Module extends Command
 
                     $moduleRepositoryInterfaceFile = base_path("modules/{$module}/Repositories/Contracts/{$module}RepositoryInterface.php");
                     if (!File::exists($moduleRepositoryInterfaceFile)) {
-                        $moduleRepositoryInterfaceFileContent = file_get_contents(app_path('Modules/Vendor/Commands/Templates/ModuleRepositoryInterface.txt'));
+                        $moduleRepositoryInterfaceFileContent = file_get_contents(base_path('modules/Vendor/Commands/Templates/ModuleRepositoryInterface.txt'));
                         $moduleRepositoryInterfaceFileContent = str_replace('{module}', $module, $moduleRepositoryInterfaceFileContent);
                         File::put($moduleRepositoryInterfaceFile, $moduleRepositoryInterfaceFileContent);
                     }
@@ -126,7 +127,7 @@ class Module extends Command
 
                     $moduleRepositoryFile = base_path("modules/{$module}/Repositories/Eloquent/{$module}Repository.php");
                     if (!File::exists($moduleRepositoryFile)) {
-                        $moduleRepositoryFileContent = file_get_contents(app_path('Modules/Vendor/Commands/Templates/ModuleRepository.txt'));
+                        $moduleRepositoryFileContent = file_get_contents(base_path('modules/Vendor/Commands/Templates/ModuleRepository.txt'));
                         $moduleRepositoryFileContent = str_replace('{module}', $module, $moduleRepositoryFileContent);
                         File::put($moduleRepositoryFile, $moduleRepositoryFileContent);
                     }
@@ -144,7 +145,7 @@ class Module extends Command
                 $routeApiFile = base_path("modules/{$module}/Routes/api.php");
                 $routeAdminFile = base_path("modules/{$module}/Routes/admin.php");
 
-                $routeContent = str_replace("{module}", strtolower($module), File::get(app_path('Modules/Vendor/Commands/Templates/Route.txt')));
+                $routeContent = str_replace("{module}", strtolower($module), File::get(base_path('modules/Vendor/Commands/Templates/Route.txt')));
 
                 if (!File::exists($routeWebFile)) {
                     File::put($routeWebFile, $routeContent);
@@ -173,10 +174,10 @@ class Module extends Command
                 }
 
             }
-
+            $this->info("Module created successfully!");
         }
 
-        $this->info("Module created successfully!");
+
 
     }
 }

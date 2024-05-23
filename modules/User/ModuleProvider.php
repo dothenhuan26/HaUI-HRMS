@@ -5,7 +5,6 @@ namespace Modules\User;
 use Modules\ModuleServiceProvider;
 use Modules\User\Repositories\Contracts\UserRepositoryInterface;
 use Modules\User\Repositories\Eloquent\UserRepository;
-use Modules\User\RouteServiceProvider;
 
 class ModuleProvider extends ModuleServiceProvider
 {

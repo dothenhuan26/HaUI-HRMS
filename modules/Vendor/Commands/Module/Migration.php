@@ -52,7 +52,7 @@ class Migration extends Command
         if (strpos($name, "create_") === 0) {
             if (!$table)
                 $table = preg_replace("/^create_|_table$/", '', $name);
-            $migrationFile = app_path("Modules/Vendor/Commands/Templates/Migration.txt");
+            $migrationFile = base_path("modules/Vendor/Commands/Templates/Migration.txt");
             $migrationContent = File::get($migrationFile);
             $migrationContent = str_replace('{table}', strtolower($table), $migrationContent);
 
@@ -64,7 +64,7 @@ class Migration extends Command
                 return $this->info("Migration create successfully!");
             }
         } else {
-            $migrationFile = app_path("Modules/Vendor/Commands/Templates/MigrationUpdate.txt");
+            $migrationFile = base_path("modules/Vendor/Commands/Templates/MigrationUpdate.txt");
             $migrationContent = File::get($migrationFile);
             $migrationContent = str_replace('{table}', strtolower($table), $migrationContent);
 

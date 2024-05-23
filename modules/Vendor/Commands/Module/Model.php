@@ -40,7 +40,7 @@ class Model extends Command
             File::makeDirectory($modelFolder, 0755, true, true);
         }
         if (File::exists($modelFolder)) {
-            $modelFile = app_path("Modules/Vendor/Commands/Templates/Model.txt");
+            $modelFile = base_path("modules/Vendor/Commands/Templates/Model.txt");
             $modelContent = File::get($modelFile);
             $modelContent = str_replace("{module}", $module, $modelContent);
             $modelContent = str_replace("{name}", $name, $modelContent);

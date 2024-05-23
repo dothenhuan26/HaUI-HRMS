@@ -36,7 +36,7 @@ class Controller extends Command
 
         $controllersFolder = base_path("modules/{$module}/Controllers");
         if (File::exists($controllersFolder)) {
-            $controllerFile = app_path("Modules/Vendor/Commands/Templates/Controller.txt");
+            $controllerFile = base_path("modules/Vendor/Commands/Templates/Controller.txt");
             $controllerContent = File::get($controllerFile);
             $controllerContent = str_replace("{module}", $module, $controllerContent);
             $controllerContent = str_replace("{name}", $name, $controllerContent);
