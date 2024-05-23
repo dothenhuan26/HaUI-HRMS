@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string("address", 50)->nullable();
+            $table->string("address")->nullable();
             $table->string("gender")->default("other");
             $table->date("birthday")->nullable();
             $table->boolean("is_active")->default(false);
@@ -29,10 +29,12 @@ return new class extends Migration {
             $table->string("national")->nullable();
             $table->string("religion")->nullable();
             $table->string("country")->nullable();
+            $table->text("educations")->nullable();
+            $table->text("experiences")->nullable();
             $table->bigInteger("user_create")->nullable();
             $table->bigInteger("user_update")->nullable();
-            $table->bigInteger("role_id")->nullable();
-            $table->bigInteger("job_id")->nullable();
+            $table->unsignedBigInteger("role_id")->nullable();
+            $table->bigInteger("designation_id")->nullable();
             $table->bigInteger("avatar_id")->nullable();
             $table->rememberToken();
             $table->timestamps();

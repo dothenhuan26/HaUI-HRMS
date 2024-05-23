@@ -15,4 +15,9 @@ class UserController extends Controller
         $this->userRepository = $userRepository;
     }
 
+    public function index()
+    {
+        return view();
+    }
+
 }
