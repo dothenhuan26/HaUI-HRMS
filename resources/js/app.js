@@ -17,7 +17,6 @@ import 'tinymce/plugins/image';
 import 'tinymce/plugins/media';
 import 'tinymce/plugins/wordcount';
 
-
 window.addEventListener('DOMContentLoaded', () => {
     var editor_config = {
         selector: 'textarea#tinymce',
@@ -52,8 +51,7 @@ window.addEventListener('DOMContentLoaded', () => {
                     callback(message.content);
                 }
             });
-        }
+        },
     }
-
     tinymce.init(editor_config);
 });

@@ -85,7 +85,7 @@ trait HasUpload
         if (empty($filePath)) {
             return null;
         }
-        if (count($filePath) == 1) $filePath = implode($filePath);
+        if (is_array($filePath) && count($filePath) == 1) $filePath = implode($filePath);
         if (is_array($filePath)) {
             $arrPathExist = [];
             foreach ($filePath as $item) {
@@ -114,7 +114,7 @@ trait HasUpload
         if (empty($filePath)) {
             return $initial;
         }
-        if (count($filePath) == 1) $filePath = implode($filePath);
+        if (is_array($filePath) && count($filePath) == 1) $filePath = implode($filePath);
         if (is_array($filePath)) {
             $arrPathExist = [];
             foreach ($filePath as $item) {

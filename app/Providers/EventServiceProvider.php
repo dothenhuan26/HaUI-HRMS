@@ -6,6 +6,10 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
+use Modules\Media\Listeners\FileDeleteListener;
+use Modules\Media\Listeners\FileUploadListener;
+use UniSharp\LaravelFilemanager\Events\ImageWasDeleted;
+use UniSharp\LaravelFilemanager\Events\ImageWasUploaded;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -18,6 +22,12 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        ImageWasUploaded::class => [
+            FileUploadListener::class,
+        ],
+        ImageWasDeleted::class => [
+            FileDeleteListener::class,
+        ]
     ];
 
     /**

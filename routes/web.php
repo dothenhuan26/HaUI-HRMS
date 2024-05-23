@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\S3Controller;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,12 +21,3 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
-    \UniSharp\LaravelFilemanager\Lfm::routes();
-});
-
-Route::view('tiny-mce', 'tinymce');
-
-Route::post('tiny-mce', function (\Illuminate\Http\Request $request) {
-    dd($request->all());
-});
