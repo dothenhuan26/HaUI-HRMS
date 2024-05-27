@@ -61,7 +61,7 @@
 </head>
 
 <body>
-@yield("content")
+@yield("body")
 
 <!-- jQuery -->
 <script src="{{asset('assets/js/jquery-3.5.1.min.js')}}"></script>

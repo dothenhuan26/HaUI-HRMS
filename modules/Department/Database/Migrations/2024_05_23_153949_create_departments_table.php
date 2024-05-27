@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('departments', function (Blueprint $table) {
             $table->id();
             $table->string("name");
-            $table->bigInteger("user_create")->nullable();
-            $table->bigInteger("user_update")->nullable();
+            $table->unsignedBigInteger("user_create")->nullable();
+            $table->unsignedBigInteger("user_update")->nullable();
             $table->timestamps();
         });
     }

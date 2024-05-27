@@ -30,6 +30,7 @@ class UserFactory extends Factory
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
             'address' => fake()->address(),
+            'gender' => rand(0,1)?"Male":"Female",
             'birthday' => fake()->date(),
             'country' => fake()->country(),
             'national' => fake()->country(),
@@ -37,6 +38,10 @@ class UserFactory extends Factory
             'passport_exp' => fake()->date(),
             'status' => "publish",
             'religion' => fake()->city(),
+            "is_active" => true,
+            "phone" => "123456789",
+            "user_create" => 1,
+            "role_id" => 2,
         ];
     }
 

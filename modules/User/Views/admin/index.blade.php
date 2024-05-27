@@ -1,5 +1,5 @@
-@extends("Layout::admin.app")
+@extends('admin.layouts.app')
 
 @section("content")
-    <h1>content lai la</h1>
+
 @endsection

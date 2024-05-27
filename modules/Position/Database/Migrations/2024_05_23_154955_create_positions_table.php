@@ -27,8 +27,8 @@ return new class extends Migration
             $table->string("status")->nullable();
             $table->unsignedBigInteger("department_id")->nullable();
             $table->unsignedBigInteger("designation_id")->nullable();
-            $table->bigInteger("user_create")->nullable();
-            $table->bigInteger("user_update")->nullable();
+            $table->unsignedBigInteger("user_create")->nullable();
+            $table->unsignedBigInteger("user_update")->nullable();
             $table->timestamps();
             $table->foreign("designation_id")->references("id")->on("designations");
             $table->foreign("department_id")->references("id")->on("departments");

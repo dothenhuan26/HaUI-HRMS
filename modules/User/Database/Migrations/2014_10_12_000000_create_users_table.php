@@ -31,11 +31,11 @@ return new class extends Migration {
             $table->string("country")->nullable();
             $table->text("educations")->nullable();
             $table->text("experiences")->nullable();
-            $table->bigInteger("user_create")->nullable();
-            $table->bigInteger("user_update")->nullable();
+            $table->unsignedBigInteger("user_create")->nullable();
+            $table->unsignedBigInteger("user_update")->nullable();
             $table->unsignedBigInteger("role_id")->nullable();
-            $table->bigInteger("designation_id")->nullable();
-            $table->bigInteger("avatar_id")->nullable();
+            $table->unsignedBigInteger("designation_id")->nullable();
+            $table->unsignedBigInteger("avatar_id")->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

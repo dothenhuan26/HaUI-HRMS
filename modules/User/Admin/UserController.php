@@ -17,7 +17,7 @@ class UserController extends Controller
 
     public function index()
     {
-        return view();
+        return view("User::admin.index");
     }
 
 }

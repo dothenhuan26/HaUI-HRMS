@@ -15,7 +15,7 @@
     @include("Layout::admin.parts.sidebar")
 @endsection
 
-@section("content")
+@section("body")
     <!-- Main Wrapper -->
     <div class="main-wrapper">
 
