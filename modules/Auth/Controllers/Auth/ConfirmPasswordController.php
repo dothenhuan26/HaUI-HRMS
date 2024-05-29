@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Auth\Admin\Auth;
+namespace Modules\Auth\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ConfirmsPasswords;

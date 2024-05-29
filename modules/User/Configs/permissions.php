@@ -43,4 +43,10 @@ return [
     'position_create',
     'position_update',
     'position_delete',
+
+    // Dashboard
+    'dashboard_access',
+
+    // Settings
+    'setting_update',
 ];

@@ -25,9 +25,12 @@
             <!-- Page Content -->
             <div class="content container-fluid">
 
-                @include("Layout::admin.parts.breadcrumbs")
-
-                @yield("content")
+                <div class="error-box">
+                    <h1>403</h1>
+                    <h3><i class="fa fa-warning"></i> Oops! {{__("Forbidden")}}!</h3>
+                    <h2>{{"Permission Denied!"}}</h2>
+                    <a href="/" class="btn btn-custom">{{__("Back to Home")}}</a>
+                </div>
 
             </div>
             <!-- /Page Content -->
@@ -42,9 +45,4 @@
 @section("js")
     <!-- Slimscroll JS -->
     <script src="{{asset('assets/js/jquery.slimscroll.min.js')}}"></script>
-
-    <!-- Chart JS -->
-    <script src="{{asset('assets/plugins/morris/morris.min.js')}}"></script>
-    <script src="{{asset('assets/plugins/raphael/raphael.min.js')}}"></script>
-    <script src="{{asset('assets/js/chart.js')}}"></script>
 @endsection

@@ -32,7 +32,7 @@ class RouteServiceProvider extends ServiceProvider
 
     protected function mapAdminRoutes()
     {
-        Route::middleware('web')
+        Route::middleware(['web', 'dashboard'])
             ->namespace($this->adminModuleNamespace)
 //            ->prefix('admin/module/dashboard')
             ->prefix('admin')

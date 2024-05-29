@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
-
     protected $moduleNamespace = "Modules\Auth\Controllers";
     protected $adminModuleNamespace = "Modules\Auth\Admin";
 
@@ -27,6 +26,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::middleware('web')
             ->namespace($this->moduleNamespace)
+            ->name("auth.")
             ->group(__DIR__ . '/Routes/web.php');
     }
 

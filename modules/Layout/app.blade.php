@@ -29,6 +29,8 @@
         type="image/x-icon"
         href="{{asset('assets/img/favicon.png')}}">
 
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
     <!-- Bootstrap CSS -->
     <link
         rel="stylesheet"
@@ -43,6 +45,8 @@
     <link
         rel="stylesheet"
         href="{{asset('assets/css/line-awesome.min.css')}}">
+
+
 
 @yield("css")
 

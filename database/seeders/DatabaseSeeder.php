@@ -24,16 +24,36 @@ class DatabaseSeeder extends Seeder
         $this->call(RoleSeeder::class);
 
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        $sudo = new User();
+        $sudo->name = "Sudo";
+        $sudo->code = "000000";
+        $sudo->email = "sudo@gmail.com";
+        $sudo->password = Hash::make("123456");
+        $sudo->role_id = 1;
+        $sudo->user_create = 0;
+        $sudo->is_active = true;
+        $sudo->save();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1');
+
+        $admin = new User();
+        $admin->name = "Admin";
+        $admin->code = "000001";
+        $admin->email = "admin@gmail.com";
+        $admin->password = Hash::make("123456");
+        $admin->role_id = 2;
+        $admin->user_create = 1;
+        $admin->is_active = true;
+        $admin->save();
+
         $user = new User();
-        $user->name = "Admin";
-        $user->code = "000000";
-        $user->email = "admin@gmail.com";
+        $user->name = "User";
+        $user->code = "000003";
+        $user->email = "user@gmail.com";
         $user->password = Hash::make("123456");
-        $user->role_id = 1;
-        $user->user_create = 0;
+        $user->role_id = 3;
+        $user->user_create = 1;
         $user->is_active = true;
         $user->save();
-        DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
         $this->call(DepartmentSeeder::class);
         $this->call(DesignationSeeder::class);
