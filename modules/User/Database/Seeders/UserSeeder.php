@@ -38,7 +38,7 @@ class UserSeeder extends Seeder
                 "phone"             => "123456789",
                 "user_create"       => 1,
                 "role_id"           => 2,
-                "designation_id" => rand(0, Designation::count()-1),
+                "designation_id" => rand(1, Designation::count()),
             ]);
         }
 

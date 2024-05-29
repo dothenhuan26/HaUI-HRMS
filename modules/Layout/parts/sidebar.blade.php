@@ -1,6 +1,10 @@
-<div class="sidebar" id="sidebar">
+<div
+    class="sidebar"
+    id="sidebar">
     <div class="sidebar-inner slimscroll">
-        <div id="sidebar-menu" class="sidebar-menu">
+        <div
+            id="sidebar-menu"
+            class="sidebar-menu">
             <ul>
                 <li class="menu-title">
                     <span>Main</span>
@@ -8,7 +12,9 @@
                 <li class="submenu">
                     <a href="#"><i class="la la-dashboard"></i> <span> Dashboard</span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
-                        <li><a class="active" href="index.html">Admin Dashboard</a></li>
+                        <li><a
+                                class="active"
+                                href="index.html">Admin Dashboard</a></li>
                         <li><a href="employee-dashboard.html">Employee Dashboard</a></li>
                     </ul>
                 </li>
@@ -35,7 +41,9 @@
                     <span>Employees</span>
                 </li>
                 <li class="submenu">
-                    <a href="#" class="noti-dot"><i class="la la-user"></i> <span> Employees</span> <span class="menu-arrow"></span></a>
+                    <a
+                        href="#"
+                        class="noti-dot"><i class="la la-user"></i> <span> Employees</span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
                         <li><a href="employees.html">All Employees</a></li>
                         <li><a href="holidays.html">Holidays</a></li>
@@ -257,7 +265,8 @@
                     <a href="#"><i class="la la-file-text"></i> <span>Documentation</span></a>
                 </li>
                 <li>
-                    <a href="javascript:void(0);"><i class="la la-info"></i> <span>Change Log</span> <span class="badge badge-primary ml-auto">v3.4</span></a>
+                    <a href="javascript:void(0);"><i class="la la-info"></i> <span>Change Log</span>
+                        <span class="badge badge-primary ml-auto">v3.4</span></a>
                 </li>
                 <li class="submenu">
                     <a href="javascript:void(0);"><i class="la la-share-alt"></i> <span>Multi Level</span> <span class="menu-arrow"></span></a>

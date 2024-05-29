@@ -5,7 +5,7 @@
             <h3 class="page-title">{{$page_title}}</h3>
             <ul class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">{{__("Dashboard")}}</a></li>
-                @if($breadcrumbs)
+                @if(!empty($breadcrumbs))
                     @foreach($breadcrumbs as $key => $breadcrumb)
                         @if(isset($breadcrumb["url"]))
                             <li class="breadcrumb-item">
