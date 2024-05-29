@@ -4,6 +4,6 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::prefix("")->group(function () {
-    Route::get("", "UserController@index");
+    Route::get("", "UserController@index")->name("index");
 });
 

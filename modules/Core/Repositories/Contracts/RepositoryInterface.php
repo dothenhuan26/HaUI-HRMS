@@ -4,7 +4,9 @@ namespace Modules\Core\Repositories\Contracts;
 
 interface RepositoryInterface
 {
-    public function get();
+    public function get($columns = ['*']);
+
+    public function query();
 
     public function find($id, $columns = ['*']);
 

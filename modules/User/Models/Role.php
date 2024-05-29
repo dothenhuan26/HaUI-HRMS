@@ -34,10 +34,9 @@ class Role extends Model
         }
     }
 
-    public function givePermission($permissions = [])
+    public function assignPermission($permissions = [])
     {
         if (is_string($permissions)) $permissions = [$permissions];
-
         foreach ($permissions as $item) {
             RolePermission::firstOrCreate([
                 'role_id' => $this->id,

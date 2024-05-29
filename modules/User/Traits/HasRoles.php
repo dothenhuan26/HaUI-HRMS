@@ -35,11 +35,10 @@ trait HasRoles
 
     protected function roleName()
     {
-        return Attribute::make(
-            get:function ()
+        return Attribute::make(get:function ()
     {
-        return $this->role->name ?? ''
-            }
+        return $this->role->name ?? '';
+    }
         );
     }
 

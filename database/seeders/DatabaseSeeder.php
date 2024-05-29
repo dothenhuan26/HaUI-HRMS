@@ -3,7 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use App\Models\User;
+use Modules\User\Database\Seeders\UserSeeder;
+use Modules\User\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -25,6 +26,7 @@ class DatabaseSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
         $user = new User();
         $user->name = "Admin";
+        $user->code = "000000";
         $user->email = "admin@gmail.com";
         $user->password = Hash::make("123456");
         $user->role_id = 1;
@@ -38,6 +40,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PositionSeeder::class);
         $this->call(HolidaySeeder::class);
 
-        User::factory(20)->create();
+        $this->call(UserSeeder::class);
     }
 }

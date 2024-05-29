@@ -2,7 +2,7 @@
 
 namespace Modules\{module}\Repositories\Eloquent;
 
-use App\Models\User;
+use Modules\{module}\Model\{module};
 use Modules\Core\Repositories\BaseEloquentRepository;
 use Modules\{module}\Repositories\Contracts\{module}RepositoryInterface;
 

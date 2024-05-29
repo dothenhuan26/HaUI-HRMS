@@ -1,6 +1,6 @@
 @extends('Layout::auth.login')
 
-@section("content")
+@section("body")
     <!-- Main Wrapper -->
     <div class="main-wrapper">
         <div class="account-content">

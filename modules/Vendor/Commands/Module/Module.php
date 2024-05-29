@@ -127,7 +127,7 @@ class Module extends Command
 
                     $moduleRepositoryFile = base_path("modules/{$module}/Repositories/Eloquent/{$module}Repository.php");
                     if (!File::exists($moduleRepositoryFile)) {
-                        $moduleRepositoryFileContent = file_get_contents(base_path('modules/Vendor/Commands/Templates/ModuleRepository.txt'));
+                        $moduleRepositoryFileContent = file_get_contents(base_path('modules/Vendor/Commands/Templates/ModuleRepository.stub'));
                         $moduleRepositoryFileContent = str_replace('{module}', $module, $moduleRepositoryFileContent);
                         File::put($moduleRepositoryFile, $moduleRepositoryFileContent);
                     }

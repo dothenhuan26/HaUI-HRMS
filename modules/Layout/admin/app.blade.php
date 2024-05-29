@@ -33,6 +33,8 @@
             <!-- Page Content -->
             <div class="content container-fluid">
 
+                @include("Layout::admin.parts.breadcrumbs")
+
                 @yield("content")
 
             </div>

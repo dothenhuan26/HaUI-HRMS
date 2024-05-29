@@ -126,11 +126,16 @@ abstract class BaseEloquentRepository implements RepositoryInterface
         }
     }
 
-    public function get()
+    public function get($columns = ['*'])
     {
-        $result = $this->model->get();
+        $result = $this->model->get($columns);
         $this->resetModel();
         return $result;
+    }
+
+    public function query() {
+        $this->model = $this->model->query();
+        return $this;
     }
 
     public function first($columns = ['*'])
