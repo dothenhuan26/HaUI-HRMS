@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string("file_type")->nullable();
             $table->string("file_extension")->nullable();
             $table->string("driver")->nullable();
+            $table->string("url")->nullable();
             $table->bigInteger("user_create")->nullable();
             $table->bigInteger("user_update")->nullable();
             $table->timestamps();

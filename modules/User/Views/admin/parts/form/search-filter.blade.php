@@ -8,6 +8,7 @@
                 <input
                     type="text"
                     name="code"
+                    value="{{old('code')}}"
                     class="form-control floating">
                 <label class="focus-label">{{__("Employee ID")}}</label>
             </div>
@@ -17,6 +18,7 @@
                 <input
                     type="text"
                     name="name"
+                    value="{{old('name')}}"
                     class="form-control floating">
                 <label class="focus-label">{{__("Employee Name")}}</label>
             </div>
@@ -29,7 +31,7 @@
                     <option value="" class="disabled">{{__("Select Designation")}}</option>
                     @if(!empty($designations))
                         @foreach($designations as $key => $item)
-                            <option value="{{$item->id}}">{{$item->name}}</option>
+                            <option value="{{$item->id}}" {{old("designation_id")==$item->id?"selected":false}}>{{$item->name}}</option>
                         @endforeach
                     @endif
                 </select>

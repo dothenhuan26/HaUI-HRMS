@@ -37,7 +37,7 @@ return [
 
     'allow_shared_folder' => true,
 
-    'shared_folder_name' => 'Media',
+    'shared_folder_name' => 'MediaFile',
 
     /*
     |--------------------------------------------------------------------------

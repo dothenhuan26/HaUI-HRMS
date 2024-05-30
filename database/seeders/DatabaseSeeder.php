@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
         $sudo = new User();
         $sudo->name = "Sudo";
         $sudo->code = "000000";
+        $sudo->id_card = "000000000000";
         $sudo->email = "sudo@gmail.com";
         $sudo->password = Hash::make("123456");
         $sudo->role_id = 1;
@@ -34,7 +35,6 @@ class DatabaseSeeder extends Seeder
         $sudo->is_active = true;
         $sudo->save();
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
-
 
 
         $this->call(DepartmentSeeder::class);
@@ -47,6 +47,7 @@ class DatabaseSeeder extends Seeder
         $admin = new User();
         $admin->name = "Admin";
         $admin->code = "000001";
+        $admin->id_card = "000000000002";
         $admin->email = "admin@gmail.com";
         $admin->password = Hash::make("123456");
         $admin->role_id = 2;
@@ -58,6 +59,7 @@ class DatabaseSeeder extends Seeder
         $user = new User();
         $user->name = "User";
         $user->code = "000003";
+        $user->id_card = "000000000003";
         $user->email = "user@gmail.com";
         $user->password = Hash::make("123456");
         $user->role_id = 3;
