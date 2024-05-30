@@ -81,9 +81,9 @@ class UserController extends Controller
         return view("User::admin.detail", $data);
     }
 
-    public function store()
+    public function store(Request $request)
     {
-
+        dd($request->all());
     }
 
     public function uploadToS3($file)

@@ -6,6 +6,9 @@
         <form
             method="POST"
             action="{{route("user.admin.store")}}">
+
+            @csrf
+
             @include("User::admin.parts.form.profile-info")
 
             <hr>
