@@ -13,9 +13,23 @@ class Department extends Model
 
     protected $fillable = [
         "name",
+        "description",
+        "manager_id",
+        "location",
+        "budget",
+        "status",
+        "phone",
+        "email",
         "user_create",
         "user_update"
     ];
 
+    public function designations() {
+
+    }
+
+    public function users() {
+
+    }
 
 }
