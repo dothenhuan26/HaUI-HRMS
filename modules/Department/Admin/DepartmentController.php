@@ -5,6 +5,7 @@ namespace Modules\Department\Admin;
 use Illuminate\Http\Request;
 use Modules\Core\Admin\AdminController;
 use Modules\Department\Repositories\Contracts\DepartmentRepositoryInterface;
+use Modules\Department\Requests\DepartmentRequest;
 use Modules\Media\Repositories\Contracts\MediaRepositoryInterface;
 use Modules\Media\Services\Api\AmazonS3Service;
 use Modules\User\Repositories\Contracts\UserRepositoryInterface;
@@ -17,9 +18,9 @@ class DepartmentController extends AdminController
     protected $S3Service;
 
     public function __construct(DepartmentRepositoryInterface $departmentRepository,
-                                MediaRepositoryInterface $mediaRepository,
-                                UserRepositoryInterface $userRepository,
-                                AmazonS3Service $S3Service)
+                                MediaRepositoryInterface      $mediaRepository,
+                                UserRepositoryInterface       $userRepository,
+                                AmazonS3Service               $S3Service)
     {
         $this->departmentRepository = $departmentRepository;
         $this->userRepository = $userRepository;
@@ -53,7 +54,7 @@ class DepartmentController extends AdminController
 
     public function create()
     {
-
+        $this->hasPermission("department_create");
         $data = [
             "users"       => $this->userRepository->get(["id", "name"]),
             "page_title"  => __("Department"),
@@ -72,7 +73,33 @@ class DepartmentController extends AdminController
         return view("Department::admin.detail", $data);
     }
 
-    public function store(Request $request, $id = null)
+    public function update(Request $request, $id = null)
+    {
+        $this->hasPermission("department_create");
+        if (!$id) {
+            abort(404);
+        }
+        $row = $this->departmentRepository->find($id);
+        if (!$row) abort(404);
+        $data = [
+            "row"         => $row,
+            "users"       => $this->userRepository->get(["id", "name"]),
+            "page_title"  => __("Department"),
+            "breadcrumbs" => [
+                [
+                    "name" => __("Department"),
+                    "url"  => route("department.admin.index"),
+                ],
+                [
+                    "name"  => __("Update"),
+                    "class" => "active"
+                ],
+            ]
+        ];
+        return view("Department::admin.detail", $data);
+    }
+
+    public function store(DepartmentRequest $request, $id = null)
     {
         $dataKeys = [
             "name",
@@ -82,23 +109,46 @@ class DepartmentController extends AdminController
             "budget",
             "status",
             "phone",
-            "email",
+            //            "email",
         ];
 
         if ($id > 0) {
             $this->hasPermission("department_update");
             $row = $this->departmentRepository->find($id);
             if (!$row) abort(404);
+            $dataKeys[] = "email";
         } else {
             $this->hasPermission("department_create");
         }
 
-        $attr = [];
+        $attrs = [];
 
         foreach ($dataKeys as $key) {
-            $attr[$key] = $request->input($key);
+            $attrs[$key] = $request->input($key);
         }
 
+        if ($id) {
+            $res = $this->departmentRepository->update($attrs, $id);
+            if ($res) {
+                return redirect()->route("department.admin.index")->with("success", __("Department updated successfully!"));
+            }
+        } else {
+            $res = $this->departmentRepository->create($attrs);
+            if ($res) {
+                return redirect()->route("department.admin.index")->with("success", __("Department created successfully!"));
+            }
+        }
+        return back()->with("error", __("Failed to create department!"));
+    }
+
+    public function delete($id)
+    {
+        if (!$id) abort(404);
+        $res = $this->departmentRepository->delete($id);
+        if ($res)
+            return redirect()->route("department.admin.index")
+                ->with("success", __("Department deleted successfully!"));
+        return back()->with("error", __("Failed to delete department!"));
     }
 
 

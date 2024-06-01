@@ -25,8 +25,9 @@ class DepartmentSeeder extends Seeder
         ];
 
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
-         DB::table("departments")->insertGetId([
+        DB::table("departments")->insertGetId([
             "name"        => "Administration",
+            "manager_id"  => 0,
             "user_create" => 0,
             "created_at"  => date("Y-m-d H:i:s"),
             "updated_at"  => date("Y-m-d H:i:s"),
@@ -35,14 +36,14 @@ class DepartmentSeeder extends Seeder
 
         for ($i = 0; $i < count($departments); $i++) {
             DB::table("departments")->insertGetId([
-                "name"       => $departments[$i],
+                "name"        => $departments[$i],
                 "description" => fake()->sentence(),
-                "manager_id" => 1,
-                "phone" => "98951823",
-                "email" => fake()->email(),
-                "user_create"    => 1,
-                "created_at" => date("Y-m-d H:i:s"),
-                "updated_at" => date("Y-m-d H:i:s"),
+                "manager_id"  => 1,
+                "phone"       => "98951823",
+                "email"       => fake()->email(),
+                "user_create" => 1,
+                "created_at"  => date("Y-m-d H:i:s"),
+                "updated_at"  => date("Y-m-d H:i:s"),
             ]);
         }
 

@@ -2,6 +2,13 @@
 
 @section("content")
 
+    @include("admin.messages")
+
+    @php
+        $randDelete = \Illuminate\Support\Str::random();
+        $randDeleteContinue = \Illuminate\Support\Str::random();
+    @endphp
+
     <div class="row">
         <div class="col">
             <a
@@ -41,12 +48,12 @@
                                         <div class="dropdown-menu dropdown-menu-right">
                                             <a
                                                 class="dropdown-item"
-                                                href="#"
-                                                data-toggle="modal"
-                                                data-target="#edit_department"><i class="fa fa-pencil m-r-5"></i> {{__("Edit")}}</a>
+                                                href="{{route("department.admin.update", $row->id)}}"
+                                            ><i class="fa fa-pencil m-r-5"></i> {{__("Edit")}}</a>
                                             <a
-                                                class="dropdown-item"
-                                                href="#"
+                                                class="dropdown-item {{$randDelete}}"
+                                                href="{{route("department.admin.delete", $row->id)}}"
+                                                id=""
                                                 data-toggle="modal"
                                                 data-target="#delete_department"><i class="fa fa-trash-o m-r-5"></i> {{__("Delete")}}</a>
                                         </div>
@@ -56,13 +63,26 @@
                         @endforeach
                     @endif
 
-
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 
+    @include("Department::admin.parts.delete")
 
 @endsection
 
+@push("js")
+
+    <script>
+        $(document).ready(function() {
+            $(document).ready(function() {
+                $('.{{$randDelete}}').on('click', function() {
+                    $('.{{$randDeleteContinue}}').attr('href', $(this).attr('href'));
+                });
+            });
+        });
+    </script>
+
+@endpush
