@@ -93,6 +93,12 @@ class DepartmentController extends AdminController
             $this->hasPermission("department_create");
         }
 
+        $attr = [];
+
+        foreach ($dataKeys as $key) {
+            $attr[$key] = $request->input($key);
+        }
+
     }
 
 
