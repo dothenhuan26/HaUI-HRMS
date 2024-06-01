@@ -5,13 +5,14 @@ namespace Modules\User\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Modules\Core\Admin\AdminController;
 use Modules\Designation\Repositories\Contracts\DesignationRepositoryInterface;
 use Modules\Media\Repositories\Contracts\MediaRepositoryInterface;
 use Modules\Media\Services\Api\AmazonS3Service;
 use Modules\User\Models\User;
 use Modules\User\Repositories\Contracts\UserRepositoryInterface;
 
-class UserController extends Controller
+class UserController extends AdminController
 {
     protected $userRepository;
     protected $designationRepository;
@@ -62,10 +63,10 @@ class UserController extends Controller
         return view("User::admin.index", $data);
     }
 
-    public function create() {
+    public function create()
+    {
         $data = [
-            'row' => $this->userRepository->find(5),
-            "page_title" => __("Add Employee"),
+            "page_title"   => __("Add Employee"),
             "designations" => $this->designationRepository->all(["id", "name"]),
             "breadcrumbs"  => [
                 [
@@ -81,9 +82,49 @@ class UserController extends Controller
         return view("User::admin.detail", $data);
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $id = null)
     {
-        dd($request->all());
+
+        if ($id > 0) {
+            $this->checkPermission("user_update");
+            $row = $this->userRepository->find($id);
+            if (!$row) abort(404);
+
+        } else {
+            $this->checkPermission("user_create");
+        }
+
+        $dataKeys = [
+            "first_name",
+            "last_name",
+            "name",
+            "birthday",
+            "gender",
+            "phone",
+            "id_card",
+            "gender",
+            "phone",
+            "email",
+            "code",
+            "passport",
+            "passport_exp",
+            "religion",
+            "address",
+            "country",
+            "national",
+            "password",
+            "designation_id",
+            "status",
+            'is_active',
+            "educations",
+            "experiences",
+            "user_create",
+            'job_id'
+        ];
+
+        dd($request->except(["educations.__index__", "experiences.__index__"]));
+
+
     }
 
     public function uploadToS3($file)

@@ -188,7 +188,7 @@
                                             <input
                                                 type="text"
                                                 class="form-control floating"
-                                                name="experience[{{$key}}][company_name]"
+                                                name="experiences[{{$key}}][company_name]"
                                                 value="{{$experience["company_name"]}}"
                                             >
                                             <label class="focus-label">{{__("Company Name")}}</label>
@@ -199,7 +199,7 @@
                                             <input
                                                 type="text"
                                                 class="form-control floating"
-                                                name="experience[{{$key}}][location]"
+                                                name="experiences[{{$key}}][location]"
                                                 value="{{$experience["location"]}}"
                                             >
                                             <label class="focus-label">{{__("Location")}}</label>
@@ -210,7 +210,7 @@
                                             <input
                                                 type="text"
                                                 class="form-control floating"
-                                                name="experience[{{$key}}][job_position]"
+                                                name="experiences[{{$key}}][job_position]"
                                                 value="{{$experience["job_position"]}}"
                                             >
                                             <label class="focus-label">{{__("Job Position")}}</label>
@@ -222,7 +222,7 @@
                                                 <input
                                                     type="text"
                                                     class="form-control floating datetimepicker"
-                                                    name="experience[{{$key}}][period_from]"
+                                                    name="experiences[{{$key}}][period_from]"
                                                     value="{{$experience["period_from"]}}"
                                                 >
                                             </div>
@@ -235,7 +235,7 @@
                                                 <input
                                                     type="text"
                                                     class="form-control floating datetimepicker"
-                                                    name="experience[{{$key}}][period_to]"
+                                                    name="experiences[{{$key}}][period_to]"
                                                     value="{{$experience["period_to"]}}"
                                                 >
                                             </div>
@@ -267,7 +267,7 @@
                                     <input
                                         type="text"
                                         class="form-control floating"
-                                        name="experience[__index__][company_name]"
+                                        name="experiences[__index__][company_name]"
                                         value=""
                                     >
                                     <label class="focus-label">{{__("Company Name")}}</label>
@@ -278,7 +278,7 @@
                                     <input
                                         type="text"
                                         class="form-control floating"
-                                        name="experience[__index__][location]"
+                                        name="experiences[__index__][location]"
                                         value=""
                                     >
                                     <label class="focus-label">{{__("Location")}}</label>
@@ -289,7 +289,7 @@
                                     <input
                                         type="text"
                                         class="form-control floating"
-                                        name="experience[__index__][job_position]"
+                                        name="experiences[__index__][job_position]"
                                         value=""
                                     >
                                     <label class="focus-label">{{__("Job Position")}}</label>
@@ -301,7 +301,7 @@
                                         <input
                                             type="text"
                                             class="form-control floating datetimepicker"
-                                            name="experience[__index__][period_from]"
+                                            name="experiences[__index__][period_from]"
                                             value=""
                                         >
                                     </div>
@@ -314,7 +314,7 @@
                                         <input
                                             type="text"
                                             class="form-control floating datetimepicker"
-                                            name="experience[__index__][period_to]"
+                                            name="experiences[__index__][period_to]"
                                             value=""
                                         >
                                     </div>

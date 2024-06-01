@@ -25,8 +25,13 @@
             <select
                 name="status"
                 class="select">
-                <option {{old("status", $row->status??"") == "no_active" ? "selected" : false}} name="no_active">{{__("No Active")}}</option>
-                <option {{old("status", $row->status??"") == "active" ? "selected" : false}} name="active">{{__("Active")}}</option>
+                <option
+                    value="no_active"
+                    {{old("status", $row->status??"") == "no_active" ? "selected" : false}} name="no_active">{{__("No Active")
+                }}</option>
+                <option
+                    value="active"
+                    {{old("status", $row->status??"") == "active" ? "selected" : false}} name="active">{{__("Active")}}</option>
             </select>
         </div>
         @error("status")

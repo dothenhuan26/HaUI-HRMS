@@ -6,6 +6,7 @@
             <input
                 name="password"
                 class="form-control"
+                placeholder="{{__("Password")}}"
                 type="password">
             @error("password")
             <span class="text-danger">{{$message}}</span>
@@ -18,6 +19,7 @@
             <input
                 name="confirm_password"
                 class="form-control"
+                placeholder="{{__("Confirm password")}}"
                 type="password">
             @error("confirm_password")
             <span class="text-danger">{{$message}}</span>

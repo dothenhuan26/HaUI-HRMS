@@ -29,7 +29,7 @@
 
             <hr>
 
-            @include("User::admin.parts.form.permission")
+{{--            @include("User::admin.parts.form.permission")--}}
 
             <div class="submit-section">
                 <button class="btn btn-primary submit-btn submit-form-btn">{{__("Submit")}}</button>

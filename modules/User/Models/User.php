@@ -27,16 +27,18 @@ class User extends Authenticatable
         'first_name',
         'last_name',
         'email',
+        'id_card',
+        'code',
         'password',
         'address',
         'gender',
         'birthday',
-        'is_active',
         'status',
         'phone',
         'passport',
         'passport_exp',
         'national',
+        'is_active',
         'religion',
         'country',
         'user_create',
@@ -44,6 +46,8 @@ class User extends Authenticatable
         'role_id',
         'job_id',
         'avatar_id',
+        'experiences',
+        'user_create',
     ];
 
     /**

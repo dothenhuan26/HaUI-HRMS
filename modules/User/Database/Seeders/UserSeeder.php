@@ -71,7 +71,6 @@ class UserSeeder extends Seeder
                 'national'          => fake()->country(),
                 'passport'          => fake()->creditCardNumber(),
                 'passport_exp'      => fake()->date(),
-                'status'            => "publish",
                 'religion'          => fake()->city(),
                 "is_active"         => true,
                 "phone"             => "123456789",

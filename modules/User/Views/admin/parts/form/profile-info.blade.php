@@ -8,6 +8,7 @@
                 name="first_name"
                 value="{{old("first_name", $row->first_name ?? '')}}"
                 class="form-control"
+                placeholder="{{__("First name")}}"
                 type="text">
             @error("first_name")
             <span class="text-danger">{{$message}}</span>
@@ -22,6 +23,7 @@
                 name="last_name"
                 value="{{old("first_name", $row->last_name ?? '')}}"
                 class="form-control"
+                placeholder="{{__("Last name")}}"
                 type="text">
             @error("last_name")
             <span class="text-danger">{{$message}}</span>
@@ -33,11 +35,12 @@
         <div class="form-group">
             <label class="col-form-label">{{__("Full Name")}}</label>
             <input
-                name="full_name"
-                value="{{old("full_name", $row->full_name ?? '')}}"
+                name="name"
+                value="{{old("name", $row->name ?? '')}}"
                 class="form-control"
+                placeholder="{{__("Full name")}}"
                 type="text">
-            @error("full_name")
+            @error("name")
             <span class="text-danger">{{$message}}</span>
             @enderror
         </div>
@@ -50,6 +53,7 @@
                 <input
                     name="birthday"
                     class="form-control datetimepicker"
+                    placeholder="{{__("Birth date")}}"
                     type="text"
                     value="{{old("birthday", $row->birthday ?? \Carbon\Carbon::now()->format('d/m/Y'))}}">
             </div>
@@ -82,6 +86,7 @@
                 name="phone"
                 value="{{old("phone", $row->phone ?? "")}}"
                 class="form-control"
+                placeholder="{{__("Phone")}}"
                 type="text">
             @error("phone")
             <span class="text-danger">{{$message}}</span>
@@ -94,6 +99,7 @@
             <label class="">{{__("ID Card")}} </label>
             <input
                 name="id_card"
+                placeholder="{{__("ID card")}}"
                 value="{{old("id_card", $row->id_card ?? "")}}"
                 class="form-control"
                 type="text">
@@ -108,6 +114,7 @@
             <label class="col-form-label">{{__("Email")}} <span class="text-danger">*</span></label>
             <input
                 name="email"
+                placeholder="{{__("Email")}}"
                 value="{{old("email", $row->email ?? '')}}"
                 class="form-control"
                 type="email">
@@ -122,6 +129,7 @@
             <label class="col-form-label">{{__("Employee ID")}} <span class="text-danger">*</span></label>
             <input
                 name="code"
+                placeholder="{{__("Employee id")}}"
                 type="text"
                 value="{{old("code", $row->code ?? "")}}"
                 readonly
@@ -134,6 +142,7 @@
             <label>{{__("Passport No")}}</label>
             <input
                 name="passport"
+                placeholder="{{__("Passport no")}}"
                 value="{{old("passport", $row->passport ?? "")}}"
                 type="text"
                 class="form-control">
@@ -149,7 +158,8 @@
             <div class="cal-icon">
                 <input
                     name="passport_exp"
-                    value="{{old("passort_exp", $row->passport_exp ?? "")}}"
+                    placeholder="{{__("Passport expiry date")}}"
+                    value="{{old("passort_exp", $row->passport_exp ?? \Carbon\Carbon::now()->format('d/m/Y'))}}"
                     class="form-control datetimepicker"
                     type="text">
             </div>
@@ -166,6 +176,7 @@
                 name="religion"
                 value="{{old("religion", $row->religion ?? "Không")}}"
                 class="form-control"
+                placeholder="{{__("Religion")}}"
                 type="text">
             @error("religion")
             <span class="text-danger">{{$message}}</span>

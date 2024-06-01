@@ -7,6 +7,7 @@
                 name="address"
                 type="text"
                 class="form-control"
+                placeholder="Address"
                 value="{{old("address", $row->address ?? "")}}">
             @error("address")
             <span class="text-danger">{{$message}}</span>
@@ -20,6 +21,7 @@
             <input
                 type="text"
                 name="country"
+                placeholder="Country"
                 class="form-control"
                 value="{{old("country", $row->country ?? "")}}">
             @error("country")
@@ -35,6 +37,7 @@
                 name="national"
                 class="form-control"
                 type="text"
+                placeholder="Nationality"
                 value="{{old("national", $row->national ?? "")}}">
             @error("national")
             <span class="text-danger">{{$message}}</span>
