@@ -1,5 +1,8 @@
 <div class="row">
     <div class="col-md-12 mb-3">
+        <div class="d-flex justify-content-end">
+            <p><i>{{__("Found :number items", ["number" => $rows->count()])}}</i></p>
+        </div>
         <div class="table-responsive">
             <table class="table table-striped custom-table mb-0">
                 <thead>

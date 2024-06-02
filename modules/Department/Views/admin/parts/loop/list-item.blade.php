@@ -1,7 +1,10 @@
 <div class="row">
     <div class="col-md-12">
-        <div>
-            <table class="table table-striped custom-table mb-0 datatable">
+        <div class="d-flex justify-content-end">
+            <p><i>{{__("Found :number items", ["number" => $rows->count()])}}</i></p>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped custom-table mb-0">
                 <thead>
                 <tr>
                     <th style="width: 30px;">{{__("#")}}</th>
@@ -39,9 +42,11 @@
                         </tr>
                     @endforeach
                 @endif
-
                 </tbody>
             </table>
         </div>
+    </div>
+    <div class="d-flex justify-content-end">
+        {{$rows->links()}}
     </div>
 </div>

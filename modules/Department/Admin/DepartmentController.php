@@ -37,7 +37,7 @@ class DepartmentController extends AdminController
         if ($name = $request->name) $query->where('name', 'LIKE', "%$name%");
 
         $data = [
-            "rows"        => $query->get(),
+            "rows"        => $query->paginate(10),
             "page_title"  => __("Department"),
             "breadcrumbs" => [
                 [
