@@ -19,6 +19,8 @@ return new class extends Migration {
             $table->string("age")->nullable();
             $table->string("job_type")->nullable();
             $table->string("experiences")->nullable();
+            $table->text("requirements")->nullable();
+            $table->text("responsibilities")->nullable();
             $table->date("start_date")->nullable();
             $table->date("expired_date")->nullable();
             $table->string("salary_from")->nullable();

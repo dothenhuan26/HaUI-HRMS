@@ -7,7 +7,7 @@
         <div class="modal-content">
             <div class="modal-body">
                 <div class="form-header">
-                    <h3>{{__("Delete Department")}}</h3>
+                    <h3>{{__("Delete Designation")}}</h3>
                     <p>{{__("Are you sure want to delete?")}}</p>
                 </div>
                 <div class="modal-btn delete-action">

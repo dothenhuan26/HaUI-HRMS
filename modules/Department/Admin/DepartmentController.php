@@ -30,6 +30,7 @@ class DepartmentController extends AdminController
 
     public function index(Request $request)
     {
+        $this->checkPermission("department_view");
         $query = $this->departmentRepository->query();
 
         if ($name = $request->name) $query->where('name', 'LIKE', "%$name%");
@@ -143,6 +144,7 @@ class DepartmentController extends AdminController
 
     public function delete($id)
     {
+        $this->checkPermission("department_delete");
         if (!$id) abort(404);
         $res = $this->departmentRepository->delete($id);
         if ($res)

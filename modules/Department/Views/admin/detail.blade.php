@@ -71,7 +71,7 @@
                             <option {{old("status", $row->status ?? "")=="draft"?"selected":false}} value="draft">{{__("Draft")}}</option>
                         </select>
                     </div>
-                    @error("gender")
+                    @error("status")
                     <span class="text-danger">{{$message}}</span>
                     @enderror
                 </div>

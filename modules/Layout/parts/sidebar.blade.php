@@ -52,8 +52,8 @@
                         <li><a href="leave-settings.html">Leave Settings</a></li>
                         <li><a href="attendance.html">Attendance (Admin)</a></li>
                         <li><a href="attendance-employee.html">Attendance (Employee)</a></li>
-                        <li><a href="{{route("department.admin.index")}}">Departments</a></li>
-                        <li><a href="designations.html">Designations</a></li>
+                        <li><a href="{{route("department.admin.index")}}">{{__("Departments")}}</a></li>
+                        <li><a href="{{route("designation.admin.index")}}">{{__("Designations")}}</a></li>
                         <li><a href="timesheet.html">Timesheet</a></li>
                         <li><a href="shift-scheduling.html">Shift & Schedule</a></li>
                         <li><a href="overtime.html">Overtime</a></li>
