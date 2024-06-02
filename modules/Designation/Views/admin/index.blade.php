@@ -31,6 +31,9 @@
 
     <script>
         $(document).ready(function() {
+
+            console.log($('.datatable'));
+
             $('.{{$randDelete}}').on('click', function() {
                 $('.{{$randDeleteContinue}}').attr('href', $(this).attr('href'));
             });

@@ -1,7 +1,7 @@
 <!-- Delete Department Modal -->
 <div
     class="modal custom-modal fade"
-    id="delete_department"
+    id="delete_designation"
     role="dialog">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">

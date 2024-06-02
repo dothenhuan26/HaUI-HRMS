@@ -22,7 +22,6 @@
                             value="{{old("name", $row->name ?? '')}}"
                             class="form-control"
                             placeholder="{{__("Name")}}"
-                            required
                             type="text">
                         @error("name")
                         <span class="text-danger">{{$message}}</span>
@@ -62,7 +61,7 @@
 
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label>{{__("Department")}}</label>
+                        <label>{{__("Department")}} <span class="text-danger">*</span></label>
                         <select
                             name="department_id"
                             class="select form-control">
@@ -101,7 +100,7 @@
 
                 <div class="col-sm-12">
                     <div class="form-group">
-                        <label class="">{{__("Description")}} </label>
+                        <label class="">{{__("Description")}} <span class="text-danger">*</span></label>
                         <textarea
                             class="form-control"
                             name="description"
@@ -116,7 +115,7 @@
 
                 <div class="col-sm-12">
                     <div class="form-group">
-                        <label class="">{{__("Requirements")}} </label>
+                        <label class="">{{__("Requirements")}} <span class="text-danger">*</span></label>
                         <textarea
                             class="form-control"
                             name="requirements"
@@ -131,7 +130,7 @@
 
                 <div class="col-sm-12">
                     <div class="form-group">
-                        <label class="">{{__("Responsibilities")}} </label>
+                        <label class="">{{__("Responsibilities")}} <span class="text-danger">*</span></label>
                         <textarea
                             class="form-control"
                             name="responsibilities"

@@ -1,7 +1,7 @@
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12 mb-3">
         <div class="table-responsive">
-            <table class="table table-striped custom-table mb-0 datatable">
+            <table class="table table-striped custom-table mb-0">
                 <thead>
                 <tr>
                     <th style="width: 30px;">{{__("#")}}</th>
@@ -28,20 +28,26 @@
                                     <div class="dropdown-menu dropdown-menu-right">
                                         <a
                                             class="dropdown-item"
-                                            href="{{route("designation.admin.edit", ["id" => $row->id])}}"><i class="fa fa-pencil m-r-5"></i> {{__
-                                            ("Edit")}}</a>
+                                            href="{{route("designation.admin.edit", ["id" => $row->id])}}">
+                                            <i class="fa fa-pencil m-r-5"></i> {{__("Edit")}}</a>
                                         <a
-                                            class="dropdown-item"
-                                            href="{{route("designation.admin.delete", ["id" => $row->id])}}"><i class="fa fa-trash-o m-r-5"></i> {{__("Delete")}}</a>
+                                            class="dropdown-item {{$randDelete}}"
+                                            href="{{route("designation.admin.delete", ["id" => $row->id])}}"
+                                            data-toggle="modal"
+                                            data-target="#delete_designation">
+                                            <i class="fa fa-trash-o m-r-5"></i> {{__("Delete")}}</a>
                                     </div>
                                 </div>
                             </td>
                         </tr>
                     @endforeach
                 @endif
-
                 </tbody>
             </table>
         </div>
     </div>
+    <div class="d-flex justify-content-end">
+        {{$rows->links()}}
+    </div>
 </div>
+

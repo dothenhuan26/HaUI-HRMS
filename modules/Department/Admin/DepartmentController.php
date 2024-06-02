@@ -3,6 +3,7 @@
 namespace Modules\Department\Admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Modules\Core\Admin\AdminController;
 use Modules\Department\Repositories\Contracts\DepartmentRepositoryInterface;
 use Modules\Department\Requests\DepartmentRequest;
@@ -18,9 +19,9 @@ class DepartmentController extends AdminController
     protected $S3Service;
 
     public function __construct(DepartmentRepositoryInterface $departmentRepository,
-                                MediaRepositoryInterface      $mediaRepository,
-                                UserRepositoryInterface       $userRepository,
-                                AmazonS3Service               $S3Service)
+                                MediaRepositoryInterface $mediaRepository,
+                                UserRepositoryInterface $userRepository,
+                                AmazonS3Service $S3Service)
     {
         $this->departmentRepository = $departmentRepository;
         $this->userRepository = $userRepository;
@@ -110,14 +111,14 @@ class DepartmentController extends AdminController
             "budget",
             "status",
             "phone",
-            //            "email",
+            "email",
         ];
 
         if ($id > 0) {
             $this->hasPermission("department_update");
             $row = $this->departmentRepository->find($id);
             if (!$row) abort(404);
-            $dataKeys[] = "email";
+//            $dataKeys[] = "email";
         } else {
             $this->hasPermission("department_create");
         }
@@ -129,11 +130,13 @@ class DepartmentController extends AdminController
         }
 
         if ($id) {
+            $attrs["user_update"] = Auth::id();
             $res = $this->departmentRepository->update($attrs, $id);
             if ($res) {
                 return redirect()->route("department.admin.index")->with("success", __("Department updated successfully!"));
             }
         } else {
+            $attrs["user_create"] = Auth::id();
             $res = $this->departmentRepository->create($attrs);
             if ($res) {
                 return redirect()->route("department.admin.index")->with("success", __("Department created successfully!"));

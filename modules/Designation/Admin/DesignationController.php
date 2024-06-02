@@ -3,6 +3,7 @@
 namespace Modules\Designation\Admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Modules\Core\Admin\AdminController;
 use Modules\Department\Repositories\Contracts\DepartmentRepositoryInterface;
 use Modules\Department\Requests\DepartmentRequest;
@@ -43,7 +44,7 @@ class DesignationController extends AdminController
         if ($department_id = $request->department_id) $query->where('department_id', '=', $department_id);
         $query = $query->with(["department"]);
         $data = [
-            "rows"        => $query->get(),
+            "rows"        => $query->paginate(10),
             "page_title"  => __("Designations"),
             "departments" => $this->departmentRepository->get(["id", "name"]),
             "breadcrumbs" => [
@@ -87,17 +88,85 @@ class DesignationController extends AdminController
     public function update(Request $request, $id = null)
     {
         $this->checkPermission("designation_update");
+        if (!$id) {
+            abort(404);
+        }
+        $row = $this->designationRepository->find($id);
+        if (!$row) abort(404);
+        $data = [
+            "row"         => $row,
+            "departments" => $this->departmentRepository->get(["id", "name"]),
+            "page_title"  => __("Designation"),
+            "breadcrumbs" => [
+                [
+                    "name" => __("Designation"),
+                    "url"  => route("department.admin.index"),
+                ],
+                [
+                    "name"  => __("Update"),
+                    "class" => "active"
+                ],
+            ]
+        ];
+        return view("Designation::admin.detail", $data);
 
     }
 
     public function store(DesignationRequest $request, $id = null)
     {
-        dd($request->all());
+        $dataKeys = [
+            "name",
+            "description",
+            "requirements",
+            "responsibilities",
+            "salary_from",
+            "salary_to",
+            "status",
+            "department_id"
+        ];
+
+        if ($id > 0) {
+            $this->hasPermission("designation_update");
+            $row = $this->designationRepository->find($id);
+            if (!$row) abort(404);
+//            $dataKeys[] = "email";
+        } else {
+            $this->hasPermission("designation_create");
+        }
+
+        $attrs = [];
+
+        foreach ($dataKeys as $key) {
+            $attrs[$key] = $request->input($key);
+        }
+
+        if ($id) {
+            $attrs["user_update"] = Auth::id();
+            $res = $this->designationRepository->update($attrs, $id);
+            if ($res) {
+                return redirect()->route("designation.admin.index")
+                    ->with("success", __("Designation updated successfully!"));
+            }
+        } else {
+            $attrs["user_create"] = Auth::id();
+            $res = $this->designationRepository->create($attrs);
+            if ($res) {
+                return redirect()->route("designation.admin.index")
+                    ->with("success", __("Designation created successfully!"));
+            }
+        }
+        return back()->with("error", __("Failed to create designation!"));
     }
 
     public function delete($id)
     {
         $this->checkPermission("designation_delete");
+        if (!$id) abort(404);
+        $res = $this->designationRepository->delete($id);
+        if ($res)
+            return redirect()->route("designation.admin.index")
+                ->with("success", __("Designation deleted successfully!"));
+        return back()->with("error", __("Failed to delete designation!"));
     }
 
 
