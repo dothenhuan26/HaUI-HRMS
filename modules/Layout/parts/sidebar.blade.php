@@ -166,7 +166,7 @@
                     <ul style="display: none;">
                         <li><a href="user-dashboard.html"> User Dasboard </a></li>
                         <li><a href="jobs-dashboard.html"> Jobs Dasboard </a></li>
-                        <li><a href="jobs.html"> Manage Jobs </a></li>
+                        <li><a href="{{route("position.admin.index")}}"> {{__("Manage Jobs")}} </a></li>
                         <li><a href="manage-resumes.html"> Manage Resumes </a></li>
                         <li><a href="shortlist-candidates.html"> Shortlist Candidates </a></li>
                         <li><a href="interview-questions.html"> Interview Questions </a></li>

@@ -50,7 +50,7 @@ class PositionSeeder extends Seeder
                 "expired_date"   => fake()->date(),
                 "salary_from"    => "1500",
                 "salary_to"      => "3000",
-                "status"         => rand(0, count($status)-1),
+                "status"         => $status[rand(0, count($status)-1)],
                 "user_create"    => 1,
                 "department_id"  => rand(1, Department::count()),
                 "designation_id" => rand(1, Designation::count()),
