@@ -15,9 +15,13 @@ class Holiday extends Model
         "title",
         "holiday_date",
         "day_of_week",
+        "description",
         "user_create",
         "user_update",
     ];
 
+    protected $casts = [
+        "holiday_date" => "date",
+    ];
 
 }

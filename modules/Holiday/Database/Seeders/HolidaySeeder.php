@@ -32,6 +32,7 @@ class HolidaySeeder extends Seeder
                 "title"        => $holidays[rand(0, count($holidays) - 1)],
                 "day_of_week"  => fake()->dayOfWeek(),
                 "holiday_date" => fake()->date(),
+                "description" => fake()->sentence(),
                 "user_create"  => 1,
                 "created_at"   => date("Y-m-d H:i:s"),
                 "updated_at"   => date("Y-m-d H:i:s"),

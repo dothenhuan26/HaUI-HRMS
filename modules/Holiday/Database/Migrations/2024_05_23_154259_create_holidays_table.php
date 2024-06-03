@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string("title");
             $table->date("holiday_date")->nullable();
             $table->string("day_of_week")->nullable();
+            $table->text("description")->nullable();
             $table->unsignedBigInteger("user_create")->nullable();
             $table->unsignedBigInteger("user_update")->nullable();
             $table->timestamps();
