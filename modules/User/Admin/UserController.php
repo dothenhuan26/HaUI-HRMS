@@ -32,18 +32,16 @@ class UserController extends AdminController
 
     public function index(Request $request)
     {
+        $this->checkPermission("user_view");
         $query = $this->userRepository->query();
-
         if ($name = $request->name) $query->where('name', 'LIKE', "%$name%");
         if ($code = $request->code) $query->where('code', 'LIKE', "%$code%");
         if ($designation_id = $request->designation_id) $query->where('designation_id', '=', $designation_id);
 
         $query->exceptSuperAdmin();
-        if ($request->layout) $rows = $query->paginate(12)->withQueryString();
-        else $rows = $query->get();
         $query->with(["designation", "avatar"]);
         $data = [
-            "rows"         => $rows,
+            "rows"         => $query->paginate(12)->withQueryString(),
             "designations" => $this->designationRepository->all(["id", "name"]),
             "has_views"    => true,
             "page_title"   => __("Employee"),
@@ -65,7 +63,34 @@ class UserController extends AdminController
 
     public function create()
     {
+        $this->checkPermission("user_create");
         $data = [
+            "page_title"   => __("Add Employee"),
+            "designations" => $this->designationRepository->all(["id", "name"]),
+            "breadcrumbs"  => [
+                [
+                    "name" => __("Employee"),
+                    "url"  => route("user.admin.index"),
+                ],
+                [
+                    "name"  => __("Create"),
+                    "class" => "active"
+                ],
+            ]
+        ];
+        return view("User::admin.detail", $data);
+    }
+
+    public function update(Request $request, $id = null)
+    {
+        $this->checkPermission("user_update");
+        $this->hasPermission("user_create");
+        if (!$id) {
+            abort(404);
+        }
+        $row = $this->userRepository->find($id);
+        $data = [
+            "row"          => $row,
             "page_title"   => __("Add Employee"),
             "designations" => $this->designationRepository->all(["id", "name"]),
             "breadcrumbs"  => [
@@ -145,6 +170,18 @@ class UserController extends AdminController
             return $res;
         }
         return back()->with("error", __("Failed to Upload File to S3!"));
+    }
+
+    public function delete($id)
+    {
+        $this->checkPermission("user_delete");
+        if (!$id) abort(404);
+        $res = $this->userRepository->delete($id);
+        if ($res)
+            return redirect()->route("user.admin.index")
+                ->with("success", __("User deleted successfully!"));
+        return back()
+            ->with("error", __("Failed to delete user!"));
     }
 
 }

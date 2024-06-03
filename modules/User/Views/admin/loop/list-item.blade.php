@@ -1,7 +1,10 @@
 <div class="row">
     <div class="col-md-12">
+        <div class="d-flex justify-content-end">
+            <p><i>{{__("Found :number items", ["number" => $rows->count()])}}</i></p>
+        </div>
         <div class="table-responsive">
-            <table class="table table-striped custom-table datatable">
+            <table class="table table-striped custom-table">
                 <thead>
                 <tr>
                     <th>{{__("Name")}}</th>
@@ -44,14 +47,14 @@
                                     <div class="dropdown-menu dropdown-menu-right">
                                         <a
                                             class="dropdown-item"
-                                            href="#"
-                                            data-toggle="modal"
-                                            data-target="#edit_employee"><i class="fa fa-pencil m-r-5"></i> {{__("Edit")}}</a>
+                                            href="{{route("user.admin.update", $row->id)}}"
+                                        ><i class="fa fa-pencil m-r-5"></i> {{__("Edit")}}</a>
                                         <a
-                                            class="dropdown-item"
-                                            href="#"
+                                            class="dropdown-item {{$randDelete}}"
+                                            href="{{route("user.admin.delete", $row->id)}}"
+                                            id=""
                                             data-toggle="modal"
-                                            data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> {{__("Delete")}}</a>
+                                            data-target="#delete_user"><i class="fa fa-trash-o m-r-5"></i> {{__("Delete")}}</a>
                                     </div>
                                 </div>
                             </td>
@@ -61,6 +64,9 @@
                 </tbody>
             </table>
         </div>
+    </div>
+    <div class="d-flex justify-content-end">
+        {{$rows->links()}}
     </div>
 </div>
 

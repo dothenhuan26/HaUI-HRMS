@@ -44,7 +44,7 @@ class DesignationController extends AdminController
         if ($department_id = $request->department_id) $query->where('department_id', '=', $department_id);
         $query = $query->with(["department"]);
         $data = [
-            "rows"        => $query->paginate(10),
+            "rows"        => $query->paginate(10)->withQueryString(),
             "page_title"  => __("Designations"),
             "departments" => $this->departmentRepository->get(["id", "name"]),
             "breadcrumbs" => [
