@@ -9,4 +9,6 @@ Route::middleware("auth")->group(function () {
     Route::post("store/{id?}", "PositionController@store")->name("store");
     Route::get("delete/{id}", "PositionController@delete")->name("delete");
 
+    Route::get("preview/{id}", "PositionController@preview")->name("preview");
+
 });

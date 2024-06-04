@@ -4,12 +4,16 @@
     <!-- Main Wrapper -->
     <div class="main-wrapper">
         <div class="account-content">
-            <a href="job-list.html" class="btn btn-primary apply-btn">{{__("Apply Job")}}</a>
+            <a
+                href="{{route("job.index")}}"
+                class="btn btn-primary apply-btn">{{__("Apply Job")}}</a>
             <div class="container">
 
                 <!-- Account Logo -->
                 <div class="account-logo">
-                    <a href="index.html"><img src="https://i.pinimg.com/736x/59/55/4a/59554a996be754a93d61581ae15167f7.jpg" alt="nhuan"></a>
+                    <a href="index.html"><img
+                            src="https://i.pinimg.com/564x/78/f7/ce/78f7ce214095e3054ca85972d83d1651.jpg"
+                            alt="nhuan"></a>
                 </div>
                 <!-- /Account Logo -->
 
@@ -19,14 +23,26 @@
                         <p class="account-subtitle">{{__("Access to our dashboard")}}</p>
 
                         <!-- Account Form -->
-                        <form action="" method="POST">
+                        <form
+                            action=""
+                            method="POST">
                             @csrf
                             <div class="form-group">
                                 <label>{{__("Email Address")}}</label>
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <input
+                                    id="email"
+                                    type="email"
+                                    class="form-control @error('email') is-invalid @enderror"
+                                    name="email"
+                                    value="{{ old('email') }}"
+                                    required
+                                    autocomplete="email"
+                                    autofocus>
 
                                 @error('email')
-                                <span class="invalid-feedback" role="alert">
+                                <span
+                                    class="invalid-feedback"
+                                    role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
@@ -37,21 +53,34 @@
                                         <label>Password</label>
                                     </div>
                                     <div class="col-auto">
-                                        <a class="text-muted" href="forgot-password.html">
+                                        <a
+                                            class="text-muted"
+                                            href="forgot-password.html">
                                             Forgot password?
                                         </a>
                                     </div>
                                 </div>
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                <input
+                                    id="password"
+                                    type="password"
+                                    class="form-control @error('password') is-invalid @enderror"
+                                    name="password"
+                                    required
+                                    autocomplete="current-password">
 
                                 @error('password')
-                                <span class="invalid-feedback" role="alert">
+                                <span
+                                    class="invalid-feedback"
+                                    role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
                             <div class="form-group text-center">
-                                <button class="btn btn-primary account-btn" type="submit">Login</button>
+                                <button
+                                    class="btn btn-primary account-btn"
+                                    type="submit">Login
+                                </button>
                             </div>
                         </form>
                         <!-- /Account Form -->

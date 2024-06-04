@@ -19,7 +19,7 @@ return new class extends Migration {
             $table->integer("candidates")->default(0);
             $table->string("age")->nullable();
             $table->string("job_type")->nullable();
-            $table->float("experiences",2,1)->nullable();
+            $table->string("experiences")->nullable();
             $table->text("requirements")->nullable();
             $table->text("responsibilities")->nullable();
             $table->date("start_date")->nullable();
@@ -27,6 +27,7 @@ return new class extends Migration {
             $table->string("salary_from")->nullable();
             $table->string("salary_to")->nullable();
             $table->string("status")->nullable();
+            $table->text("contact")->nullable();
             $table->integer("views")->default(0);
             $table->unsignedBigInteger("department_id")->nullable();
             $table->unsignedBigInteger("designation_id")->nullable();

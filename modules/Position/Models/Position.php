@@ -28,6 +28,7 @@ class Position extends Model
         "salary_from",
         "salary_to",
         "status",
+        "contact",
         "views",
         "department_id",
         "designation_id",
@@ -36,8 +37,8 @@ class Position extends Model
     ];
 
     protected $casts = [
-        "start_date" => "date",
-        "expired_date" => "date",
+        "start_date" => "datetime:m/d/Y",
+        "expired_date" => "datetime:m/d/Y",
     ];
 
     public function department()

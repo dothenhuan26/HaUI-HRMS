@@ -19,7 +19,7 @@
                         <label class="">{{__("Title")}} <span class="text-danger">*</span></label>
                         <input
                             name="title"
-                            value="{{old("title", $row->name ?? '')}}"
+                            value="{{old("title", $row->title ?? '')}}"
                             class="form-control"
                             placeholder="{{__("Title")}}"
                             required
@@ -35,7 +35,7 @@
                         <label class="">{{__("No of Vacancies")}} </label>
                         <input
                             name="vacancies"
-                            value="{{old("vacancies", $row->phone ?? "")}}"
+                            value="{{old("vacancies", $row->vacancies ?? "")}}"
                             class="form-control"
                             placeholder="{{__("No of Vacancies")}}"
                             type="number">
@@ -51,7 +51,7 @@
                         <input
                             name="age"
                             placeholder="{{__("Age")}}"
-                            value="{{old("age", $row->email ?? '')}}"
+                            value="{{old("age", $row->age ?? '')}}"
                             class="form-control"
                             required
                             type="number">
@@ -96,22 +96,7 @@
                     @enderror
                 </div>
 
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <label class="">{{__("location")}} </label>
-                        <input
-                            name="location"
-                            value="{{old("location", $row->budget ?? "")}}"
-                            class="form-control"
-                            placeholder="{{__("location")}}"
-                            type="text">
-                        @error("location")
-                        <span class="text-danger">{{$message}}</span>
-                        @enderror
-                    </div>
-                </div>
-
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <div class="form-group">
                         <label class="">{{__("Location")}} </label>
                         <input
@@ -132,10 +117,9 @@
                         <div class="cal-icon">
                             <input
                                 name="start_date"
-                                value="{{old("start_date", $row->start_date ?? '')}}"
+                                value="{{old("start_date", $row?->start_date->format("m/d/Y") ?? '')}}"
                                 class="form-control datetimepicker"
-                                placeholder="{{__("Start Name")}}"
-                                required
+                                placeholder="{{__("Start Date")}}"
                                 type="text">
                         </div>
                         @error("start_date")
@@ -150,13 +134,28 @@
                         <div class="cal-icon">
                             <input
                                 name="expired_date"
-                                value="{{old("start_date", $row?->expired_date ?? '')}}"
+                                value="{{old("expired_date", $row?->expired_date->format("m/d/Y") ?? '')}}"
                                 class="form-control datetimepicker"
-                                placeholder="{{__("Expired Name")}}"
-                                required
+                                placeholder="{{__("Expired Date")}}"
                                 type="text">
                         </div>
                         @error("expired_date")
+                        <span class="text-danger">{{$message}}</span>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label class="">{{__("Experiences")}} <span class="text-danger">*</span></label>
+                        <input
+                            name="experiences"
+                            placeholder="{{__("Experiences")}}"
+                            value="{{old("experiences", $row->experiences ?? '')}}"
+                            class="form-control"
+                            required
+                            type="number">
+                        @error("experiences")
                         <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
@@ -231,11 +230,11 @@
                     </div>
                 </div>
 
-                <div class="col-sm-12">
+                <div class="col-sm-4">
                     <div class="form-group">
                         <label class="">{{__("Requirements")}} <span class="text-danger">*</span></label>
                         <textarea
-                            class="form-control"
+                            class=""
                             name="requirements"
                             id="tinymce"
                             cols="30"
@@ -246,16 +245,31 @@
                     </div>
                 </div>
 
-                <div class="col-sm-12">
+                <div class="col-sm-4">
                     <div class="form-group">
                         <label class="">{{__("Responsibilities")}} <span class="text-danger">*</span></label>
                         <textarea
-                            class="form-control"
+                            class=""
                             name="responsibilities"
                             id="tinymce"
                             cols="30"
                             rows="10">{{old("responsibilities", $row->responsibilities ?? "")}}</textarea>
                         @error("responsibilities")
+                        <span class="text-danger">{{$message}}</span>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="">{{__("Contact")}} <span class="text-danger">*</span></label>
+                        <textarea
+                            class=""
+                            name="contact"
+                            id="tinymce"
+                            cols="30"
+                            rows="10">{{old("contact", $row->contact ?? "")}}</textarea>
+                        @error("contact")
                         <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>

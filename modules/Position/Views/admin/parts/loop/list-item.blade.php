@@ -23,7 +23,7 @@
                     @foreach($rows as $key => $row)
                         <tr>
                             <td>{{$key+1}}</td>
-                            <td><a href="job-details.html">{{$row->title}}</a></td>
+                            <td><a href="{{route("position.admin.preview", ["id" => $row->id])}}">{{$row->title}}</a></td>
                             <td>{{$row->department->name}}</td>
                             <td>{{$row->start_date->format("d M Y")}}</td>
                             <td>{{$row->expired_date->format("d M Y")}}</td>

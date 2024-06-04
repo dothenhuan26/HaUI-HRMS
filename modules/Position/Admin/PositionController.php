@@ -28,7 +28,7 @@ class PositionController extends AdminController
         $query = $this->positionRepository->query();
         if ($name = $request->name) $query->where('name', 'LIKE', "%$name%");
         $data = [
-            "rows"        => $query->orderBy("updated_at")->paginate(10),
+            "rows"        => $query->orderBy("updated_at", "desc")->paginate(10),
             "page_title"  => __("Position"),
             "breadcrumbs" => [
                 [
@@ -49,6 +49,7 @@ class PositionController extends AdminController
     {
         $this->hasPermission("position_create");
         $data = [
+            "row" => null,
             "page_title"  => __("Position"),
             "departments" => $this->departmentRepository->get(["id", "name"]),
             "breadcrumbs" => [
@@ -96,9 +97,21 @@ class PositionController extends AdminController
     {
         $dataKeys = [
             "title",
-            "position_date",
-            "day_of_week",
+            "location",
             "description",
+            "vacancies",
+            "age",
+            "job_type",
+            "experiences",
+            "requirements",
+            "responsibilities",
+            "start_date",
+            "expired_date",
+            "salary_from",
+            "salary_to",
+            "status",
+            "contact",
+            "department_id",
         ];
 
         if ($id > 0) {
@@ -142,5 +155,31 @@ class PositionController extends AdminController
         return back()->with("error", __("Failed to delete position!"));
     }
 
+    public function preview(Request $request, $id=null) {
+
+        $this->hasPermission("position_preview");
+        if (!$id) {
+            abort(404);
+        }
+        $row = $this->positionRepository->find($id);
+        if (!$row) abort(404);
+        $data = [
+            "row"         => $row,
+            "page_title"  => __("Position"),
+            "departments" => $this->departmentRepository->get(["id", "name"]),
+            "breadcrumbs" => [
+                [
+                    "name" => __("Position"),
+                    "url"  => route("position.admin.index"),
+                ],
+                [
+                    "name"  => __("Preview"),
+                    "class" => "active"
+                ],
+            ]
+        ];
+
+        return view("Position::admin.preview", $data);
+    }
 
 }
