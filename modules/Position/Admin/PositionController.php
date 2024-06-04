@@ -5,6 +5,7 @@ namespace Modules\Position\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Modules\Core\Admin\AdminController;
+use Modules\Department\Repositories\Contracts\DepartmentRepositoryInterface;
 use Modules\Position\Requests\PositionRequest;
 use Modules\Position\Repositories\Contracts\PositionRepositoryInterface;
 
@@ -12,11 +13,13 @@ use Modules\Position\Repositories\Contracts\PositionRepositoryInterface;
 class PositionController extends AdminController
 {
     protected $positionRepository;
+    protected $departmentRepository;
     protected $S3Service;
 
-    public function __construct(PositionRepositoryInterface $positionRepository)
+    public function __construct(PositionRepositoryInterface $positionRepository, DepartmentRepositoryInterface $departmentRepository)
     {
         $this->positionRepository = $positionRepository;
+        $this->departmentRepository = $departmentRepository;
     }
 
     public function index(Request $request)
@@ -47,6 +50,7 @@ class PositionController extends AdminController
         $this->hasPermission("position_create");
         $data = [
             "page_title"  => __("Position"),
+            "departments" => $this->departmentRepository->get(["id", "name"]),
             "breadcrumbs" => [
                 [
                     "name" => __("Position"),
@@ -73,6 +77,7 @@ class PositionController extends AdminController
         $data = [
             "row"         => $row,
             "page_title"  => __("Position"),
+            "departments" => $this->departmentRepository->get(["id", "name"]),
             "breadcrumbs" => [
                 [
                     "name" => __("Position"),

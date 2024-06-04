@@ -1,7 +1,10 @@
 <div class="row">
     <div class="col-md-12">
+        <div class="d-flex justify-content-end">
+            <p><i>{{__("Found :number items", ["number" => $rows->count()])}}</i></p>
+        </div>
         <div class="table-responsive">
-            <table class="table table-striped custom-table mb-0 datatable">
+            <table class="table table-striped custom-table mb-0">
                 <thead>
                 <tr>
                     <th>{{__("#")}}</th>
@@ -28,7 +31,7 @@
                             <td>{{$row->status}}</td>
                             <td><a
                                     href="job-applicants.html"
-                                    class="btn btn-sm btn-danger">3 Candidates</a></td>
+                                    class="btn btn-sm btn-danger">{{__(":number Candidates", ["number" => $row->candidates])}}</a></td>
                             <td class="text-right">
                                 <div class="dropdown dropdown-action">
                                     <a
@@ -38,15 +41,15 @@
                                         aria-expanded="false"><i class="material-icons">more_vert</i></a>
                                     <div class="dropdown-menu dropdown-menu-right">
                                         <a
-                                            href="#"
                                             class="dropdown-item"
-                                            data-toggle="modal"
-                                            data-target="#edit_job"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                                            href="{{route("position.admin.update", $row->id)}}"
+                                        ><i class="fa fa-pencil m-r-5"></i> {{__("Edit")}}</a>
                                         <a
-                                            href="#"
-                                            class="dropdown-item"
+                                            class="dropdown-item {{$randDelete}}"
+                                            href="{{route("position.admin.delete", $row->id)}}"
+                                            id=""
                                             data-toggle="modal"
-                                            data-target="#delete_job"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                                            data-target="#delete_position"><i class="fa fa-trash-o m-r-5"></i> {{__("Delete")}}</a>
                                     </div>
                                 </div>
                             </td>
@@ -57,5 +60,8 @@
                 </tbody>
             </table>
         </div>
+    </div>
+    <div class="d-flex justify-content-end">
+        {{$rows->links()}}
     </div>
 </div>
