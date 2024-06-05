@@ -37,12 +37,14 @@ return [
     'holiday_create',
     'holiday_update',
     'holiday_delete',
+    'holiday_manage_others',
 
     //Positions
     'position_view',
     'position_create',
     'position_update',
     'position_delete',
+    'position_manage_others',
 
     // Dashboard
     'dashboard_access',

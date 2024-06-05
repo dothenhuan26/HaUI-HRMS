@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Modules\Designation\Models\Designation;
+use Modules\Media\Models\MediaFile;
 use Modules\User\Traits\HasRoles;
 
 class User extends Authenticatable
@@ -26,16 +27,18 @@ class User extends Authenticatable
         'first_name',
         'last_name',
         'email',
+        'id_card',
+        'code',
         'password',
         'address',
         'gender',
         'birthday',
-        'is_active',
         'status',
         'phone',
         'passport',
         'passport_exp',
         'national',
+        'is_active',
         'religion',
         'country',
         'user_create',
@@ -43,6 +46,8 @@ class User extends Authenticatable
         'role_id',
         'job_id',
         'avatar_id',
+        'experiences',
+        'user_create',
     ];
 
     /**
@@ -63,6 +68,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password'          => 'hashed',
+        "experiences"       => "array",
+        "educations"        => "array"
     ];
 
     public function fillByAttr($attributes, $input)
@@ -84,6 +91,9 @@ class User extends Authenticatable
         return $this->hasRole("super_admin");
     }
 
-
+    public function avatar()
+    {
+        return $this->belongsTo(MediaFile::class, "avatar_id", "id");
+    }
 
 }

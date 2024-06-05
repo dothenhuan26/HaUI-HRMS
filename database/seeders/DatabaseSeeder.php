@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
         $sudo = new User();
         $sudo->name = "Sudo";
         $sudo->code = "000000";
+        $sudo->id_card = "000000000000";
         $sudo->email = "sudo@gmail.com";
         $sudo->password = Hash::make("123456");
         $sudo->role_id = 1;
@@ -35,25 +36,6 @@ class DatabaseSeeder extends Seeder
         $sudo->save();
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
-        $admin = new User();
-        $admin->name = "Admin";
-        $admin->code = "000001";
-        $admin->email = "admin@gmail.com";
-        $admin->password = Hash::make("123456");
-        $admin->role_id = 2;
-        $admin->user_create = 1;
-        $admin->is_active = true;
-        $admin->save();
-
-        $user = new User();
-        $user->name = "User";
-        $user->code = "000003";
-        $user->email = "user@gmail.com";
-        $user->password = Hash::make("123456");
-        $user->role_id = 3;
-        $user->user_create = 1;
-        $user->is_active = true;
-        $user->save();
 
         $this->call(DepartmentSeeder::class);
         $this->call(DesignationSeeder::class);
@@ -61,5 +43,30 @@ class DatabaseSeeder extends Seeder
         $this->call(HolidaySeeder::class);
 
         $this->call(UserSeeder::class);
+
+        $admin = new User();
+        $admin->name = "Admin";
+        $admin->code = "000001";
+        $admin->id_card = "000000000002";
+        $admin->email = "admin@gmail.com";
+        $admin->password = Hash::make("123456");
+        $admin->role_id = 2;
+        $admin->designation_id = 1;
+        $admin->user_create = 1;
+        $admin->is_active = true;
+        $admin->save();
+
+        $user = new User();
+        $user->name = "User";
+        $user->code = "000003";
+        $user->id_card = "000000000003";
+        $user->email = "user@gmail.com";
+        $user->password = Hash::make("123456");
+        $user->role_id = 3;
+        $user->designation_id = 1;
+        $user->user_create = 1;
+        $user->is_active = true;
+        $user->save();
+
     }
 }

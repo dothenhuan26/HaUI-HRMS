@@ -271,8 +271,9 @@ abstract class BaseEloquentRepository implements RepositoryInterface
         return $this;
     }
 
-    public function with($relations)
+    public function with($relations = [])
     {
+        if (is_string($relations)) $relations = [$relations];
         $this->model = $this->model->with($relations);
         return $this;
     }

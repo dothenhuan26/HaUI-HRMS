@@ -1,6 +1,10 @@
-<div class="sidebar" id="sidebar">
+<div
+    class="sidebar"
+    id="sidebar">
     <div class="sidebar-inner slimscroll">
-        <div id="sidebar-menu" class="sidebar-menu">
+        <div
+            id="sidebar-menu"
+            class="sidebar-menu">
             <ul>
                 <li class="menu-title">
                     <span>Main</span>
@@ -8,7 +12,9 @@
                 <li class="submenu">
                     <a href="#"><i class="la la-dashboard"></i> <span> Dashboard</span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
-                        <li><a class="active" href="index.html">Admin Dashboard</a></li>
+                        <li><a
+                                class="active"
+                                href="index.html">Admin Dashboard</a></li>
                         <li><a href="employee-dashboard.html">Employee Dashboard</a></li>
                     </ul>
                 </li>
@@ -35,17 +41,19 @@
                     <span>Employees</span>
                 </li>
                 <li class="submenu">
-                    <a href="#" class="noti-dot"><i class="la la-user"></i> <span> Employees</span> <span class="menu-arrow"></span></a>
+                    <a
+                        href="#"
+                        class="noti-dot"><i class="la la-user"></i> <span> {{__("Employees")}}</span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
-                        <li><a href="employees.html">All Employees</a></li>
-                        <li><a href="holidays.html">Holidays</a></li>
+                        <li><a href="{{route("user.admin.index")}}">{{__("All Employees")}}</a></li>
+                        <li><a href="{{route("holiday.admin.index")}}">{{__("Holidays")}}</a></li>
                         <li><a href="leaves.html">Leaves (Admin) <span class="badge badge-pill bg-primary float-right">1</span></a></li>
                         <li><a href="leaves-employee.html">Leaves (Employee)</a></li>
                         <li><a href="leave-settings.html">Leave Settings</a></li>
                         <li><a href="attendance.html">Attendance (Admin)</a></li>
                         <li><a href="attendance-employee.html">Attendance (Employee)</a></li>
-                        <li><a href="departments.html">Departments</a></li>
-                        <li><a href="designations.html">Designations</a></li>
+                        <li><a href="{{route("department.admin.index")}}">{{__("Departments")}}</a></li>
+                        <li><a href="{{route("designation.admin.index")}}">{{__("Designations")}}</a></li>
                         <li><a href="timesheet.html">Timesheet</a></li>
                         <li><a href="shift-scheduling.html">Shift & Schedule</a></li>
                         <li><a href="overtime.html">Overtime</a></li>
@@ -158,7 +166,7 @@
                     <ul style="display: none;">
                         <li><a href="user-dashboard.html"> User Dasboard </a></li>
                         <li><a href="jobs-dashboard.html"> Jobs Dasboard </a></li>
-                        <li><a href="jobs.html"> Manage Jobs </a></li>
+                        <li><a href="{{route("position.admin.index")}}"> {{__("Manage Jobs")}} </a></li>
                         <li><a href="manage-resumes.html"> Manage Resumes </a></li>
                         <li><a href="shortlist-candidates.html"> Shortlist Candidates </a></li>
                         <li><a href="interview-questions.html"> Interview Questions </a></li>
@@ -257,7 +265,8 @@
                     <a href="#"><i class="la la-file-text"></i> <span>Documentation</span></a>
                 </li>
                 <li>
-                    <a href="javascript:void(0);"><i class="la la-info"></i> <span>Change Log</span> <span class="badge badge-primary ml-auto">v3.4</span></a>
+                    <a href="javascript:void(0);"><i class="la la-info"></i> <span>Change Log</span>
+                        <span class="badge badge-primary ml-auto">v3.4</span></a>
                 </li>
                 <li class="submenu">
                     <a href="javascript:void(0);"><i class="la la-share-alt"></i> <span>Multi Level</span> <span class="menu-arrow"></span></a>

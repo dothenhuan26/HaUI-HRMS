@@ -16,8 +16,8 @@ trait HasUpload
     {
         $initial = [
             'status' => false,
-            'fileName' => '',
-            'filePath' => '',
+            'file_name' => '',
+            'file_path' => '',
             'url' => '',
         ];
         if ($object) {
@@ -26,8 +26,8 @@ trait HasUpload
             Storage::disk('s3')->put($filePath, file_get_contents($object), 's3');
             $initial = [
                 'status' => true,
-                'fileName' => $fileName,
-                'filePath' => $filePath,
+                'file_name' => $fileName,
+                'file_path' => $filePath,
                 'url' => $this->getObjectUrlFromS3($filePath),
             ];
         }
@@ -38,8 +38,8 @@ trait HasUpload
     {
         $initial = [
             'status' => false,
-            'fileName' => '',
-            'filePath' => '',
+            'file_name' => '',
+            'file_path' => '',
             'url' => '',
         ];
         if ($object) {
@@ -62,8 +62,8 @@ trait HasUpload
                 $result = $uploader->upload();
                 $initial = [
                     'status' => true,
-                    'fileName' => $fileName,
-                    'filePath' => $filePath,
+                    'file_name' => $fileName,
+                    'file_path' => $filePath,
                     'url' => $result['ObjectURL'],
                 ];
                 return $initial;

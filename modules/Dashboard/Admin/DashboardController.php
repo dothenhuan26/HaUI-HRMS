@@ -10,10 +10,10 @@ class DashboardController extends AdminController
     {
         $this->checkPermission("dashboard_access");
         $data = [
-            "page_title"  => __("Welcome Admin!"),
+            "page_title"  => __("Welcome :name!", ["name" => username()]),
             "breadcrumbs" => [
                 [
-                    "name"  => "Dashboard",
+                    "name"  => __("Admin"),
                     "class" => "active",
                 ]
             ]

@@ -46,6 +46,12 @@ class DesignationSeeder extends Seeder
             DB::table("designations")->insertGetId([
                 "name"       => $designations[$i],
                 "user_create"    => 1,
+                "user_update" => 1,
+                "requirements" => fake()->sentence(),
+                "responsibilities" => fake()->sentence(),
+                "salary_from" => 0,
+                "salary_to" => 0,
+                "status" => "publish",
                 "department_id" => rand(2, Department::count()),
                 "created_at" => date("Y-m-d H:i:s"),
                 "updated_at" => date("Y-m-d H:i:s"),

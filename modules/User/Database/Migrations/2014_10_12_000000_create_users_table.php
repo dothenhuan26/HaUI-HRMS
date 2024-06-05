@@ -13,6 +13,7 @@ return new class extends Migration {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string("code")->unique();
+            $table->string("id_card")->unique();
             $table->string('name');
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
@@ -23,7 +24,7 @@ return new class extends Migration {
             $table->string("gender")->default("other");
             $table->date("birthday")->nullable();
             $table->boolean("is_active")->default(false);
-            $table->string("status")->default("publish");
+            $table->string("status")->nullable();
             $table->string("phone", 10)->nullable();
             $table->string("passport")->nullable();
             $table->date("passport_exp")->nullable();

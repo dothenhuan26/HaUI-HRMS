@@ -5,6 +5,19 @@
     <link
         rel="stylesheet"
         href="{{asset('assets/plugins/morris/morris.css')}}">
+
+    <!-- Datatable CSS -->
+    <link rel="stylesheet" href="{{asset("assets/css/dataTables.bootstrap4.min.css")}}">
+
+    <!-- Select2 CSS -->
+    <link
+        rel="stylesheet"
+        href="{{asset("assets/css/select2.min.css")}}">
+
+    <!-- Datetimepicker CSS -->
+    <link
+        rel="stylesheet"
+        href="{{asset("assets/css/bootstrap-datetimepicker.min.css")}}">
 @endsection
 
 @section("body")
@@ -40,11 +53,20 @@
 @endsection
 
 @section("js")
-    <!-- Slimscroll JS -->
-    <script src="{{asset('assets/js/jquery.slimscroll.min.js')}}"></script>
 
     <!-- Chart JS -->
     <script src="{{asset('assets/plugins/morris/morris.min.js')}}"></script>
     <script src="{{asset('assets/plugins/raphael/raphael.min.js')}}"></script>
     <script src="{{asset('assets/js/chart.js')}}"></script>
+
+    <!-- Select2 JS -->
+    <script src="{{asset("assets/js/select2.min.js")}}"></script>
+
+    <!-- Datetimepicker JS -->
+    <script src="{{asset("assets/js/moment.min.js")}}"></script>
+    <script src="{{asset("assets/js/bootstrap-datetimepicker.min.js")}}"></script>
+
+    <!-- Datatable JS -->
+    <script src="{{asset("assets/js/jquery.dataTables.min.js")}}"></script>
+    <script src="{{asset("assets/js/dataTables.bootstrap4.min.js")}}"></script>
 @endsection
