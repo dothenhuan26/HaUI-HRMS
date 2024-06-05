@@ -5,7 +5,7 @@
     role="dialog">
     <form
         enctype="multipart/form-data"
-        action="{{route("job.detail.send-cv", ["id" => $row->id])}}"
+        action="{{route("job.detail.send-cv", ["slug" => $row->slug])}}"
         method="POST">
         @csrf
         <div

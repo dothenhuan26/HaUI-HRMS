@@ -31,10 +31,12 @@
     </div>
     <!-- /Header Title -->
 
+    @if(Auth::check())
     <a
         id="mobile_btn"
         class="mobile_btn"
         href="#sidebar"><i class="fa fa-bars"></i></a>
+    @endif
 
     <!-- Header Menu -->
     <ul class="nav user-menu">

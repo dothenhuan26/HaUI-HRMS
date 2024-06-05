@@ -45,23 +45,23 @@ class PositionController extends Controller
         return view("Position::frontend.index", $data);
     }
 
-    public function detail(Request $request, $id=null)
+    public function detail(Request $request, $slug=null)
     {
-        if (!$id) {
+        if (!$slug) {
             abort(404);
         }
-        $row = $this->positionRepository->find($id);
+        $row = $this->positionRepository->where('slug', $slug)->first();
         if (!$row) abort(404);
         $data = [
             "row"         => $row,
-            "page_title"  => __("Position"),
+            "page_title"  => __("Jobs"),
             "breadcrumbs" => [
                 [
                     "name" => __("Jobs"),
                     "url"  => route("job.index"),
                 ],
                 [
-                    "name"  => __("Detail"),
+                    "name"  => $row->title ?? __("Detail"),
                     "class" => "active"
                 ],
             ]

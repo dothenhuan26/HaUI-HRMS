@@ -76,6 +76,10 @@
 
 <!-- Custom JS -->
 <script src="{{asset('assets/js/app.js')}}"></script>
+
+<!-- Slimscroll JS -->
+<script src="{{asset('assets/js/jquery.slimscroll.min.js')}}"></script>
+
 @yield("js")
 @stack('js')
 </body>

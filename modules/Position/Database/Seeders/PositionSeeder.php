@@ -40,6 +40,7 @@ class PositionSeeder extends Seeder
         for ($i = 0; $i < count($positions); $i++) {
             DB::table("positions")->insertGetId([
                 "title"          => $positions[$i],
+                "slug"           => fake()->slug(),
                 "location"       => fake()->locale(),
                 "description"    => fake()->sentence(20),
                 "vacancies"      => rand(1, 10),
@@ -53,7 +54,7 @@ class PositionSeeder extends Seeder
                 "salary_to"      => "3000",
                 "status"         => $status[rand(0, count($status) - 1)],
                 "user_create"    => 1,
-                "contact" => fake()->phoneNumber()."<br/>".fake()->locale(),
+                "contact"        => fake()->phoneNumber() . "<br/>" . fake()->locale(),
                 "department_id"  => rand(1, Department::count()),
                 "designation_id" => rand(1, Designation::count()),
                 "created_at"     => date("Y-m-d H:i:s"),

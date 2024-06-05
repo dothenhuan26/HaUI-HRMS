@@ -4,7 +4,7 @@
             <div class="col-md-6">
                 <a
                     class="job-list"
-                    href="{{route("job.detail.view", ["id" => $row->id])}}">
+                    href="{{route("job.detail.view", ["slug" => $row->slug])}}">
                     <div class="job-list-det">
                         <div class="job-list-desc">
                             <h3 class="job-list-title">{{$row->title}}</h3>

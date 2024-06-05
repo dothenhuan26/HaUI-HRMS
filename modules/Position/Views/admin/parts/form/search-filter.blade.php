@@ -8,8 +8,8 @@
             <div class="form-group form-focus">
                 <input
                     type="text"
-                    name="name"
-                    value="{{old('name')}}"
+                    name="title"
+                    value="{{old('title')}}"
                     class="form-control floating">
                 <label class="focus-label">{{__("Position Name")}}</label>
             </div>

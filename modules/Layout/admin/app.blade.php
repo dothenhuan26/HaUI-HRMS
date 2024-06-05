@@ -53,8 +53,6 @@
 @endsection
 
 @section("js")
-    <!-- Slimscroll JS -->
-    <script src="{{asset('assets/js/jquery.slimscroll.min.js')}}"></script>
 
     <!-- Chart JS -->
     <script src="{{asset('assets/plugins/morris/morris.min.js')}}"></script>

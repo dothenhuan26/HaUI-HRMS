@@ -11,6 +11,11 @@
         <!-- Header -->
     @include("Layout::frontend.parts.header")
     <!-- /Header -->
+
+        @if(Auth::check())
+            @include("Layout::admin.parts.sidebar")
+        @endif
+
         <div class="page-wrapper job-wrapper">
             <div class="content container">
                 @include("Layout::frontend.parts.breadcrumbs")

@@ -26,7 +26,7 @@ class PositionController extends AdminController
     {
         $this->checkPermission("position_view");
         $query = $this->positionRepository->query();
-        if ($name = $request->name) $query->where('name', 'LIKE', "%$name%");
+        if ($title = $request->title) $query->where('title', 'LIKE', "%$title%");
         $data = [
             "rows"        => $query->orderBy("updated_at", "desc")->paginate(10),
             "page_title"  => __("Position"),

@@ -13,6 +13,7 @@ return new class extends Migration {
         Schema::create('positions', function (Blueprint $table) {
             $table->id();
             $table->string("title");
+            $table->string("slug")->unique();
             $table->string("location")->nullable();
             $table->text("description")->nullable();
             $table->integer("vacancies")->nullable();
