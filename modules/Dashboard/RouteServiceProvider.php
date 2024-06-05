@@ -28,6 +28,7 @@ class RouteServiceProvider extends ServiceProvider
         Route::middleware('web')
             ->namespace($this->moduleNamespace)
             ->prefix("employee")
+            ->name("dashboard.employee.")
             ->group(__DIR__ . '/Routes/web.php');
     }
 

@@ -13,7 +13,7 @@
     <!-- /Header -->
 
         @if(Auth::check())
-            @include("Layout::admin.parts.sidebar")
+            @include("Layout::frontend.parts.sidebar")
         @endif
 
         <div class="page-wrapper job-wrapper">

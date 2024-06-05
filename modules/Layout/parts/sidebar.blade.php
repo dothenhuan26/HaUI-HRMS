@@ -7,15 +7,21 @@
             class="sidebar-menu">
             <ul>
                 <li class="menu-title">
-                    <span>Main</span>
+                    <span>{{__("Main")}}</span>
                 </li>
                 <li class="submenu">
-                    <a href="#"><i class="la la-dashboard"></i> <span> Dashboard</span> <span class="menu-arrow"></span></a>
+                    <a href="#"><i class="la la-dashboard"></i> <span> {{__("Dashboard")}}</span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
-                        <li><a
-                                class="active"
-                                href="index.html">Admin Dashboard</a></li>
-                        <li><a href="employee-dashboard.html">Employee Dashboard</a></li>
+                        @if(Auth::user()->hasRole("super_admin") || Auth::user()->hasRole("administrator"))
+                            <li><a
+                                    class="active"
+                                    href="{{route("dashboard.admin.index")}}">{{__("Admin Dashboard")}}</a></li>
+                        @endif
+                        @if(Auth::user()->hasRole("employee"))
+                            <li><a
+                                    class="active"
+                                    href="{{route("dashboard.employee.index")}}">{{__("Employee Dashboard")}}</a></li>
+                        @endif
                     </ul>
                 </li>
                 <li class="submenu">

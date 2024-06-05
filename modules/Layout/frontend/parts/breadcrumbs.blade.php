@@ -4,7 +4,7 @@
         <div class="col">
             <h3 class="page-title">{{$page_title}}</h3>
             <ul class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{route("dashboard.admin.index")}}">{{__("Home")}}</a></li>
+                <li class="breadcrumb-item"><a href="{{route("dashboard.employee.index")}}">{{__("Home")}}</a></li>
                 @if(!empty($breadcrumbs))
                     @foreach($breadcrumbs as $key => $breadcrumb)
                         @if(isset($breadcrumb["url"]))
