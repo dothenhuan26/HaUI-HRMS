@@ -24,5 +24,16 @@ class PositionRepository extends BaseEloquentRepository implements PositionRepos
         return $result;
     }
 
+    public function update(array $attributes, $id)
+    {
+        if ($attributes['title']) {
+            $attributes['slug'] = $this->model->genSlug($attributes['title']);
+        }
+        $model = $this->find($id);
+        $result = $model->update($attributes);
+        $this->resetModel();
+        return $result;
+    }
+
 
 }

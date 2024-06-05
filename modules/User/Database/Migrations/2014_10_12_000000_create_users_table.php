@@ -24,7 +24,6 @@ return new class extends Migration {
             $table->string("gender")->default("other");
             $table->date("birthday")->nullable();
             $table->boolean("is_active")->default(false);
-            $table->string("status")->nullable();
             $table->string("phone", 10)->nullable();
             $table->string("passport")->nullable();
             $table->date("passport_exp")->nullable();

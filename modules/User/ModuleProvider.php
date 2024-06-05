@@ -3,7 +3,9 @@
 namespace Modules\User;
 
 use Modules\ModuleServiceProvider;
+use Modules\User\Repositories\Contracts\RoleRepositoryInterface;
 use Modules\User\Repositories\Contracts\UserRepositoryInterface;
+use Modules\User\Repositories\Eloquent\RoleRepository;
 use Modules\User\Repositories\Eloquent\UserRepository;
 
 class ModuleProvider extends ModuleServiceProvider
@@ -22,10 +24,12 @@ class ModuleProvider extends ModuleServiceProvider
             UserRepository::class
         );
 
+        $this->app->singleton(
+            RoleRepositoryInterface::class,
+            RoleRepository::class,
+        );
+
     }
-
-
-
 
 
 }

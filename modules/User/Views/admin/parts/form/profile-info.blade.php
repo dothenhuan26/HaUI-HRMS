@@ -69,7 +69,7 @@
             <select
                 name="gender"
                 class="select form-control">
-                <option value="">{{__("Other")}}</option>
+                <option value="other">{{__("Other")}}</option>
                 <option {{old("gender")=="male"?"selected":false}} value="male">{{__("Male")}}</option>
                 <option {{old("gender")=="female"?"selected":false}} value="female">{{__("Female")}}</option>
             </select>

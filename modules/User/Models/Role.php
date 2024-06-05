@@ -16,6 +16,10 @@ class Role extends Model
         'name',
     ];
 
+    protected $casts = [
+        "created_at" => "datetime:m/d/Y",
+    ];
+
     public function hasPermission($permission)
     {
         return RolePermission::query()->where([

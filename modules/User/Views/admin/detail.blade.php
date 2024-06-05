@@ -5,7 +5,7 @@
     <div class="">
         <form
             method="POST"
-            action="{{route("user.admin.store")}}">
+            action="{{route("user.admin.store", ["id" => $row->id ?? ""])}}">
 
             @csrf
 

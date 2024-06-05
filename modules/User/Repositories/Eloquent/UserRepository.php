@@ -31,5 +31,22 @@ class UserRepository extends BaseEloquentRepository implements UserRepositoryInt
         return $this;
     }
 
+    public function create(array $attributes = [])
+    {
+        if (!$attributes['name']) $attributes['name'] = $attributes["first_name"] . ' ' . $attributes["last_name"];
+        $result = $this->model->create($attributes);
+        $this->resetModel();
+        return $result;
+    }
+
+    public function update(array $attributes, $id)
+    {
+        if (!$attributes['name']) $attributes['name'] = $attributes["first_name"] . ' ' . $attributes["last_name"];
+        $model = $this->find($id);
+        $result = $model->update($attributes);
+        $this->resetModel();
+        return $result;
+    }
+
 
 }

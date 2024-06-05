@@ -41,7 +41,7 @@ class UserController extends AdminController
         $query->exceptSuperAdmin();
         $query->with(["designation", "avatar"]);
         $data = [
-            "rows"         => $query->paginate(12)->withQueryString(),
+            "rows"         => $query->orderBy("updated_at", "desc")->paginate(12)->withQueryString(),
             "designations" => $this->designationRepository->all(["id", "name"]),
             "has_views"    => true,
             "page_title"   => __("Employee"),
@@ -114,7 +114,6 @@ class UserController extends AdminController
             $this->checkPermission("user_update");
             $row = $this->userRepository->find($id);
             if (!$row) abort(404);
-
         } else {
             $this->checkPermission("user_create");
         }
@@ -137,17 +136,43 @@ class UserController extends AdminController
             "address",
             "country",
             "national",
-            "password",
             "designation_id",
-            "status",
             'is_active',
             "educations",
             "experiences",
-            "user_create",
-            'job_id'
         ];
 
-        dd($request->except(["educations.__index__", "experiences.__index__"]));
+
+        if ($id > 0) {
+            $this->hasPermission("user_update");
+            $row = $this->userRepository->find($id);
+            if (!$row) abort(404);
+//            $dataKeys[] = "email";
+        } else {
+            $this->hasPermission("user_create");
+            $dataKeys[] = "password";
+        }
+
+        $attrs = [];
+        $data = $request->except(["educations.__index__", "experiences.__index__"]);
+        foreach ($dataKeys as $key) {
+            $attrs[$key] = $data[$key];
+        }
+
+        if ($id) {
+            $attrs["user_update"] = Auth::id();
+            $res = $this->userRepository->update($attrs, $id);
+            if ($res) {
+                return redirect()->route("user.admin.index")->with("success", __("User updated successfully!"));
+            }
+        } else {
+            $attrs["user_create"] = Auth::id();
+            $res = $this->userRepository->create($attrs);
+            if ($res) {
+                return redirect()->route("user.admin.index")->with("success", __("User created successfully!"));
+            }
+        }
+        return back()->with("error", __("Failed to create user!"));
 
 
     }

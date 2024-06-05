@@ -23,18 +23,18 @@
         <div class="form-group">
             <label>{{__("Status")}} <span class="text-danger">*</span></label>
             <select
-                name="status"
+                name="is_active"
                 class="select">
                 <option
                     value="no_active"
-                    {{old("status", $row->status??"") == "no_active" ? "selected" : false}} name="no_active">{{__("No Active")
+                    {{old("is_active", $row->status??"") == "no_active" ? "selected" : false}} name="is_active">{{__("No Active")
                 }}</option>
                 <option
                     value="active"
-                    {{old("status", $row->status??"") == "active" ? "selected" : false}} name="active">{{__("Active")}}</option>
+                    {{old("is_active", $row->status??"") == "active" ? "selected" : false}} name="is_active">{{__("Active")}}</option>
             </select>
         </div>
-        @error("status")
+        @error("is_active")
         <span class="text-danger">{{$message}}</span>
         @enderror
     </div>

@@ -52,6 +52,9 @@
                         class="noti-dot"><i class="la la-user"></i> <span> {{__("Employees")}}</span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
                         <li><a href="{{route("user.admin.index")}}">{{__("All Employees")}}</a></li>
+                        @if(Auth::user()->hasRole("super_admin") || Auth::user()->hasRole("administrator"))
+                            <li><a href="{{route("user.admin.index")}}">{{__("Role Manager")}}</a></li>
+                        @endif
                         <li><a href="{{route("holiday.admin.index")}}">{{__("Holidays")}}</a></li>
                         <li><a href="leaves.html">Leaves (Admin) <span class="badge badge-pill bg-primary float-right">1</span></a></li>
                         <li><a href="leaves-employee.html">Leaves (Employee)</a></li>

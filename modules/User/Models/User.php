@@ -38,13 +38,11 @@ class User extends Authenticatable
         'passport',
         'passport_exp',
         'national',
-        'is_active',
         'religion',
         'country',
         'user_create',
         'user_update',
         'role_id',
-        'job_id',
         'avatar_id',
         'experiences',
         'user_create',
@@ -69,8 +67,20 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password'          => 'hashed',
         "experiences"       => "array",
-        "educations"        => "array"
+        "educations"        => "array",
+        "birthday"          => "datetime:m/d/Y",
+        "passport_exp"          => "datetime:m/d/Y",
     ];
+
+    public function setBirthdayAttribute($value)
+    {
+        $this->attributes['birthday'] = date('Y-m-d', strtotime($value));
+    }
+
+    public function setPassportExpAttribute($value)
+    {
+        $this->attributes['passport_exp'] = date('Y-m-d', strtotime($value));
+    }
 
     public function fillByAttr($attributes, $input)
     {
@@ -95,5 +105,6 @@ class User extends Authenticatable
     {
         return $this->belongsTo(MediaFile::class, "avatar_id", "id");
     }
+
 
 }
