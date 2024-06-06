@@ -12,14 +12,14 @@
     <div class="row d-flex justify-content-end">
         <div class="col-2">
             <a
-                href="{{route("user.admin.create")}}"
+                href="{{route("user.admin.role.permission-matrix")}}"
                 class="btn btn-warning mb-3 w-100"
             > {{__("Permission Matrix")}}</a>
 
         </div>
         <div class="col-2">
             <a
-                href="{{route("user.admin.create")}}"
+                href="{{route("user.admin.role.create")}}"
                 class="btn add-btn mb-3 w-100"
             ><i class="fa fa-plus"></i> {{__("Add New Role")}}</a>
 

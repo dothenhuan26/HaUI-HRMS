@@ -12,7 +12,10 @@ Route::middleware("auth")->group(function () {
 
     Route::prefix("role")->name("role.")->group(function () {
         Route::get('/', 'RoleController@index')->name("index");
+        Route::get('create', 'RoleController@create')->name("create");
         Route::get('permission-matrix', 'RoleController@permissionMatrix')->name("permission-matrix");
+        Route::post('permission-matrix', 'RoleController@updatePermissionMatrix');
+
 
     });
 

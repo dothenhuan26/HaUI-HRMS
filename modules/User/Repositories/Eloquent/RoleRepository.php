@@ -16,4 +16,16 @@ class RoleRepository extends BaseEloquentRepository implements RoleRepositoryInt
         return Role::class;
     }
 
+    public function syncPermissions($matrix)
+    {
+        $roles = $this->all();
+        foreach ($roles as $role) {
+            if (empty($matrix[$role->id])) {
+                $role->syncPermissions();
+                continue;
+            }
+            $role->syncPermissions($matrix[$role->id]);
+        }
+    }
+
 }

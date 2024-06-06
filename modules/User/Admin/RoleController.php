@@ -46,6 +46,27 @@ class RoleController extends AdminController
 
         $permissions = PermissionHelper::all();
 
+        $permissionsGroup = [
+            'others' => [],
+        ];
+
+        if (!empty($permissions)) {
+            foreach ($permissions as $permission) {
+                $pos = strpos($permission, '_');
+                if ($pos == false) {
+                    $permissionsGroup['others'][] = $permission;
+                    continue;
+                }
+
+                $groupName = substr($permission, 0, $pos);
+                if (!isset($permissionsGroup[$groupName]))
+                    $permissionsGroup[$groupName] = [];
+                $permissionsGroup[$groupName][] = $permission;
+            }
+        }
+
+        if (empty($permissionsGroup['others'])) unset($permissionsGroup['others']);
+
         $roles = $this->roleRepository->all();
 
         $selectedIds = [];
@@ -56,11 +77,12 @@ class RoleController extends AdminController
             }
         }
         $data = [
-            "permissions" => $permissions,
-            "roles"       => $roles,
-            "selectedIds" => $selectedIds,
-            "page_title"  => __("Permission Matrix"),
-            "breadcrumbs" => [
+            "permissions"      => $permissions,
+            "permissionsGroup" => $permissionsGroup,
+            "roles"            => $roles,
+            "selectedIds"      => $selectedIds,
+            "page_title"       => __("Permission Matrix"),
+            "breadcrumbs"      => [
                 [
                     "name" => __("Role"),
                     "url"  => route("user.admin.role.index"),
@@ -73,6 +95,15 @@ class RoleController extends AdminController
         ];
 
         return view("User::admin.role.permission-matrix", $data);
+    }
+
+    public function updatePermissionMatrix(Request $request)
+    {
+        $this->checkPermission("role_manage");
+        $matrix = $request->input('matrix');
+        $matrix = is_array($matrix) ? $matrix : [];
+        $this->roleRepository->syncPermissions($matrix);
+        return back()->with('success', __("Permission Matrix Updated!"));
     }
 
     public function create()
