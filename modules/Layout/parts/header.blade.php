@@ -218,7 +218,7 @@
             <li class="nav-item">
                 <a
                     class="nav-link"
-                    href="login.html">Login</a>
+                    href="{{route("auth.login")}}">{{__("Login")}}</a>
             </li>
             <li class="nav-item">
                 <a
