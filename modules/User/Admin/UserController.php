@@ -10,23 +10,28 @@ use Modules\Designation\Repositories\Contracts\DesignationRepositoryInterface;
 use Modules\Media\Repositories\Contracts\MediaRepositoryInterface;
 use Modules\Media\Services\Api\AmazonS3Service;
 use Modules\User\Models\User;
+use Modules\User\Repositories\Contracts\RoleRepositoryInterface;
 use Modules\User\Repositories\Contracts\UserRepositoryInterface;
+use Modules\User\Requests\UserRequest;
 
 class UserController extends AdminController
 {
     protected $userRepository;
     protected $designationRepository;
     protected $mediaRepository;
+    protected $roleRepository;
     protected $S3Service;
 
     public function __construct(UserRepositoryInterface $userRepository,
                                 DesignationRepositoryInterface $designationRepository,
                                 MediaRepositoryInterface $mediaRepository,
+                                RoleRepositoryInterface $roleRepository,
                                 AmazonS3Service $S3Service)
     {
         $this->userRepository = $userRepository;
         $this->designationRepository = $designationRepository;
         $this->mediaRepository = $mediaRepository;
+        $this->roleRepository = $roleRepository;
         $this->S3Service = $S3Service;
     }
 
@@ -67,6 +72,7 @@ class UserController extends AdminController
         $data = [
             "page_title"   => __("Add Employee"),
             "designations" => $this->designationRepository->all(["id", "name"]),
+            "roles"        => $this->roleRepository->all(["id", "name"]),
             "breadcrumbs"  => [
                 [
                     "name" => __("Employee"),
@@ -93,6 +99,7 @@ class UserController extends AdminController
             "row"          => $row,
             "page_title"   => __("Add Employee"),
             "designations" => $this->designationRepository->all(["id", "name"]),
+            "roles"        => $this->roleRepository->all(["id", "name"]),
             "breadcrumbs"  => [
                 [
                     "name" => __("Employee"),
@@ -107,7 +114,7 @@ class UserController extends AdminController
         return view("User::admin.detail", $data);
     }
 
-    public function store(Request $request, $id = null)
+    public function store(UserRequest $request, $id = null)
     {
 
         if ($id > 0) {
@@ -124,9 +131,7 @@ class UserController extends AdminController
             "name",
             "birthday",
             "gender",
-            "phone",
             "id_card",
-            "gender",
             "phone",
             "email",
             "code",
@@ -140,6 +145,7 @@ class UserController extends AdminController
             'is_active',
             "educations",
             "experiences",
+            'role_id',
         ];
 
 

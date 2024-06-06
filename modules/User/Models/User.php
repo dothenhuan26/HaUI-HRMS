@@ -44,6 +44,7 @@ class User extends Authenticatable
         'user_update',
         'role_id',
         'avatar_id',
+        'designation_id',
         'experiences',
         'user_create',
     ];
