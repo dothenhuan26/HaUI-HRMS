@@ -27,5 +27,10 @@ class ChatController extends AdminController
         return response()->json("Message Broadcast");
     }
 
+    public function index()
+    {
+        
+    }
+
 }
 
