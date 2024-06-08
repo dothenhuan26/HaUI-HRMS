@@ -34,4 +34,17 @@ class PublicMessageSent implements ShouldBroadcast
     {
         return new PresenceChannel('public-chat');
     }
+
+    public function broadcastWith()
+    {
+        return [
+            "message" => $this->message,
+            //            "user" => $this->user->only(['id', 'name']),
+            "user"    => [
+                "id"     => $this->user->id,
+                "name"   => $this->user->name,
+                "avatar" => $this->user->avatar?->url ?? asset("assets/img/user.jpg")
+            ],
+        ];
+    }
 }

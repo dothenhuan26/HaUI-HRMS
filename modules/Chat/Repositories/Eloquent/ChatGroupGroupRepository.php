@@ -15,5 +15,10 @@ class ChatGroupGroupRepository extends BaseEloquentRepository implements ChatGro
         return ChatGroup::class;
     }
 
+    public function generalGroup()
+    {
+        return $this->find(1);
+    }
+
 
 }

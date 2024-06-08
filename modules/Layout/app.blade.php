@@ -46,7 +46,8 @@
         rel="stylesheet"
         href="{{asset('assets/css/line-awesome.min.css')}}">
 
-
+    <!-- jQuery -->
+    <script src="{{asset('assets/js/jquery-3.5.1.min.js')}}"></script>
 
 @yield("css")
 
@@ -67,8 +68,7 @@
 <body>
 @yield("body")
 
-<!-- jQuery -->
-<script src="{{asset('assets/js/jquery-3.5.1.min.js')}}"></script>
+
 
 <!-- Bootstrap Core JS -->
 <script src="{{asset('assets/js/popper.min.js')}}"></script>

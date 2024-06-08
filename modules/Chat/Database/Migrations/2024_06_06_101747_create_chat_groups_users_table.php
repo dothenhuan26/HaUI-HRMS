@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('group_id');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
+            $table->unique(['group_id', 'user_id']);
             $table->foreign("group_id")->references("id")->on("chat_groups");
             $table->foreign("user_id")->references("id")->on("users");
         });

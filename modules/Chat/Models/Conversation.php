@@ -4,6 +4,7 @@ namespace Modules\Chat\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Modules\User\Models\User;
 
 class Conversation extends Model
 {
@@ -16,5 +17,11 @@ class Conversation extends Model
         "user_id",
         "group_id",
     ];
+
+    protected $with = ['user'];
+
+    public function user() {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 
 }

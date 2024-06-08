@@ -12,9 +12,13 @@ class ChatGroup extends Model
 
     protected $table = "chat_groups";
 
+    protected $with = ['conversations', 'users'];
+
     protected $fillable = [
         "name",
         "number_of_members",
+        "user_create",
+        "user_update"
     ];
 
     public function conversations()

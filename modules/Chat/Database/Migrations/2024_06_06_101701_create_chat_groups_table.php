@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string("name")->nullable();
             $table->integer("number_of_members")->default(2);
+            $table->unsignedBigInteger("user_create")->nullable();
+            $table->unsignedBigInteger("user_update")->nullable();
             $table->timestamps();
         });
     }
