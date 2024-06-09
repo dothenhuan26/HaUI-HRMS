@@ -22,11 +22,11 @@ class UserController extends AdminController
     protected $roleRepository;
     protected $S3Service;
 
-    public function __construct(UserRepositoryInterface $userRepository,
+    public function __construct(UserRepositoryInterface        $userRepository,
                                 DesignationRepositoryInterface $designationRepository,
-                                MediaRepositoryInterface $mediaRepository,
-                                RoleRepositoryInterface $roleRepository,
-                                AmazonS3Service $S3Service)
+                                MediaRepositoryInterface       $mediaRepository,
+                                RoleRepositoryInterface        $roleRepository,
+                                AmazonS3Service                $S3Service)
     {
         $this->userRepository = $userRepository;
         $this->designationRepository = $designationRepository;
@@ -114,9 +114,8 @@ class UserController extends AdminController
         return view("User::admin.detail", $data);
     }
 
-    public function store(UserRequest $request, $id = null)
+    public function store(Request $request, $id = null)
     {
-
         if ($id > 0) {
             $this->checkPermission("user_update");
             $row = $this->userRepository->find($id);
@@ -148,6 +147,10 @@ class UserController extends AdminController
             'role_id',
         ];
 
+        if ($request->avatar) {
+            $data = $this->uploadToS3($request->avatar);
+            dd($data);
+        }
 
         if ($id > 0) {
             $this->hasPermission("user_update");
@@ -187,7 +190,7 @@ class UserController extends AdminController
     {
         if (!$file) return back()->with("error", __("File Doesn't Exist!"));
         $data = $this->S3Service->uploadImageToS3("images", $file, "avatars");
-
+        dd($data);
         if ($data["status"]) {
             $res = $this->mediaRepository->create([
                 "file_name"      => $data["file_name"] ?? "",

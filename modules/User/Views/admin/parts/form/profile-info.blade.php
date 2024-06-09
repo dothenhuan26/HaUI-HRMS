@@ -1,6 +1,20 @@
 <div class="row">
     <h3>{{__("Profile Information")}}</h3>
 
+    <div class="col-md-12">
+        <div class="form-group text-center">
+            <label class="col-form-label">{{__("Avatar")}}</label>
+            <input
+                type="file"
+                class="filepond"
+                name="avatar"
+                accept="image/png, image/jpeg, image/gif"/>
+        </div>
+        @error("avatar")
+        <span class="text-danger">{{$message}}</span>
+        @enderror
+    </div>
+
     <div class="col-sm-4">
         <div class="form-group">
             <label class="col-form-label">{{__("First Name")}} <span class="text-danger">*</span></label>

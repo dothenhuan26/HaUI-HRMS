@@ -55,6 +55,8 @@ FilePond.registerPlugin(
 );
 
 FilePond.create(document.querySelector('.filepond'), {
+    storeAsFile: true,
+
     allowReorder: true,
     filePosterMaxHeight: 256,
 

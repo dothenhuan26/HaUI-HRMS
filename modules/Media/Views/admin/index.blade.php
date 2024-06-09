@@ -29,8 +29,4 @@
         accept="image/png, image/jpeg, image/gif"/>
 @endsection
 
-@push('js')
-    <script type="module">
 
-    </script>
-@endpush
