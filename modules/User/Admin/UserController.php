@@ -22,11 +22,11 @@ class UserController extends AdminController
     protected $roleRepository;
     protected $S3Service;
 
-    public function __construct(UserRepositoryInterface $userRepository,
+    public function __construct(UserRepositoryInterface        $userRepository,
                                 DesignationRepositoryInterface $designationRepository,
-                                MediaRepositoryInterface $mediaRepository,
-                                RoleRepositoryInterface $roleRepository,
-                                AmazonS3Service $S3Service)
+                                MediaRepositoryInterface       $mediaRepository,
+                                RoleRepositoryInterface        $roleRepository,
+                                AmazonS3Service                $S3Service)
     {
         $this->userRepository = $userRepository;
         $this->designationRepository = $designationRepository;
@@ -106,7 +106,7 @@ class UserController extends AdminController
                     "url"  => route("user.admin.index"),
                 ],
                 [
-                    "name"  => __("Create"),
+                    "name"  => __("Update"),
                     "class" => "active"
                 ],
             ]

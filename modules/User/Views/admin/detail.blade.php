@@ -1,26 +1,5 @@
 @extends('admin.layouts.app')
 
-@push('css')
-    <style>
-        .filepond--drop-label {
-            color: #4c4e53;
-        }
-
-        .filepond--label-action {
-            text-decoration-color: #babdc0;
-        }
-
-        .filepond--panel-root {
-            background-color: #edf0f4;
-        }
-
-        .filepond--root {
-            width: 120px;
-            margin: 0 auto;
-        }
-    </style>
-@endpush
-
 @section("content")
     <!-- Add Employee Modal -->
     <div class="">

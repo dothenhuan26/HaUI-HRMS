@@ -55,6 +55,8 @@ FilePond.registerPlugin(
 );
 
 FilePond.create(document.querySelector('.filepond'), {
+    labelIdle: `<span class="filepond--label-action">choose avatar</span>`,
+
     storeAsFile: true,
 
     allowReorder: true,
@@ -84,11 +86,12 @@ FilePond.create(document.querySelector('.filepond'), {
         ],
         imageProcessor: processImage,
         editorOptions: {
-            ...getEditorDefaults({
-            }),
+            ...getEditorDefaults({}),
             imageCropAspectRatio: 1,
         },
 
     },
 });
+
+
 

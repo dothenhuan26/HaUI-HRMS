@@ -1,14 +1,70 @@
+@push('css')
+    <style>
+        .filepond--drop-label {
+            color: #4c4e53;
+
+        }
+
+        .filepond--label-action {
+            text-decoration-color: #babdc0;
+        }
+
+        .filepond--panel-root {
+            background-color: #edf0f4;
+        }
+
+        .filepond--root {
+            width: 120px;
+            margin: 0 auto;
+            opacity: 0.1;
+        }
+
+        .avatar-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .prev-avatar {
+            position: absolute;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 999px;
+            top: 0;
+            right: 0;
+            z-index: -999;
+        }
+
+
+    </style>
+@endpush
+
 <div class="row">
     <h3>{{__("Profile Information")}}</h3>
 
     <div class="col-md-12">
         <div class="form-group text-center">
-            <label class="col-form-label">{{__("Avatar")}}</label>
+            <p class="col-form-label fw-bold">{{__("Avatar")}}</p>
+            <div class="avatar-wrapper">
+                <input
+                    type="file"
+                    class="filepond"
+                    name="avatar"
+                    accept="image/png, image/jpeg, image/gif"/>
+
+                <img
+                    class="prev-avatar"
+                    src="{{$row->avatar?->url ?? ""}}"
+                    width="120"
+                    height="120"
+                    alt="">
+
+            </div>
+
+
             <input
-                type="file"
-                class="filepond"
-                name="avatar"
-                accept="image/png, image/jpeg, image/gif"/>
+                type="hidden"
+                class="filepond-hidden"
+                value="{{$row->avatar?->url ?? ""}}">
         </div>
         @error("avatar")
         <span class="text-danger">{{$message}}</span>
@@ -197,5 +253,27 @@
             @enderror
         </div>
     </div>
-
 </div>
+
+@push("js")
+
+    <script type="module">
+
+        const pond = document.querySelector('.filepond--root');
+
+        // listen for events
+        pond.addEventListener('FilePond:addfile', (e) => {
+
+            pond.style.opacity = '1';
+
+        });
+
+        pond.addEventListener('FilePond:removefile', (e) => {
+
+            pond.style.opacity = '0.1';
+
+        });
+
+    </script>
+
+@endpush
