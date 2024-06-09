@@ -13,6 +13,25 @@ use Illuminate\Support\Facades\Broadcast;
 |
 */
 
-Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
-    return (int) $user->id === (int) $id;
+//Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
+//    return (int) $user->id === (int) $id;
+//});
+
+//Broadcast::channel('Modules.User.Models.User.{id}', function ($user, $id) {
+//    return (int)$user->id === (int)$id;
+//});
+
+Broadcast::channel('Modules.User.Models.User.{id}', function ($user, $id) {
+    return (int)$user->id === (int)$id;
+});
+
+Broadcast::channel('public-chat', function ($user) {
+    if ($user != null) {
+        return [
+            'id'     => $user->id,
+            'name'   => $user->name,
+            'avatar' => $user->avatar?->url ?? asset("assets/img/user.jpg"),
+        ];
+    }
+    return false;
 });

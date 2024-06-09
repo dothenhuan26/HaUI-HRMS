@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Modules\Chat\Models\ChatGroup;
+use Modules\Chat\Models\Conversation;
 use Modules\Designation\Models\Designation;
 use Modules\Media\Models\MediaFile;
 use Modules\User\Traits\HasRoles;
@@ -70,7 +72,7 @@ class User extends Authenticatable
         "experiences"       => "array",
         "educations"        => "array",
         "birthday"          => "datetime:m/d/Y",
-        "passport_exp"          => "datetime:m/d/Y",
+        "passport_exp"      => "datetime:m/d/Y",
     ];
 
     public function setBirthdayAttribute($value)
@@ -107,5 +109,14 @@ class User extends Authenticatable
         return $this->belongsTo(MediaFile::class, "avatar_id", "id");
     }
 
+    public function chatGroups()
+    {
+        return $this->belongsToMany(ChatGroup::class, "chat_groups_users", "group_id", "user_id");
+    }
+
+    public function conversations()
+    {
+        return $this->hasMany(Conversation::class, "user_id", "id");
+    }
 
 }

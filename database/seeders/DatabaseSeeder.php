@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Modules\Chat\Database\Seeders\ChatSeeder;
 use Modules\User\Database\Seeders\UserSeeder;
 use Modules\User\Models\User;
 use Illuminate\Database\Seeder;
@@ -67,6 +68,8 @@ class DatabaseSeeder extends Seeder
         $user->user_create = 1;
         $user->is_active = true;
         $user->save();
+
+        $this->call(ChatSeeder::class);
 
     }
 }
