@@ -1,6 +1,6 @@
 @extends("Layout::app")
 
-@section("css")
+@push("css")
     <!-- Chart CSS -->
     <link
         rel="stylesheet"
@@ -18,7 +18,7 @@
     <link
         rel="stylesheet"
         href="{{asset("assets/css/bootstrap-datetimepicker.min.css")}}">
-@endsection
+@endpush
 
 @section("body")
     <!-- Main Wrapper -->

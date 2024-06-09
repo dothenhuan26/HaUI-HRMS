@@ -17,6 +17,12 @@ import 'tinymce/plugins/image';
 import 'tinymce/plugins/media';
 import 'tinymce/plugins/wordcount';
 
+//Filepond
+import "@pqina/pintura/pintura.css";
+import "filepond/dist/filepond.min.css";
+import "filepond-plugin-file-poster/dist/filepond-plugin-file-poster.min.css";
+
+
 window.addEventListener('DOMContentLoaded', () => {
     var editor_config = {
         selector: 'textarea#tinymce',
