@@ -1,6 +1,3 @@
-@php
-    //dd(parse_url(route('chat.public.conversations'))['path']);
-@endphp
 
 <div class="chat-contents">
     <div class="chat-content-wrap">
