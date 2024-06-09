@@ -34,7 +34,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::middleware('web')
             ->namespace($this->adminModuleNamespace)
-            ->prefix('admin/module/MediaFile')
+            ->prefix('admin/module/media')
             ->name("user.admin.")
             ->group(__DIR__ . '/Routes/admin.php');
     }

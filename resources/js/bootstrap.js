@@ -8,6 +8,18 @@ import 'bootstrap';
 
 import axios from 'axios';
 
+//Filepond
+import * as FilePond from 'filepond';
+import FilePondPluginFilePoster from 'filepond-plugin-file-poster';
+import FilePondPluginImageEditor from '@pqina/filepond-plugin-image-editor';
+import {
+    openEditor,
+    createDefaultImageReader,
+    createDefaultImageWriter,
+    processImage,
+    getEditorDefaults,
+} from '@pqina/pintura/pintura.js';
+
 window.axios = axios;
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
@@ -35,3 +47,51 @@ window.Echo = new Echo({
     forceTLS: (import.meta.env.VITE_PUSHER_SCHEME ?? 'https') === 'https',
     enabledTransports: ['ws', 'wss'],
 });
+
+//FilePond
+FilePond.registerPlugin(
+    FilePondPluginFilePoster,
+    FilePondPluginImageEditor,
+);
+
+FilePond.create(document.querySelector('.filepond'), {
+    labelIdle: `<span class="filepond--label-action">choose avatar</span>`,
+
+    storeAsFile: true,
+
+    allowReorder: true,
+    filePosterMaxHeight: 256,
+
+    imagePreviewHeight: 170,
+    imageCropAspectRatio: '1:1',
+    imageResizeTargetWidth: 200,
+    imageResizeTargetHeight: 200,
+    stylePanelLayout: 'compact circle',
+    styleLoadIndicatorPosition: 'center bottom',
+    styleProgressIndicatorPosition: 'right bottom',
+    styleButtonRemoveItemPosition: 'left bottom',
+    styleButtonProcessItemPosition: 'right bottom',
+
+    // Image Editor plugin properties
+    imageEditor: {
+        createEditor: openEditor,
+        imageReader: [createDefaultImageReader],
+        imageWriter: [
+            createDefaultImageWriter,
+            {
+                targetSize: {
+                    width: 128,
+                },
+            },
+        ],
+        imageProcessor: processImage,
+        editorOptions: {
+            ...getEditorDefaults({}),
+            imageCropAspectRatio: 1,
+        },
+
+    },
+});
+
+
+

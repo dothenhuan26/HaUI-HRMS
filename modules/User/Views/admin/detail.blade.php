@@ -4,6 +4,7 @@
     <!-- Add Employee Modal -->
     <div class="">
         <form
+            enctype="multipart/form-data"
             method="POST"
             action="{{route("user.admin.store", ["id" => $row->id ?? ""])}}">
 
@@ -29,7 +30,7 @@
 
             <hr>
 
-{{--            @include("User::admin.parts.form.permission")--}}
+            {{--            @include("User::admin.parts.form.permission")--}}
 
             <div class="submit-section">
                 <button class="btn btn-primary submit-btn submit-form-btn">{{__("Submit")}}</button>

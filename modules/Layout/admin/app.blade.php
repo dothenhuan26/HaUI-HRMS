@@ -18,7 +18,7 @@
     <link
         rel="stylesheet"
         href="{{asset("assets/css/bootstrap-datetimepicker.min.css")}}">
-@endsection
+    @endsection
 
 @section("body")
     <!-- Main Wrapper -->

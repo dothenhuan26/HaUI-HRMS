@@ -22,11 +22,11 @@ class UserController extends AdminController
     protected $roleRepository;
     protected $S3Service;
 
-    public function __construct(UserRepositoryInterface $userRepository,
+    public function __construct(UserRepositoryInterface        $userRepository,
                                 DesignationRepositoryInterface $designationRepository,
-                                MediaRepositoryInterface $mediaRepository,
-                                RoleRepositoryInterface $roleRepository,
-                                AmazonS3Service $S3Service)
+                                MediaRepositoryInterface       $mediaRepository,
+                                RoleRepositoryInterface        $roleRepository,
+                                AmazonS3Service                $S3Service)
     {
         $this->userRepository = $userRepository;
         $this->designationRepository = $designationRepository;
@@ -44,7 +44,7 @@ class UserController extends AdminController
         if ($designation_id = $request->designation_id) $query->where('designation_id', '=', $designation_id);
 
         $query->exceptSuperAdmin();
-        $query->with(["designation", "avatar"]);
+        $query->with(["designation", "avatar", "role"]);
         $data = [
             "rows"         => $query->orderBy("updated_at", "desc")->paginate(12)->withQueryString(),
             "designations" => $this->designationRepository->all(["id", "name"]),
@@ -106,7 +106,7 @@ class UserController extends AdminController
                     "url"  => route("user.admin.index"),
                 ],
                 [
-                    "name"  => __("Create"),
+                    "name"  => __("Update"),
                     "class" => "active"
                 ],
             ]
@@ -114,9 +114,8 @@ class UserController extends AdminController
         return view("User::admin.detail", $data);
     }
 
-    public function store(UserRequest $request, $id = null)
+    public function store(Request $request, $id = null)
     {
-
         if ($id > 0) {
             $this->checkPermission("user_update");
             $row = $this->userRepository->find($id);
@@ -148,7 +147,6 @@ class UserController extends AdminController
             'role_id',
         ];
 
-
         if ($id > 0) {
             $this->hasPermission("user_update");
             $row = $this->userRepository->find($id);
@@ -163,6 +161,13 @@ class UserController extends AdminController
         $data = $request->except(["educations.__index__", "experiences.__index__"]);
         foreach ($dataKeys as $key) {
             $attrs[$key] = $data[$key];
+        }
+
+        if ($request->avatar) {
+            $avatar = $this->uploadToS3($request->avatar);
+            if ($avatar) {
+                $attrs['avatar_id'] = $avatar->id;
+            }
         }
 
         if ($id) {
@@ -187,7 +192,6 @@ class UserController extends AdminController
     {
         if (!$file) return back()->with("error", __("File Doesn't Exist!"));
         $data = $this->S3Service->uploadImageToS3("images", $file, "avatars");
-
         if ($data["status"]) {
             $res = $this->mediaRepository->create([
                 "file_name"      => $data["file_name"] ?? "",
