@@ -44,7 +44,7 @@ trait HasRoles
 
     public function role()
     {
-        return $this->belongsTo(Role::class, 'role_id');
+        return $this->belongsTo(Role::class, 'role_id', 'id');
     }
 
     public function hasRole($through)

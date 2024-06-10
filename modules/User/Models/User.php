@@ -11,6 +11,7 @@ use Modules\Chat\Models\ChatGroup;
 use Modules\Chat\Models\Conversation;
 use Modules\Designation\Models\Designation;
 use Modules\Media\Models\MediaFile;
+use Modules\Payroll\Models\Payroll;
 use Modules\User\Traits\HasRoles;
 
 class User extends Authenticatable
@@ -109,6 +110,11 @@ class User extends Authenticatable
         return $this->belongsTo(MediaFile::class, "avatar_id", "id");
     }
 
+    public function payroll()
+    {
+        return $this->hasOne(Payroll::class, "user_id", "id");
+    }
+
     public function chatGroups()
     {
         return $this->belongsToMany(ChatGroup::class, "chat_groups_users", "group_id", "user_id");
@@ -118,5 +124,6 @@ class User extends Authenticatable
     {
         return $this->hasMany(Conversation::class, "user_id", "id");
     }
+
 
 }

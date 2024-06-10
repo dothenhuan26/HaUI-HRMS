@@ -46,6 +46,15 @@ return [
     'position_delete',
     'position_manage_others',
 
+    //Payrolls
+    'payroll_view',
+    'payroll_create',
+    'payroll_update',
+    'payroll_delete',
+    'payroll_items',
+    'payslip_view',
+    'payslip_action',
+
     // Dashboard
     'dashboard_access',
 

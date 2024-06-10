@@ -35,7 +35,10 @@ class UserRepository extends BaseEloquentRepository implements UserRepositoryInt
     {
         if (!$attributes['name']) $attributes['name'] = $attributes["first_name"] . ' ' . $attributes["last_name"];
         $code = $this->count();
-        $attributes['code'] = $code++;
+        $code++;
+        $len = 8 - strlen((string)$code);
+        foreach (range(1, $len) as $i) $code = '0' . $code;
+        $attributes['code'] = $code;
         $result = $this->model->create($attributes);
         $this->resetModel();
         return $result;

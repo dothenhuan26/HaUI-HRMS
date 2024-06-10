@@ -17,6 +17,8 @@
             width: 120px;
             margin: 0 auto;
             opacity: 0.1;
+            cursor: pointer;
+
         }
 
         .avatar-wrapper {
@@ -25,6 +27,7 @@
         }
 
         .prev-avatar {
+            border: 2px solid var(--primary-color);
             position: absolute;
             aspect-ratio: 1;
             object-fit: cover;
@@ -53,7 +56,7 @@
 
                 <img
                     class="prev-avatar"
-                    src="{{$row->avatar?->url ?? ""}}"
+                    src="{{$row->avatar?->url ?? asset("assets/img/user.jpg")}}"
                     width="120"
                     height="120"
                     alt="">

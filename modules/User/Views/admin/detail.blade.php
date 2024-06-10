@@ -2,40 +2,45 @@
 
 @section("content")
     <!-- Add Employee Modal -->
+
+    @include("admin.messages")
+
     <div class="">
-        <form
-            enctype="multipart/form-data"
-            method="POST"
-            action="{{route("user.admin.store", ["id" => $row->id ?? ""])}}">
+        <div class="">
+            <form
+                enctype="multipart/form-data"
+                method="POST"
+                action="{{route("user.admin.store", ["id" => $row->id ?? ""])}}">
 
-            @csrf
+                @csrf
 
-            @include("User::admin.parts.form.profile-info")
+                @include("User::admin.parts.form.profile-info")
 
-            <hr>
+                <hr>
 
-            @include("User::admin.parts.form.location")
+                @include("User::admin.parts.form.location")
 
-            <hr>
+                <hr>
 
-            @include("User::admin.parts.form.security")
+                @include("User::admin.parts.form.security")
 
-            <hr>
+                <hr>
 
-            @include("User::admin.parts.form.designation")
+                @include("User::admin.parts.form.designation")
 
-            <hr>
+                <hr>
 
-            @include("User::admin.parts.form.level")
+                @include("User::admin.parts.form.level")
 
-            <hr>
+                <hr>
 
-            {{--            @include("User::admin.parts.form.permission")--}}
+                {{--            @include("User::admin.parts.form.permission")--}}
 
-            <div class="submit-section">
-                <button class="btn btn-primary submit-btn submit-form-btn">{{__("Submit")}}</button>
-            </div>
-        </form>
+                <div class="submit-section">
+                    <button class="btn btn-primary submit-btn submit-form-btn">{{__("Submit")}}</button>
+                </div>
+            </form>
+        </div>
     </div>
 
     <!-- /Add Employee Modal -->

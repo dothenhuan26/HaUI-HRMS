@@ -77,7 +77,7 @@ class DepartmentController extends AdminController
 
     public function update(Request $request, $id = null)
     {
-        $this->hasPermission("department_create");
+        $this->hasPermission("department_update");
         if (!$id) {
             abort(404);
         }
