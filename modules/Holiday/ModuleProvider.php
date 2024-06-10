@@ -2,6 +2,8 @@
 
 namespace Modules\Holiday;
 
+use App\Menu\Facade\MenuFacade;
+use App\Menu\MenuManager;
 use Modules\ModuleServiceProvider;
 use Modules\Holiday\Repositories\Contracts\HolidayRepositoryInterface;
 use Modules\Holiday\Repositories\Eloquent\HolidayRepository;
@@ -23,9 +25,18 @@ class ModuleProvider extends ModuleServiceProvider
             HolidayRepository::class
         );
 
+        $this->app->singleton('menu', function () {
+            return new MenuManager();
+        });
+
+        $this->registerMenu();
+
     }
 
-
+    protected function registerMenu()
+    {
+        MenuFacade::add('Employees', 'Employees', 'Holidays', 'holiday.admin.index');
+    }
 
 
 

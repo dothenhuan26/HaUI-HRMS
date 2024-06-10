@@ -2,6 +2,8 @@
 
 namespace Modules\Dashboard;
 
+use App\Menu\Facade\MenuFacade;
+use App\Menu\MenuManager;
 use Modules\ModuleServiceProvider;
 use Modules\Dashboard\Repositories\Contracts\DashboardRepositoryInterface;
 use Modules\Dashboard\Repositories\Eloquent\DashboardRepository;
@@ -23,10 +25,19 @@ class ModuleProvider extends ModuleServiceProvider
             DashboardRepository::class
         );
 
+        $this->app->singleton('menu', function () {
+            return new MenuManager();
+        });
+
+        $this->registerMenu();
+
     }
 
-
-
+    protected function registerMenu()
+    {
+        MenuFacade::add('Main', 'Dashboard', 'Admin Dashboard', 'dashboard.admin.index');
+        MenuFacade::add('Main', 'Dashboard', 'Employee Dashboard', 'dashboard.employee.index');
+    }
 
 
 }

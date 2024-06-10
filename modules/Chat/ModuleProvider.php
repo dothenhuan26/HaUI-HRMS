@@ -2,6 +2,8 @@
 
 namespace Modules\Chat;
 
+use App\Menu\Facade\MenuFacade;
+use App\Menu\MenuManager;
 use Modules\Chat\Repositories\Contracts\ConversationRepositoryInterface;
 use Modules\Chat\Repositories\Eloquent\ConversationRepository;
 use Modules\ModuleServiceProvider;
@@ -29,6 +31,17 @@ class ModuleProvider extends ModuleServiceProvider
             ConversationRepository::class
         );
 
+        $this->app->singleton('menu', function () {
+            return new MenuManager();
+        });
+
+        $this->registerMenu();
+
+    }
+
+    protected function registerMenu()
+    {
+        MenuFacade::add('Main', 'Apps', 'Chat', 'chat.public.index');
     }
 
 

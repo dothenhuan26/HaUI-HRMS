@@ -2,6 +2,8 @@
 
 namespace Modules\Payroll;
 
+use App\Menu\Facade\MenuFacade;
+use App\Menu\MenuManager;
 use Modules\ModuleServiceProvider;
 use Modules\Payroll\Repositories\Contracts\PayrollRepositoryInterface;
 use Modules\Payroll\Repositories\Eloquent\PayrollRepository;
@@ -23,10 +25,18 @@ class ModuleProvider extends ModuleServiceProvider
             PayrollRepository::class
         );
 
+        $this->app->singleton('menu', function () {
+            return new MenuManager();
+        });
+
+        $this->registerMenu();
+
     }
 
-
-
+    protected function registerMenu()
+    {
+        MenuFacade::add('HR', 'Payroll', 'Employee Salary', 'payroll.admin.index');
+    }
 
 
 }

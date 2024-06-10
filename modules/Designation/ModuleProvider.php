@@ -2,6 +2,8 @@
 
 namespace Modules\Designation;
 
+use App\Menu\Facade\MenuFacade;
+use App\Menu\MenuManager;
 use Modules\ModuleServiceProvider;
 use Modules\Designation\Repositories\Contracts\DesignationRepositoryInterface;
 use Modules\Designation\Repositories\Eloquent\DesignationRepository;
@@ -23,10 +25,18 @@ class ModuleProvider extends ModuleServiceProvider
             DesignationRepository::class
         );
 
+        $this->app->singleton('menu', function () {
+            return new MenuManager();
+        });
+
+        $this->registerMenu();
+
     }
 
-
-
+    protected function registerMenu()
+    {
+        MenuFacade::add('Employees', 'Employees', 'Designations', 'designation.admin.index');
+    }
 
 
 }

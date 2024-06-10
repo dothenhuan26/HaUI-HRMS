@@ -25,6 +25,14 @@ class HolidaySeeder extends Seeder
             "Bakrid",
             "Deepavali",
             "Christmas",
+            "New Year",
+            "Good Friday",
+            "May Day",
+            "Memorial Day",
+            "Ramzon",
+            "Bakrid",
+            "Deepavali",
+            "Christmas",
         ];
 
         for ($i = 0; $i < count($holidays); $i++) {

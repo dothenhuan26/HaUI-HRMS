@@ -2,6 +2,8 @@
 
 namespace Modules\Department;
 
+use App\Menu\Facade\MenuFacade;
+use App\Menu\MenuManager;
 use Modules\ModuleServiceProvider;
 use Modules\Department\Repositories\Contracts\DepartmentRepositoryInterface;
 use Modules\Department\Repositories\Eloquent\DepartmentRepository;
@@ -23,10 +25,18 @@ class ModuleProvider extends ModuleServiceProvider
             DepartmentRepository::class
         );
 
+        $this->app->singleton('menu', function () {
+            return new MenuManager();
+        });
+
+        $this->registerMenu();
+
     }
 
-
-
+    protected function registerMenu()
+    {
+        MenuFacade::add('Employees', 'Employees', 'Departments', 'department.admin.index');
+    }
 
 
 }

@@ -184,6 +184,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
+        'Menu' => \App\Menu\Facade\MenuFacade::class,
     ])->toArray(),
 
 ];
