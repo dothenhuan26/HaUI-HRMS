@@ -1,3 +1,9 @@
+@php
+
+    $isEmployee = Auth::user()->hasRole("employee");
+
+@endphp
+
 <div
     class="sidebar"
     id="sidebar">
@@ -12,12 +18,12 @@
                 <li class="submenu">
                     <a href="#"><i class="la la-dashboard"></i> <span> {{__("Dashboard")}}</span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
-                        @if(Auth::user()->hasRole("super_admin") || Auth::user()->hasRole("administrator"))
+                        @if(!$isEmployee)
                             <li><a
                                     class="active"
                                     href="{{route("dashboard.admin.index")}}">{{__("Admin Dashboard")}}</a></li>
                         @endif
-                        @if(Auth::user()->hasRole("employee"))
+                        @if($isEmployee)
                             <li><a
                                     class="active"
                                     href="{{route("dashboard.employee.index")}}">{{__("Employee Dashboard")}}</a></li>
@@ -52,7 +58,7 @@
                         class="noti-dot"><i class="la la-user"></i> <span> {{__("Employees")}}</span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
                         <li><a href="{{route("user.admin.index")}}">{{__("All Employees")}}</a></li>
-                        @if(Auth::user()->hasRole("super_admin") || Auth::user()->hasRole("administrator"))
+                        @if(!$isEmployee)
                             <li><a href="{{route("user.admin.role.index")}}">{{__("Role Manager")}}</a></li>
                         @endif
                         <li><a href="{{route("holiday.admin.index")}}">{{__("Holidays")}}</a></li>
@@ -109,9 +115,9 @@
                     </ul>
                 </li>
                 <li class="submenu">
-                    <a href="#"><i class="la la-money"></i> <span> Payroll </span> <span class="menu-arrow"></span></a>
+                    <a href="#"><i class="la la-money"></i> <span> {{__("Payroll")}} </span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
-                        <li><a href="salary.html"> Employee Salary </a></li>
+                        <li><a href="{{route("payroll.admin.index")}}"> Employee Salary </a></li>
                         <li><a href="salary-view.html"> Payslip </a></li>
                         <li><a href="payroll-items.html"> Payroll Items </a></li>
                     </ul>

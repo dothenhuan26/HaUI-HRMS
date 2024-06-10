@@ -9,6 +9,7 @@ use Modules\Core\Admin\AdminController;
 use Modules\Designation\Repositories\Contracts\DesignationRepositoryInterface;
 use Modules\Media\Repositories\Contracts\MediaRepositoryInterface;
 use Modules\Media\Services\Api\AmazonS3Service;
+use Modules\Payroll\Repositories\Contracts\PayrollRepositoryInterface;
 use Modules\User\Models\User;
 use Modules\User\Repositories\Contracts\RoleRepositoryInterface;
 use Modules\User\Repositories\Contracts\UserRepositoryInterface;
@@ -18,18 +19,21 @@ class UserController extends AdminController
 {
     protected $userRepository;
     protected $designationRepository;
+    protected $payrollRepository;
     protected $mediaRepository;
     protected $roleRepository;
     protected $S3Service;
 
     public function __construct(UserRepositoryInterface        $userRepository,
                                 DesignationRepositoryInterface $designationRepository,
+                                PayrollRepositoryInterface     $payrollRepository,
                                 MediaRepositoryInterface       $mediaRepository,
                                 RoleRepositoryInterface        $roleRepository,
                                 AmazonS3Service                $S3Service)
     {
         $this->userRepository = $userRepository;
         $this->designationRepository = $designationRepository;
+        $this->payrollRepository = $payrollRepository;
         $this->mediaRepository = $mediaRepository;
         $this->roleRepository = $roleRepository;
         $this->S3Service = $S3Service;
@@ -114,7 +118,7 @@ class UserController extends AdminController
         return view("User::admin.detail", $data);
     }
 
-    public function store(Request $request, $id = null)
+    public function store(UserRequest $request, $id = null)
     {
         if ($id > 0) {
             $this->checkPermission("user_update");
@@ -132,7 +136,6 @@ class UserController extends AdminController
             "gender",
             "id_card",
             "phone",
-            "email",
             "code",
             "passport",
             "passport_exp",
@@ -147,14 +150,9 @@ class UserController extends AdminController
             'role_id',
         ];
 
-        if ($id > 0) {
-            $this->hasPermission("user_update");
-            $row = $this->userRepository->find($id);
-            if (!$row) abort(404);
-//            $dataKeys[] = "email";
-        } else {
-            $this->hasPermission("user_create");
+        if (!($id > 0)) {
             $dataKeys[] = "password";
+            $dataKeys[] = "email";
         }
 
         $attrs = [];
@@ -180,11 +178,13 @@ class UserController extends AdminController
             $attrs["user_create"] = Auth::id();
             $res = $this->userRepository->create($attrs);
             if ($res) {
+                if ($res->id) {
+                    $this->payrollRepository->create(["user_id" => $res->id]);
+                }
                 return redirect()->route("user.admin.index")->with("success", __("User created successfully!"));
             }
         }
         return back()->with("error", __("Failed to create user!"));
-
 
     }
 
