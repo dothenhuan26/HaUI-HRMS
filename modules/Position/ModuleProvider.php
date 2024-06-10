@@ -2,6 +2,8 @@
 
 namespace Modules\Position;
 
+use App\Menu\Facade\MenuFacade;
+use App\Menu\MenuManager;
 use Modules\ModuleServiceProvider;
 use Modules\Position\Repositories\Contracts\PositionRepositoryInterface;
 use Modules\Position\Repositories\Eloquent\PositionRepository;
@@ -23,10 +25,18 @@ class ModuleProvider extends ModuleServiceProvider
             PositionRepository::class
         );
 
+        $this->app->singleton('menu', function () {
+            return new MenuManager();
+        });
+
+        $this->registerMenu();
+
     }
 
-
-
+    protected function registerMenu()
+    {
+        MenuFacade::add('Administration', 'Jobs', 'Manage Jobs', 'position.admin.index');
+    }
 
 
 }
