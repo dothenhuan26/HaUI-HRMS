@@ -4,6 +4,7 @@ namespace Modules\User;
 
 use App\Menu\Facade\MenuFacade;
 use App\Menu\MenuManager;
+use Illuminate\Support\Facades\Auth;
 use Modules\ModuleServiceProvider;
 use Modules\User\Repositories\Contracts\RoleRepositoryInterface;
 use Modules\User\Repositories\Contracts\UserRepositoryInterface;
@@ -41,8 +42,9 @@ class ModuleProvider extends ModuleServiceProvider
 
     protected function registerMenu()
     {
-        MenuFacade::add('Employees', 'Employees', 'All Employees', 'user.admin.index');
-        MenuFacade::add('Employees', 'Employees', "Role Manager", 'user.admin.role.index');
+        MenuFacade::add('Employees', 'Employees', 'All Employees', 'user.admin.index', [1,2]);
+        MenuFacade::add('Employees', 'Employees', "Role Manager", 'user.admin.role.index', [1,2]);
+        MenuFacade::addIcon('Employees', '<i class="la la-user"></i>');
     }
 
 

@@ -15,13 +15,19 @@ class MenuManager
         "Extras"         => [],
     ];
 
+    private $icons = [
+
+    ];
+
     public static $cur = "admin";
 
-    public function add($category, $module, $label, $route)
+    public function add($category, $module, $label, $route, $roles=[1,2])
     {
+
         $this->items[$category][$module][] = [
             "label" => $label,
-            "route" => $route
+            "route" => $route,
+            "roles" => $roles,
         ];
     }
 
@@ -30,5 +36,19 @@ class MenuManager
         return $this->items;
     }
 
+    public function addIcon($module, $icon)
+    {
+        $this->icons[$module] = $icon;
+    }
+
+    public function getIcons()
+    {
+        return $this->icons;
+    }
+
+    public function getIcon($module)
+    {
+        return $this->icons[$module];
+    }
 
 }

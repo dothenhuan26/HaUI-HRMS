@@ -41,7 +41,8 @@ class ModuleProvider extends ModuleServiceProvider
 
     protected function registerMenu()
     {
-        MenuFacade::add('Main', 'Apps', 'Chat', 'chat.public.index');
+        MenuFacade::add('Main', 'Apps', 'Chat', 'chat.public.index', [1,2,3]);
+        MenuFacade::addIcon('Apps', '<i class="la la-cube"></i>');
     }
 
 

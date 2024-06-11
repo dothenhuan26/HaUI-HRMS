@@ -36,6 +36,7 @@ class ModuleProvider extends ModuleServiceProvider
     protected function registerMenu()
     {
         MenuFacade::add('HR', 'Payroll', 'Employee Salary', 'payroll.admin.index');
+        MenuFacade::addIcon('Payroll', '<i class="la la-money"></i>');
     }
 
 
