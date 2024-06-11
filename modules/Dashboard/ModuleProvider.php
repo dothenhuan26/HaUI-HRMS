@@ -35,8 +35,9 @@ class ModuleProvider extends ModuleServiceProvider
 
     protected function registerMenu()
     {
-        MenuFacade::add('Main', 'Dashboard', 'Admin Dashboard', 'dashboard.admin.index');
-        MenuFacade::add('Main', 'Dashboard', 'Employee Dashboard', 'dashboard.employee.index');
+        MenuFacade::add('Main', 'Dashboard', 'Admin Dashboard', 'dashboard.admin.index', [1, 2]);
+        MenuFacade::add('Main', 'Dashboard', 'Employee Dashboard', 'dashboard.employee.index', [1, 2, 3]);
+        MenuFacade::addIcon('Dashboard', '<i class="la la-dashboard"></i>');
     }
 
 
