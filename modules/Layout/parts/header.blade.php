@@ -6,10 +6,15 @@
             href="/"
             class="logo">
             <img
-                src="https://i.pinimg.com/564x/78/f7/ce/78f7ce214095e3054ca85972d83d1651.jpg"
+                src="https://cdn-001.haui.edu.vn//img/logo-haui-size.png"
                 width="40"
                 height="40"
                 alt="">
+{{--            <img--}}
+{{--                src="https://i.pinimg.com/564x/78/f7/ce/78f7ce214095e3054ca85972d83d1651.jpg"--}}
+{{--                width="40"--}}
+{{--                height="40"--}}
+{{--                alt="">--}}
         </a>
     </div>
     <!-- /Logo -->

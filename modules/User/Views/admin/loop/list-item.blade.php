@@ -27,7 +27,7 @@
                                         class="avatar"><img
                                             alt=""
                                             src="{{$row->avatar?->url ?? ""}}"></a>
-                                    <a href="">{{$row->name}} <span>{{$row->designation->name}}</span></a>
+                                    <a href="">{{$row->name}} <span>{{$row->designation?->name}}</span></a>
                                 </h2>
                             </td>
                             <td>{{limit($row->code, 7)}}</td>

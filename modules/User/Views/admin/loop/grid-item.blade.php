@@ -33,7 +33,7 @@
                         </div>
                     </div>
                     <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="profile.html">{{$row->name}}</a></h4>
-                    <div class="small text-muted">{{$row->designation->name}}</div>
+                    <div class="small text-muted">{{$row->designation?->name}}</div>
                 </div>
             </div>
         @endforeach

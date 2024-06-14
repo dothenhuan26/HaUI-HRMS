@@ -11,8 +11,9 @@
 
                 <!-- Account Logo -->
                 <div class="account-logo">
-                    <a href="index.html"><img
-                            src="https://i.pinimg.com/564x/78/f7/ce/78f7ce214095e3054ca85972d83d1651.jpg"
+                    <a href="/"><img
+                            src="https://cdn-001.haui.edu.vn//img/logo-haui-size.png"
+{{--                            src="https://i.pinimg.com/564x/78/f7/ce/78f7ce214095e3054ca85972d83d1651.jpg"--}}
                             alt="nhuan"></a>
                 </div>
                 <!-- /Account Logo -->

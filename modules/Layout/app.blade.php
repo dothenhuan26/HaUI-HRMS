@@ -21,7 +21,7 @@
     <meta
         name="csrf-token"
         content="{{ csrf_token() }}">
-    <title>Dashboard - HRMS admin</title>
+    <title>Haui - HRMS</title>
 
     <!-- Favicon -->
     <link
@@ -49,15 +49,15 @@
     <!-- jQuery -->
     <script src="{{asset('assets/js/jquery-3.5.1.min.js')}}"></script>
 
-@yield("css")
+    @yield("css")
 
-<!-- Main CSS -->
+    <!-- Main CSS -->
     <link
         rel="stylesheet"
         href="{{asset('assets/css/style.css')}}">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!--[if lt IE 9]>
+    <!--[if lt IE 9]>
     <script src="{{asset('assets/js/html5shiv.min.js')}}"></script>
     <script src="{{asset('assets/js/respond.min.js')}}"></script>
     <![endif]-->
