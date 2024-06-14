@@ -6,8 +6,10 @@ use App\Menu\Facade\MenuFacade;
 use App\Menu\MenuManager;
 use Illuminate\Support\Facades\Auth;
 use Modules\ModuleServiceProvider;
+use Modules\User\Repositories\Contracts\ContractRepositoryInterface;
 use Modules\User\Repositories\Contracts\RoleRepositoryInterface;
 use Modules\User\Repositories\Contracts\UserRepositoryInterface;
+use Modules\User\Repositories\Eloquent\ContractRepository;
 use Modules\User\Repositories\Eloquent\RoleRepository;
 use Modules\User\Repositories\Eloquent\UserRepository;
 
@@ -30,6 +32,11 @@ class ModuleProvider extends ModuleServiceProvider
         $this->app->singleton(
             RoleRepositoryInterface::class,
             RoleRepository::class,
+        );
+
+        $this->app->singleton(
+            ContractRepositoryInterface::class,
+            ContractRepository::class,
         );
 
         $this->app->singleton('menu', function () {

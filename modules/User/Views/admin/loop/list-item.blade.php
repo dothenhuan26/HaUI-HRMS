@@ -13,6 +13,7 @@
                     <th>{{__("Mobile")}}</th>
                     <th class="text-nowrap">{{__("Join Date")}}</th>
                     <th>{{__("Role")}}</th>
+                    <th>{{__("Hợp đồng")}}</th>
                     <th class="text-right no-sort">{{__("Action")}}</th>
                 </tr>
                 </thead>
@@ -36,6 +37,9 @@
                             <td>{{$row->created_at->format("d M Y")}}</td>
                             <td>
                                 {{$row->role->name}}
+                            </td>
+                            <td>
+                                <a href="{{route("user.admin.contract", ["id" => $row->contract->id])}}" class="btn btn-info">{{__("Hợp đồng")}}</a>
                             </td>
                             <td class="text-right">
                                 <div class="dropdown dropdown-action">

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Modules\Chat\Database\Seeders\ChatSeeder;
 use Modules\Payroll\Database\Seeders\PayrollSeeder;
+use Modules\User\Database\Seeders\ContractSeeder;
 use Modules\User\Database\Seeders\UserSeeder;
 use Modules\User\Models\User;
 use Illuminate\Database\Seeder;
@@ -72,6 +73,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(ChatSeeder::class);
         $this->call(PayrollSeeder::class);
+        $this->call(ContractSeeder::class);
 
     }
 }

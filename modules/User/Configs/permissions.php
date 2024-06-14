@@ -20,6 +20,9 @@ return [
     'permission_update',
     'permission_delete',
 
+    //Contract
+    'contract_update',
+
     //Departments
     'department_view',
     'department_create',

@@ -10,6 +10,9 @@ Route::middleware("auth")->group(function () {
     Route::post("store/{id?}", "UserController@store")->name("store");
     Route::get("delete/{id}", "UserController@delete")->name("delete");
 
+    Route::get("contract/{id}", "UserController@contract")->name("contract");
+    Route::post("contract/{id}", "UserController@updateContract")->name("update-contract");
+
     Route::prefix("role")->name("role.")->group(function () {
         Route::get('/', 'RoleController@index')->name("index");
         Route::get('create', 'RoleController@create')->name("create");
