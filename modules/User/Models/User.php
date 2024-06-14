@@ -130,5 +130,9 @@ class User extends Authenticatable
         return $this->hasMany(Conversation::class, "user_id", "id");
     }
 
+    public function contract()
+    {
+        return $this->hasOne(Contract::class, 'employee_id', 'id');
+    }
 
 }

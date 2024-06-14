@@ -5,12 +5,14 @@ namespace Modules\User\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use Modules\Core\Admin\AdminController;
 use Modules\Designation\Repositories\Contracts\DesignationRepositoryInterface;
 use Modules\Media\Repositories\Contracts\MediaRepositoryInterface;
 use Modules\Media\Services\Api\AmazonS3Service;
 use Modules\Payroll\Repositories\Contracts\PayrollRepositoryInterface;
 use Modules\User\Models\User;
+use Modules\User\Repositories\Contracts\ContractRepositoryInterface;
 use Modules\User\Repositories\Contracts\RoleRepositoryInterface;
 use Modules\User\Repositories\Contracts\UserRepositoryInterface;
 use Modules\User\Requests\UserRequest;
@@ -19,6 +21,7 @@ class UserController extends AdminController
 {
     protected $userRepository;
     protected $designationRepository;
+    protected $contractRepository;
     protected $payrollRepository;
     protected $mediaRepository;
     protected $roleRepository;
@@ -26,6 +29,7 @@ class UserController extends AdminController
 
     public function __construct(UserRepositoryInterface        $userRepository,
                                 DesignationRepositoryInterface $designationRepository,
+                                ContractRepositoryInterface    $contractRepository,
                                 PayrollRepositoryInterface     $payrollRepository,
                                 MediaRepositoryInterface       $mediaRepository,
                                 RoleRepositoryInterface        $roleRepository,
@@ -33,6 +37,7 @@ class UserController extends AdminController
     {
         $this->userRepository = $userRepository;
         $this->designationRepository = $designationRepository;
+        $this->contractRepository = $contractRepository;
         $this->payrollRepository = $payrollRepository;
         $this->mediaRepository = $mediaRepository;
         $this->roleRepository = $roleRepository;
@@ -48,7 +53,7 @@ class UserController extends AdminController
         if ($designation_id = $request->designation_id) $query->where('designation_id', '=', $designation_id);
 
         $query->exceptSuperAdmin();
-        $query->with(["designation", "avatar", "role"]);
+        $query->with(["designation", "avatar", "role", "contract"]);
         $data = [
             "rows"         => $query->orderBy("updated_at", "desc")->paginate(12)->withQueryString(),
             "designations" => $this->designationRepository->all(["id", "name"]),
@@ -218,5 +223,52 @@ class UserController extends AdminController
         return back()
             ->with("error", __("Failed to delete user!"));
     }
+
+    public function contract(Request $request, $id)
+    {
+        $this->checkPermission("contract_update");
+        if (!$id) abort(404);
+        $row = $this->contractRepository->find($id);
+        if (!$row) abort(404);
+        $data = [
+            "row"         => $row,
+            "page_title"  => __("Contract"),
+            "breadcrumbs" => [
+                [
+                    "name" => __("Employee"),
+                    "url"  => route("user.admin.index"),
+                ],
+                [
+                    "name"  => __("Contract"),
+                    "class" => "active"
+                ],
+            ]
+        ];
+
+        return view("User::admin.contract", $data);
+    }
+
+    public function updateContract(Request $request, $id)
+    {
+        $this->checkPermission("update_contract");
+        if (!$id) abort(404);
+        $dataKeys = [
+            "content",
+        ];
+        $attrs = [];
+        foreach ($dataKeys as $key) {
+            if ($key === "content") {
+                $attrs[$key] = encrypt($request->$key);
+                continue;
+            }
+            $attrs[$key] = $request->$key;
+        }
+
+        $res = $this->contractRepository->update($attrs, $id);
+        if ($res)
+            return redirect()->route("user.admin.index")->with("success", __("User's contract updated successfully!"));
+        return back()->with("error", __("Failed to create user!"));
+    }
+
 
 }
