@@ -21,7 +21,17 @@ class Holiday extends Model
     ];
 
     protected $casts = [
-        "holiday_date" => "date",
+        "holiday_date" => "date:m/d/Y",
     ];
+
+    public function setHolidayDateAttribute($value)
+    {
+        $this->attributes['holiday_date'] = date('Y-m-d', strtotime($value));
+    }
+
+    public function getHolidayDateAttribute($value)
+    {
+        return date('m/d/Y', strtotime($value));
+    }
 
 }

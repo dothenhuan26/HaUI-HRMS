@@ -20,7 +20,7 @@
                         <tr class="{{!(\Carbon\Carbon::now()->gt($row->holiday_date))?"holiday-upcoming":"holiday-completed disable opacity-25"}}">
                             <td>{{$key+1}}</td>
                             <td>{{$row->title}}</td>
-                            <td>{{$row->holiday_date->format("d M Y")}}</td>
+                            <td>{{date('d M Y', strtotime($row->holiday_date))}}</td>
                             <td>{{$row->day_of_week}}</td>
                             @if((\Carbon\Carbon::now()->gt($row->holiday_date)))
                                 <td></td>

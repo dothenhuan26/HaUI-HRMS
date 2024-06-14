@@ -36,7 +36,8 @@
                         <div class="cal-icon">
                             <input
                                 name="holiday_date"
-                                value="{{old("holiday_date", $row->holiday_date->format("d/m/Y") ?? '')}}"
+                                value="{{old("holiday_date", $row->holiday_date ?? '')}}"
+{{--                                value="{{old("holiday_date", $row->holiday_date->format("d/m/Y") ?? '')}}"--}}
                                 class="form-control datetimepicker"
                                 placeholder="{{__("Holiday Name")}}"
                                 required

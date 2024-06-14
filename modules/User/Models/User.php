@@ -81,6 +81,11 @@ class User extends Authenticatable
         $this->attributes['birthday'] = date('Y-m-d', strtotime($value));
     }
 
+    public function getBirthdayAttribute($value)
+    {
+        return date('m/d/Y', strtotime($value));
+    }
+
     public function setPassportExpAttribute($value)
     {
         $this->attributes['passport_exp'] = date('Y-m-d', strtotime($value));
