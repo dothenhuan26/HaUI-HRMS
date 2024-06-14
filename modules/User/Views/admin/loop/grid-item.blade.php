@@ -10,7 +10,7 @@
                         <a
                             href=""
                             class="avatar"><img
-                                src="{{$row->avatar?->url ?? ""}}"
+                                src="{{$row->avatar?->url ?? asset("assets/img/user.jpg")}}"
                                 alt=""></a>
                     </div>
                     <div class="dropdown profile-action">

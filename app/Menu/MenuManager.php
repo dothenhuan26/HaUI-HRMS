@@ -8,11 +8,11 @@ class MenuManager
         "Main"           => [],
         "Employees"      => [],
         "HR"             => [],
-        "Performance"    => [],
+        //        "Performance"    => [],
         "Administration" => [],
-        "Pages"          => [],
-        "UI Interface"   => [],
-        "Extras"         => [],
+        //        "Pages"          => [],
+        //        "UI Interface"   => [],
+        //        "Extras"         => [],
     ];
 
     private $icons = [
@@ -21,7 +21,7 @@ class MenuManager
 
     public static $cur = "admin";
 
-    public function add($category, $module, $label, $route, $roles=[1,2])
+    public function add($category, $module, $label, $route, $roles = [1, 2])
     {
 
         $this->items[$category][$module][] = [

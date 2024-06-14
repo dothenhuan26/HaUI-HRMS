@@ -28,7 +28,7 @@
                                         href=""
                                         class="avatar"><img
                                             alt=""
-                                            src="{{$row->avatar?->url}}"></a>
+                                            src="{{$row->avatar?->url ?? asset("assets/img/user.jpg")}}"></a>
                                     <a href="">{{$row->name}} <span>{{$row->designation?->name}}</span></a>
                                 </h2>
                             </td>

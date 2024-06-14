@@ -10,11 +10,6 @@
                 width="40"
                 height="40"
                 alt="">
-{{--            <img--}}
-{{--                src="https://i.pinimg.com/564x/78/f7/ce/78f7ce214095e3054ca85972d83d1651.jpg"--}}
-{{--                width="40"--}}
-{{--                height="40"--}}
-{{--                alt="">--}}
         </a>
     </div>
     <!-- /Logo -->
@@ -30,42 +25,21 @@
 					</span>
         </a>
     @endif
-<!-- Header Title -->
+    <!-- Header Title -->
     <div class="page-title-box">
-        <h3>{{__("human Resource Management System")}}</h3>
+        <h3>{{__("Human Resource Management System")}}</h3>
     </div>
     <!-- /Header Title -->
 
     @if(Auth::check())
-    <a
-        id="mobile_btn"
-        class="mobile_btn"
-        href="#sidebar"><i class="fa fa-bars"></i></a>
+        <a
+            id="mobile_btn"
+            class="mobile_btn"
+            href="#sidebar"><i class="fa fa-bars"></i></a>
     @endif
 
     <!-- Header Menu -->
     <ul class="nav user-menu">
-
-        <!-- Search -->
-        <li class="nav-item">
-            <div class="top-nav-search">
-                <a
-                    href="javascript:void(0);"
-                    class="responsive-search">
-                    <i class="fa fa-search"></i>
-                </a>
-                <form action="search.html">
-                    <input
-                        class="form-control"
-                        type="text"
-                        placeholder="Search here">
-                    <button
-                        class="btn"
-                        type="submit"><i class="fa fa-search"></i></button>
-                </form>
-            </div>
-        </li>
-        <!-- /Search -->
 
         <!-- Flag -->
         <li class="nav-item dropdown has-arrow flag-nav">
@@ -86,7 +60,7 @@
                     <img
                         src="{{asset("assets/img/flags/us.png")}}"
                         alt=""
-                        height="16"> English
+                        height="16"> {{__("English")}}
                 </a>
                 <a
                     href="javascript:void(0);"
@@ -94,14 +68,14 @@
                     <img
                         src="{{asset("assets/img/flags/fr.png")}}"
                         alt=""
-                        height="16"> French
+                        height="16"> {{__("French")}}
                 </a>
             </div>
         </li>
         <!-- /Flag -->
 
-    @if(Auth::check())
-        <!-- Notifications -->
+        @if(Auth::check())
+            <!-- Notifications -->
             <li class="nav-item dropdown">
                 <a
                     href="#"
@@ -111,10 +85,10 @@
                 </a>
                 <div class="dropdown-menu notifications">
                     <div class="topnav-dropdown-header">
-                        <span class="notification-title">Notifications</span>
+                        <span class="notification-title">{{__("Notifications")}}</span>
                         <a
                             href="javascript:void(0)"
-                            class="clear-noti"> Clear All </a>
+                            class="clear-noti"> {{__("Clear All")}} </a>
                     </div>
                     <div class="noti-content">
                         <ul class="notification-list">
@@ -137,7 +111,7 @@
                         </ul>
                     </div>
                     <div class="topnav-dropdown-footer">
-                        <a href="activities.html">View all Notifications</a>
+                        <a href="activities.html">{{__("View all Notifications")}}</a>
                     </div>
                 </div>
             </li>
@@ -194,18 +168,18 @@
                     class="dropdown-toggle nav-link"
                     data-toggle="dropdown">
 							<span class="user-img"><img
-                                    src="{{asset("assets/img/profiles/avatar-09.jpg")}}"
+                                    src="{{Auth::user()->avatar?->url ?? asset("assets/img/user.jpg")}}"
                                     alt="">
 							<span class="status online"></span></span>
-                    <span>Soeng Souy</span>
+                    <span>{{Auth::user()->name}}</span>
                 </a>
                 <div class="dropdown-menu">
                     <a
                         class="dropdown-item"
-                        href="profile.html">My Profile</a>
+                        href="profile.html">{{__("My Profile")}}</a>
                     <a
                         class="dropdown-item"
-                        href="settings.html">Settings</a>
+                        href="settings.html">{{__("Settings")}}</a>
                     <a
                         class="dropdown-item"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
@@ -228,14 +202,14 @@
             <li class="nav-item">
                 <a
                     class="nav-link"
-                    href="register.html">Register</a>
+                    href="register.html">{{__("Register")}}</a>
             </li>
         @endif
     </ul>
     <!-- /Header Menu -->
 
     @if(Auth::check())
-    <!-- Mobile Menu -->
+        <!-- Mobile Menu -->
         <div class="dropdown mobile-user-menu">
             <a
                 href="#"
@@ -245,18 +219,18 @@
             <div class="dropdown-menu dropdown-menu-right">
                 <a
                     class="dropdown-item"
-                    href="profile.html">My Profile</a>
+                    href="profile.html">{{__("My Profile")}}</a>
                 <a
                     class="dropdown-item"
-                    href="settings.html">Settings</a>
+                    href="settings.html">{{__("Settings")}}</a>
                 <a
                     class="dropdown-item"
-                    href="login.html">Logout</a>
+                    href="login.html">{{__("Logout")}}</a>
             </div>
         </div>
         <!-- /Mobile Menu -->
     @else
-    <!-- Mobile Menu -->
+        <!-- Mobile Menu -->
         <div class="dropdown mobile-user-menu">
             <a
                 href="#"
@@ -266,10 +240,10 @@
             <div class="dropdown-menu dropdown-menu-right">
                 <a
                     class="dropdown-item"
-                    href="login.html">Login</a>
+                    href="login.html">{{__("Login")}}</a>
                 <a
                     class="dropdown-item"
-                    href="register.html">Register</a>
+                    href="register.html">{{__("Register")}}</a>
             </div>
         </div>
         <!-- /Mobile Menu -->

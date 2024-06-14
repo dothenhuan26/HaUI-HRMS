@@ -8,7 +8,7 @@
             <div class="modal-body">
                 <div class="form-header">
                     <h3>{{__("Delete User")}}</h3>
-                    <p>{{__("Are you sure want to delete?")}}</p>
+                    <p>{{__("Are you sure want to delete")}}?</p>
                 </div>
                 <div class="modal-btn delete-action">
                     <div class="row">

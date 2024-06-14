@@ -6,7 +6,7 @@
             <select
                 name="designation_id"
                 class="select">
-                <option>Select Designation</option>
+                <option>{{__("Select Designation")}}</option>
                 @if(!empty($designations))
                     @foreach($designations as $key => $item)
                         <option
