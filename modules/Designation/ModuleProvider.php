@@ -35,7 +35,7 @@ class ModuleProvider extends ModuleServiceProvider
 
     protected function registerMenu()
     {
-        MenuFacade::add('Employees', 'Employees', 'Designations', 'designation.admin.index');
+        MenuFacade::add('Employees', 'Employees', 'Vị trí công việc', 'designation.admin.index');
     }
 
 

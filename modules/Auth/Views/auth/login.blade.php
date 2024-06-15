@@ -51,13 +51,13 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col">
-                                        <label>Password</label>
+                                        <label>{{__("Password")}}</label>
                                     </div>
                                     <div class="col-auto">
                                         <a
                                             class="text-muted"
                                             href="forgot-password.html">
-                                            Forgot password?
+                                            {{__("Forgot password")}}?
                                         </a>
                                     </div>
                                 </div>
@@ -80,7 +80,7 @@
                             <div class="form-group text-center">
                                 <button
                                     class="btn btn-primary account-btn"
-                                    type="submit">Login
+                                    type="submit">{{__("Login")}}
                                 </button>
                             </div>
                         </form>

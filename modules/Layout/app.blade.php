@@ -21,7 +21,7 @@
     <meta
         name="csrf-token"
         content="{{ csrf_token() }}">
-    <title>Haui - HRMS</title>
+    <title>{{__("HaUI - HRMS")}}</title>
 
     <!-- Favicon -->
     <link

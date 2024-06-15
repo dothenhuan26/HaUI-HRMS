@@ -35,7 +35,7 @@ class ModuleProvider extends ModuleServiceProvider
 
     protected function registerMenu()
     {
-        MenuFacade::add('Administration', 'Jobs', 'Manage Jobs', 'position.admin.index');
+        MenuFacade::add('Administration', 'Jobs', 'Quản lý việc làm', 'position.admin.index');
         MenuFacade::addIcon('Jobs', '<i class="la la-briefcase"></i>');
     }
 

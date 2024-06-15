@@ -24,6 +24,12 @@ return [
     'contract_update',
 
     //Departments
+    'ojt_view',
+    'ojt_create',
+    'ojt_update',
+    'ojt_delete',
+
+    //Departments
     'department_view',
     'department_create',
     'department_update',
