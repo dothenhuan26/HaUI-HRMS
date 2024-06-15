@@ -26,7 +26,7 @@ class HolidayRequest extends FormRequest
 
         $rules = [
             "title"        => "required|string|max:255",
-            'holiday_date' => "required|after_or_equal:".Carbon::now(),
+            'holiday_date' => "required|date|after_or_equal:".Carbon::now(),
         ];
 
         return $rules;

@@ -51,6 +51,7 @@ class ModuleProvider extends ModuleServiceProvider
     {
         MenuFacade::add('Employees', 'Employees', "Danh sách nhân sự", 'user.admin.index', [1,2]);
         MenuFacade::add('Employees', 'Employees', "Quản lý vai trò", 'user.admin.role.index', [1,2]);
+        MenuFacade::add('Employees', 'Employees', "On Job Training", 'ojt.admin.index', [1,2]);
         MenuFacade::addIcon('Employees', '<i class="la la-user"></i>');
     }
 

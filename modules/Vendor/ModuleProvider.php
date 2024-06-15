@@ -4,6 +4,7 @@ namespace Modules\Vendor;
 
 use Modules\ModuleServiceProvider;
 use Modules\Vendor\Commands\Module\Controller;
+use Modules\Vendor\Commands\Module\Init;
 use Modules\Vendor\Commands\Module\Migration;
 use Modules\Vendor\Commands\Module\Model;
 use Modules\Vendor\Commands\Module\Module;
@@ -19,7 +20,8 @@ class ModuleProvider extends ModuleServiceProvider
         Migration::class,
         Model::class,
         Module::class,
-        UpdateModule::class
+        UpdateModule::class,
+        Init::class,
     ];
 
     public function boot()

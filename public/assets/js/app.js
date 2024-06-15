@@ -172,6 +172,7 @@ $(document).ready(function() {
             find('.form-item').
             html();
         html = html.replace(/__index__/gi, index);
+        html = html.replace(/__order__/gi, ++index);
         const el = $(html);
         groupItems.append(el);
 
@@ -185,7 +186,7 @@ $(document).ready(function() {
         }
 
         $('.group-items .datetimepicker').datetimepicker({
-            format: 'DD/MM/YYYY',
+            format: 'MM/DD/YYYY',
             icons: {
                 up: 'fa fa-angle-up',
                 down: 'fa fa-angle-down',

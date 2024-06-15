@@ -49,13 +49,6 @@ class Position extends BaseModel
         return $this->belongsTo(Department::class, "department_id", 'id');
     }
 
-//    public function startDate()
-//    {
-//        return Attribute::make(
-//            set: fn(string $value) => date('Y-m-d', strtotime($value)),
-//        );
-//    }
-
     public function setStartDateAttribute($value)
     {
         $this->attributes['start_date'] = date('Y-m-d', strtotime($value));
