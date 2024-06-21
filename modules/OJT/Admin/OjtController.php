@@ -25,7 +25,7 @@ class OjtController extends AdminController
 
         if ($name = $request->name) $query->where('title', 'LIKE', "%$name%");
         $data = [
-            "rows"        => $query->paginate(10)->withQueryString(),
+            "rows"        => $query->orderBy("created_at", "desc")->paginate(10)->withQueryString(),
             "page_title"  => __("On Job Training"),
             "breadcrumbs" => [
                 [

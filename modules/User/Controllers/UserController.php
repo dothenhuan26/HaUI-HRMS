@@ -15,4 +15,28 @@ class UserController extends Controller
         $this->userRepository = $userRepository;
     }
 
+    public function profile(Request $request, $code = null)
+    {
+        if (!$code) abort(404);
+        $row = $this->userRepository->findByField("code", $code)->first();
+        if(!$row) abort(404);
+        $data = [
+            "row"          => $row,
+            "page_title"   => __("Profile"),
+            "breadcrumbs"  => [
+                [
+                    "name" => __("Employee"),
+                    "url"  => route("user.admin.index"),
+                ],
+                [
+                    "name"  => __("Profile"),
+                    "class" => "active"
+                ],
+            ]
+        ];
+
+        return view("User::frontend.profile", $data);
+
+    }
+
 }
