@@ -135,4 +135,9 @@ class User extends Authenticatable
         return $this->hasOne(Contract::class, 'employee_id', 'id');
     }
 
+    public function userCreate()
+    {
+        return $this->belongsTo(User::class, "user_create", "id");
+    }
+
 }
