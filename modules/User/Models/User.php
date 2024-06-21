@@ -11,6 +11,7 @@ use Modules\Chat\Models\ChatGroup;
 use Modules\Chat\Models\Conversation;
 use Modules\Designation\Models\Designation;
 use Modules\Media\Models\MediaFile;
+use Modules\OJT\Models\Ojt;
 use Modules\Payroll\Models\Payroll;
 use Modules\User\Traits\HasRoles;
 
@@ -138,6 +139,11 @@ class User extends Authenticatable
     public function userCreate()
     {
         return $this->belongsTo(User::class, "user_create", "id");
+    }
+
+    public function ojts()
+    {
+        return $this->belongsToMany(Ojt::class, "ojts_users", "user_id", "ojt_id");
     }
 
 }

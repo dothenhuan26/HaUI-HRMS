@@ -14,6 +14,4 @@ class DepartmentRepository extends BaseEloquentRepository implements DepartmentR
         return Department::class;
     }
 
-
-
 }
