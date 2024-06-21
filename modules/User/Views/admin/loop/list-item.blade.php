@@ -25,11 +25,11 @@
                             <td>
                                 <h2 class="table-avatar">
                                     <a
-                                        href=""
+                                        href="{{route("user.profile", ["code" => $row->code])}}"
                                         class="avatar"><img
                                             alt="{{__("Avatar")}}"
                                             src="{{$row->avatar?->url ?? asset("assets/img/user.jpg")}}"></a>
-                                    <a href="">{{$row->name}} <span>{{$row->designation?->name}}</span></a>
+                                    <a href="{{route("user.profile", ["code" => $row->code])}}">{{$row->name}} <span>{{$row->designation?->name}}</span></a>
                                 </h2>
                             </td>
                             <td>{{limit($row->code, 7)}}</td>

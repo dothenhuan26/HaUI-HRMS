@@ -15,6 +15,13 @@ class OJTRepository extends BaseEloquentRepository implements OJTRepositoryInter
         return Ojt::class;
     }
 
+    public function syncOjtForUser(array $ids, $id)
+    {
+        $model = $this->find($id);
+        $result = $model->users()->sync($ids);
+        $this->resetModel();
+        return $result;
+    }
 
 
 }

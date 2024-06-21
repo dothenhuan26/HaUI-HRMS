@@ -8,7 +8,7 @@
                 <div class="profile-widget">
                     <div class="profile-img">
                         <a
-                            href=""
+                            href="{{route("user.profile", ["code" => $row->code])}}"
                             class="avatar"><img
                                 src="{{$row->avatar?->url ?? asset("assets/img/user.jpg")}}"
                                 alt=""></a>

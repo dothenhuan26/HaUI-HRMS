@@ -4,6 +4,8 @@ namespace Modules\Department\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Designation\Models\Designation;
+use Modules\User\Models\User;
 
 class Department extends Model
 {
@@ -24,12 +26,14 @@ class Department extends Model
         "user_update"
     ];
 
-    public function designations() {
+    public function designations()
+    {
 
     }
 
-    public function users() {
-
+    public function users()
+    {
+        return $this->hasManyThrough(User::class, Designation::class);
     }
 
 }

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Modules\User\Models\User;
 use Modules\Core\Repositories\BaseEloquentRepository;
 use Modules\User\Repositories\Contracts\UserRepositoryInterface;
+use Modules\Department\Models\Department;
 
 class UserRepository extends BaseEloquentRepository implements UserRepositoryInterface
 {
@@ -51,6 +52,13 @@ class UserRepository extends BaseEloquentRepository implements UserRepositoryInt
         $result = $model->update($attributes);
         $this->resetModel();
         return $result;
+    }
+
+    public function usersOfDepartment($department_id)
+    {
+        $department = Department::find($department_id);
+        if (!$department) abort(404);
+        return $department->users;
     }
 
 

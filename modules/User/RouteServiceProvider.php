@@ -9,6 +9,7 @@ class RouteServiceProvider extends ServiceProvider
 {
 
     protected $moduleNamespace = "Modules\User\Controllers";
+    protected $apiModuleNamespace = "Modules\User\Api";
     protected $adminModuleNamespace = "Modules\User\Admin";
 
     public function boot()
@@ -27,6 +28,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::middleware('web')
             ->namespace($this->moduleNamespace)
+            ->name("user.")
             ->group(__DIR__ . '/Routes/web.php');
     }
 
@@ -43,7 +45,8 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::prefix('api')
             ->middleware('api')
-            ->namespace($this->moduleNamespace)
+            ->name("api.")
+            ->namespace($this->apiModuleNamespace)
             ->group(__DIR__ . '/Routes/api.php');
     }
 
