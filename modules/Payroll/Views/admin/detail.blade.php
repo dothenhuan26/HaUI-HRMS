@@ -52,7 +52,7 @@
                     <hr>
 
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <label class="">{{__("Salary basis")}} <span class="text-danger">*</span></label>
                                 <select
@@ -77,7 +77,7 @@
                             <span class="text-danger">{{$message}}</span>
                             @enderror
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <label class="">{{__("Salary amount")}} <small class="text-muted">{{__("(gross)")}}</small></label>
                                 <div class="input-group">
@@ -97,7 +97,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <label class="">{{__("Payment type")}}</label>
                                 <select
@@ -118,7 +118,26 @@
                             <span class="text-danger">{{$message}}</span>
                             @enderror
                         </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="">{{__("Salary Rank")}}</label>
+                                <select
+                                    name="rank_id"
+                                    class="select">
+                                    @foreach($ranks as $rank)
+                                        <option
+                                            {{old("rank_id", $row->rank_id ?? "")==$rank->id?"selected":false}}
+                                            value="{{$rank->id}}">{{$rank->rank}} ( X {{$rank->coefficient}})</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            @error("payment_type")
+                            <span class="text-danger">{{$message}}</span>
+                            @enderror
+                        </div>
                     </div>
+
+                    <hr>
 
                     <div class="row">
                         <div class="col-sm-3">
@@ -203,6 +222,8 @@
                             </div>
                         </div>
                     </div>
+
+                    <hr>
 
                     <div class="row">
                         <div class="col-sm-3">

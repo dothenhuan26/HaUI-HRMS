@@ -310,4 +310,9 @@ abstract class BaseEloquentRepository implements RepositoryInterface
         return $this->all($columns);
     }
 
+    public function truncate()
+    {
+        $this->model::truncate();
+    }
+
 }
