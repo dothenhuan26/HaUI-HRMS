@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Modules\Core\Admin\AdminController;
 use Modules\Payroll\Repositories\Contracts\PayrollRepositoryInterface;
+use Modules\Payroll\Repositories\Contracts\SalaryRankRepositoryInterface;
 use Modules\Payroll\Requests\PayrollRequest;
 use Modules\Media\Services\Api\AmazonS3Service;
 use Modules\User\Repositories\Contracts\RoleRepositoryInterface;
@@ -14,16 +15,19 @@ use Modules\User\Repositories\Contracts\UserRepositoryInterface;
 class PayrollController extends AdminController
 {
     protected $payrollRepository;
+    protected $salaryRankRepository;
     protected $userRepository;
     protected $roleRepository;
     protected $S3Service;
 
-    public function __construct(PayrollRepositoryInterface $payrollRepository,
-                                UserRepositoryInterface    $userRepository,
-                                RoleRepositoryInterface    $roleRepository,
-                                AmazonS3Service            $S3Service)
+    public function __construct(PayrollRepositoryInterface    $payrollRepository,
+                                SalaryRankRepositoryInterface $salaryRankRepository,
+                                UserRepositoryInterface       $userRepository,
+                                RoleRepositoryInterface       $roleRepository,
+                                AmazonS3Service               $S3Service)
     {
         $this->payrollRepository = $payrollRepository;
+        $this->salaryRankRepository = $salaryRankRepository;
         $this->userRepository = $userRepository;
         $this->roleRepository = $roleRepository;
         $this->S3Service = $S3Service;
@@ -69,6 +73,7 @@ class PayrollController extends AdminController
         if (!$row) abort(404);
         $data = [
             "row"         => $row,
+            "ranks"        => $this->salaryRankRepository->all(),
             "users"       => $this->userRepository->get(["id", "name"]),
             "page_title"  => __("Payroll"),
             "breadcrumbs" => [
